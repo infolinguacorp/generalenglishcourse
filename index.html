@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LinguaCorp – El mundo en tus manos</title>
-  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="icon" type="image/png" href="logo.png" />
   <style>
-    /* ========== THEME: LIGHT (default) ========== */
+    /* ========== THEME: LIGHT ========== */
     :root, [data-theme="light"] {
       --bg: #f8fafc;
       --bg2: #f1f5f9;
@@ -88,12 +88,14 @@
       gap: 0.75rem;
       text-decoration: none;
       color: var(--text);
+      cursor: pointer;
     }
 
     .brand img {
       height: 42px;
       width: auto;
       display: block;
+      border-radius: 6px;
     }
 
     .brand-text {
@@ -108,9 +110,7 @@
       letter-spacing: -0.02em;
     }
 
-    .brand-text strong span {
-      color: var(--accent);
-    }
+    .brand-text strong span { color: var(--accent); }
 
     .brand-text small {
       font-size: 0.72rem;
@@ -125,7 +125,6 @@
       flex-wrap: wrap;
     }
 
-    /* Theme switch */
     .theme-switch {
       display: flex;
       align-items: center;
@@ -154,11 +153,8 @@
       box-shadow: 0 2px 8px rgba(59, 91, 219, 0.35);
     }
 
-    .theme-switch button:hover:not(.active) {
-      color: var(--text);
-    }
+    .theme-switch button:hover:not(.active) { color: var(--text); }
 
-    /* Buttons */
     button, .btn {
       background: var(--card);
       color: var(--text);
@@ -183,11 +179,16 @@
       box-shadow: 0 2px 12px rgba(59, 91, 219, 0.3);
     }
 
-    button.primary:hover {
-      filter: brightness(1.08);
+    button.primary:hover { filter: brightness(1.08); }
+
+    button.ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
     }
 
-    /* Nav */
+    button.ghost:hover { color: var(--text); border-color: #94a3b8; }
+
     nav {
       display: flex;
       gap: 0.3rem;
@@ -221,7 +222,7 @@
     main {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 1.5rem 1.15rem 3rem;
+      padding: 1.35rem 1.15rem 3rem;
     }
 
     .panel { display: none; }
@@ -232,46 +233,81 @@
       to { opacity: 1; transform: none; }
     }
 
-    /* Cards */
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 1.25rem 1.4rem;
       box-shadow: var(--shadow);
+      margin-bottom: 1rem;
       transition: background 0.25s ease, border-color 0.25s ease;
     }
 
     .card h2 {
       font-size: 1.2rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
-      color: var(--text);
+      margin-bottom: 0.4rem;
     }
 
-    .card p {
+    .card .subtitle {
       color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 0.75rem;
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
     }
 
-    /* Level grid */
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .breadcrumb button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .breadcrumb button:hover { text-decoration: underline; transform: none; }
+
+    .breadcrumb .sep { opacity: 0.5; }
+
+    /* Levels grid */
     .levels-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 0.85rem;
-      margin-top: 1.25rem;
     }
 
     .level-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 1.15rem 1rem;
+      padding: 1.2rem 1rem;
       text-align: center;
       cursor: pointer;
       transition: all 0.18s ease;
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .level-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--accent);
+      opacity: 0.7;
     }
 
     .level-card:hover {
@@ -281,16 +317,16 @@
     }
 
     .level-card .code {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 900;
       color: var(--accent);
       letter-spacing: -0.03em;
     }
 
     .level-card .name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin: 0.25rem 0 0.15rem;
+      font-weight: 800;
+      font-size: 0.98rem;
+      margin: 0.3rem 0 0.2rem;
     }
 
     .level-card .desc {
@@ -299,22 +335,281 @@
       line-height: 1.35;
     }
 
-    /* Welcome / status */
-    .status-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1.2rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: 1.25rem;
+    .level-card .meta {
+      margin-top: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
     }
 
-    .status-bar strong {
+    /* Modules grid */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .module-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.15rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .module-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(59, 91, 219, 0.12);
+    }
+
+    .module-card.locked {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .module-card.locked:hover {
+      transform: none;
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .module-card .mod-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--accent);
     }
 
-    /* Toast */
+    .module-card .mod-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .module-card .mod-title-es {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .module-card .mod-progress {
+      margin-top: 0.35rem;
+      height: 6px;
+      background: var(--bg2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .module-card .mod-progress > div {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .module-card .mod-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .badge-lock {
+      font-size: 0.72rem;
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--danger);
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      font-weight: 800;
+    }
+
+    .badge-open {
+      font-size: 0.72rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      font-weight: 800;
+    }
+
+    /* Lessons list */
+    .lessons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .lesson-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.85rem;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .lesson-row:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 18px rgba(59, 91, 219, 0.1);
+    }
+
+    .lesson-row.locked {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .lesson-row.locked:hover {
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .lesson-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-row.done .lesson-num {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+    }
+
+    .lesson-info { min-width: 0; }
+
+    .lesson-info .ltitle {
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .lesson-info .ltitle-es {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .lesson-info .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.4rem;
+    }
+
+    .skill-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.12rem 0.4rem;
+      border-radius: 5px;
+      background: var(--bg2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .lesson-status {
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .lesson-status.open { color: var(--accent); }
+    .lesson-status.done { color: var(--success); }
+    .lesson-status.locked { color: var(--muted); }
+
+    /* Lesson detail (placeholder tabs) */
+    .lesson-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 1rem;
+      background: var(--bg2);
+      padding: 0.3rem;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+    }
+
+    .lesson-tabs button {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .lesson-tabs button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .lesson-section {
+      display: none;
+    }
+
+    .lesson-section.active {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .objectives {
+      list-style: none;
+      padding: 0;
+    }
+
+    .objectives li {
+      padding: 0.45rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 600;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .objectives li:last-child { border-bottom: none; }
+
+    .objectives li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
     .toast {
       position: fixed;
       bottom: 1.5rem;
@@ -337,32 +632,37 @@
       transform: translateY(0);
     }
 
-    /* Responsive */
     @media (max-width: 640px) {
       header { padding: 0.6rem 0.9rem; }
       .brand img { height: 36px; }
       .brand-text strong { font-size: 1.05rem; }
       main { padding: 1.1rem 0.9rem 2.5rem; }
+      .lesson-row {
+        grid-template-columns: auto 1fr;
+      }
+      .lesson-status {
+        grid-column: 2;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="header-top">
-      <a href="#" class="brand" onclick="showPanel('inicio'); return false;">
-        <img src="assets/logo.png" alt="LinguaCorp" />
+      <div class="brand" onclick="goHome()">
+        <img src="logo.png" alt="LinguaCorp" onerror="this.style.display='none'" />
         <div class="brand-text">
           <strong>Lingua<span>Corp</span></strong>
           <small>El mundo en tus manos</small>
         </div>
-      </a>
+      </div>
 
       <div class="header-actions">
         <div class="theme-switch" title="Cambiar tema">
           <button type="button" id="themeLight" class="active" onclick="setTheme('light')">☀️ Claro</button>
           <button type="button" id="themeDark" onclick="setTheme('dark')">🌙 Oscuro</button>
         </div>
-        <button class="primary" onclick="toast('Próximamente: guardar progreso')">💾 Guardar</button>
+        <button class="primary" onclick="toast('Próximamente: guardar progreso en la nube')">💾 Guardar</button>
       </div>
     </div>
 
@@ -381,36 +681,25 @@
     <div id="inicio" class="panel active">
       <div class="card">
         <h2>Bienvenido a LinguaCorp</h2>
-        <p>
-          Curso de inglés interactivo con 5 niveles (A1 → C1), 10 módulos por nivel
-          y 4 lecciones por módulo. Cada lección incluye gramática, reading, listening,
-          writing, ejercicios y un examen para avanzar.
+        <p class="subtitle">
+          Curso de inglés interactivo · 5 niveles (A1 → C1) · 10 módulos por nivel · 4 lecciones por módulo.
+          Cada lección incluye gramática, reading, listening, writing, ejercicios y un examen para avanzar.
         </p>
-        <div class="status-bar">
-          <span>Estado: <strong>Estructura base lista</strong></span>
-          <span>Tema: <strong id="currentThemeLabel">Claro</strong></span>
-          <span>Versión datos: <strong>0.1.0</strong></span>
-        </div>
         <button class="primary" onclick="showPanel('niveles')">Empezar → Ver niveles</button>
       </div>
     </div>
 
-    <!-- NIVELES -->
+    <!-- NIVELES (vista dinámica) -->
     <div id="niveles" class="panel">
-      <div class="card">
-        <h2>Elige tu nivel</h2>
-        <p>Cada nivel tiene 10 módulos. Completa el examen de módulo para desbloquear el siguiente.</p>
-        <div class="levels-grid" id="levelsGrid">
-          <!-- se llena con JS -->
-        </div>
-      </div>
+      <div id="nivelesContent"></div>
     </div>
 
     <!-- PROGRESO -->
     <div id="progreso" class="panel">
       <div class="card">
         <h2>Mi progreso</h2>
-        <p>Aquí verás XP, racha, lecciones completadas y badges. (Próximo paso)</p>
+        <p class="subtitle">XP, racha, lecciones completadas y badges. Se conectará al sistema de progreso en el siguiente paso.</p>
+        <div class="empty-state">Aún no has completado ninguna lección</div>
       </div>
     </div>
 
@@ -418,7 +707,8 @@
     <div id="ranking" class="panel">
       <div class="card">
         <h2>Ranking del grupo</h2>
-        <p>Clasificación por puntos y precisión, al estilo de la app de Champions. (Próximo paso)</p>
+        <p class="subtitle">Clasificación por puntos y precisión (estilo Champions). Próximo paso.</p>
+        <div class="empty-state">El ranking aparecerá cuando haya partidas / lecciones jugadas</div>
       </div>
     </div>
 
@@ -426,7 +716,8 @@
     <div id="juegos" class="panel">
       <div class="card">
         <h2>Juegos</h2>
-        <p>Trivia, adivina la palabra, sentence race… (Próximo paso)</p>
+        <p class="subtitle">Trivia, adivina la palabra, sentence race… Próximo paso.</p>
+        <div class="empty-state">Los minijuegos se activarán por lección</div>
       </div>
     </div>
 
@@ -434,13 +725,14 @@
     <div id="reglas" class="panel">
       <div class="card">
         <h2>Cómo funciona</h2>
-        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.7;">
+        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.75; font-weight: 600;">
           <li><strong style="color: var(--text);">5 niveles</strong>: A1 → C1</li>
           <li><strong style="color: var(--text);">10 módulos</strong> por nivel</li>
           <li><strong style="color: var(--text);">4 lecciones</strong> por módulo</li>
           <li>Cada lección: Grammar · Reading · Listening · Writing · Practice · Exam</li>
           <li>Debes aprobar el examen de la lección (y del módulo) para avanzar</li>
           <li>Gana XP, mantén la racha y sube en el ranking</li>
+          <li>Usa el switch ☀️ / 🌙 para cambiar entre tema claro y oscuro</li>
         </ul>
       </div>
     </div>
@@ -453,34 +745,12 @@
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('lc_theme', theme);
-
       document.getElementById('themeLight').classList.toggle('active', theme === 'light');
       document.getElementById('themeDark').classList.toggle('active', theme === 'dark');
-
-      const label = document.getElementById('currentThemeLabel');
-      if (label) label.textContent = theme === 'light' ? 'Claro' : 'Oscuro';
     }
-
-    // Restore saved theme
-    (function initTheme() {
-      const saved = localStorage.getItem('lc_theme') || 'light';
-      setTheme(saved);
+    (function () {
+      setTheme(localStorage.getItem('lc_theme') || 'light');
     })();
-
-    // ========== NAV ==========
-    function showPanel(id) {
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-
-      document.querySelectorAll('#mainNav button').forEach(b => {
-        b.classList.toggle('active', b.dataset.panel === id);
-      });
-    }
-
-    document.getElementById('mainNav').addEventListener('click', e => {
-      if (e.target.tagName !== 'BUTTON') return;
-      showPanel(e.target.dataset.panel);
-    });
 
     // ========== TOAST ==========
     function toast(msg) {
@@ -490,28 +760,305 @@
       setTimeout(() => el.classList.remove('show'), 2600);
     }
 
-    // ========== LEVELS (from data) ==========
-    const LEVEL_INFO = {
-      A1: { name: 'Beginner', nameEs: 'Principiante', desc: 'Fundamentos: presentaciones, verbos básicos, vocabulario cotidiano.' },
-      A2: { name: 'Elementary', nameEs: 'Elemental', desc: 'Expansión de vocabulario y estructuras del día a día.' },
-      B1: { name: 'Intermediate', nameEs: 'Intermedio', desc: 'Comunicación más fluida sobre temas familiares.' },
-      B2: { name: 'Upper Intermediate', nameEs: 'Intermedio alto', desc: 'Estructuras complejas y mayor precisión.' },
-      C1: { name: 'Advanced', nameEs: 'Avanzado', desc: 'Expresión flexible en contextos sociales y profesionales.' }
+    // ========== DATA (inline por ahora) ==========
+    const COURSE = {
+      levels: {
+        A1: {
+          name: 'Beginner',
+          nameEs: 'Principiante',
+          desc: 'Fundamentos del inglés: presentaciones, verbos básicos, vocabulario cotidiano.',
+          modules: {
+            1: {
+              title: 'Hello & Introductions',
+              titleEs: 'Hola y presentaciones',
+              lessons: {
+                1: {
+                  title: 'Present Simple – Be',
+                  titleEs: 'Presente simple – verbo to be',
+                  objectives: [
+                    'Usar am / is / are correctamente',
+                    'Presentarse a uno mismo y a otros',
+                    'Hacer preguntas básicas con to be'
+                  ]
+                },
+                2: {
+                  title: 'Greetings & Goodbyes',
+                  titleEs: 'Saludos y despedidas',
+                  objectives: [
+                    'Saludar en contextos formales e informales',
+                    'Despedirse de forma natural',
+                    'Usar expresiones de cortesía básicas'
+                  ]
+                },
+                3: {
+                  title: 'Countries & Nationalities',
+                  titleEs: 'Países y nacionalidades',
+                  objectives: [
+                    'Nombrar países comunes',
+                    'Formar nacionalidades',
+                    'Preguntar y decir de dónde eres'
+                  ]
+                },
+                4: {
+                  title: 'Numbers & Age',
+                  titleEs: 'Números y edad',
+                  objectives: [
+                    'Contar del 1 al 100',
+                    'Preguntar y decir la edad',
+                    'Usar números en contextos cotidianos'
+                  ]
+                }
+              }
+            }
+            // Módulos 2–10 se irán añadiendo
+          }
+        },
+        A2: {
+          name: 'Elementary',
+          nameEs: 'Elemental',
+          desc: 'Expansión de vocabulario y estructuras del día a día.',
+          modules: {}
+        },
+        B1: {
+          name: 'Intermediate',
+          nameEs: 'Intermedio',
+          desc: 'Comunicación más fluida sobre temas familiares.',
+          modules: {}
+        },
+        B2: {
+          name: 'Upper Intermediate',
+          nameEs: 'Intermedio alto',
+          desc: 'Estructuras complejas y mayor precisión.',
+          modules: {}
+        },
+        C1: {
+          name: 'Advanced',
+          nameEs: 'Avanzado',
+          desc: 'Expresión flexible en contextos sociales y profesionales.',
+          modules: {}
+        }
+      }
     };
 
-    function renderLevels() {
-      const grid = document.getElementById('levelsGrid');
-      if (!grid) return;
-      grid.innerHTML = Object.entries(LEVEL_INFO).map(([code, info]) => `
-        <div class="level-card" onclick="toast('Nivel ${code} – próximamente módulos')">
-          <div class="code">${code}</div>
-          <div class="name">${info.nameEs}</div>
-          <div class="desc">${info.desc}</div>
-        </div>
-      `).join('');
+    // Navigation state
+    let view = { level: null, module: null, lesson: null };
+
+    // ========== NAV ==========
+    function showPanel(id) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('#mainNav button').forEach(b => {
+        b.classList.toggle('active', b.dataset.panel === id);
+      });
+      if (id === 'niveles') renderNiveles();
     }
 
-    renderLevels();
+    document.getElementById('mainNav').addEventListener('click', e => {
+      if (e.target.tagName !== 'BUTTON') return;
+      showPanel(e.target.dataset.panel);
+    });
+
+    function goHome() {
+      view = { level: null, module: null, lesson: null };
+      showPanel('inicio');
+    }
+
+    // ========== RENDER NIVELES / MÓDULOS / LECCIONES ==========
+    function renderNiveles() {
+      const el = document.getElementById('nivelesContent');
+      if (!el) return;
+
+      // Vista: lista de niveles
+      if (!view.level) {
+        el.innerHTML = `
+          <div class="card">
+            <h2>Elige tu nivel</h2>
+            <p class="subtitle">Cada nivel tiene 10 módulos. Completa el examen de módulo para desbloquear el siguiente.</p>
+            <div class="levels-grid">
+              ${Object.entries(COURSE.levels).map(([code, info]) => {
+                const modCount = Object.keys(info.modules || {}).length;
+                return `
+                  <div class="level-card" onclick="openLevel('${code}')">
+                    <div class="code">${code}</div>
+                    <div class="name">${info.nameEs}</div>
+                    <div class="desc">${info.desc}</div>
+                    <div class="meta">${modCount > 0 ? modCount + ' módulo' + (modCount > 1 ? 's' : '') + ' disponible' + (modCount > 1 ? 's' : '') : 'Próximamente'}</div>
+                  </div>`;
+              }).join('')}
+            </div>
+          </div>`;
+        return;
+      }
+
+      const level = COURSE.levels[view.level];
+
+      // Vista: módulos del nivel
+      if (!view.module) {
+        const modules = level.modules || {};
+        const modKeys = Object.keys(modules).sort((a, b) => Number(a) - Number(b));
+
+        el.innerHTML = `
+          <div class="breadcrumb">
+            <button type="button" onclick="view.level=null; view.module=null; view.lesson=null; renderNiveles()">Niveles</button>
+            <span class="sep">›</span>
+            <span>${view.level} · ${level.nameEs}</span>
+          </div>
+          <div class="card">
+            <h2>${view.level} · ${level.nameEs}</h2>
+            <p class="subtitle">${level.desc}</p>
+            <div class="modules-grid">
+              ${modKeys.length ? modKeys.map((mKey, idx) => {
+                const mod = modules[mKey];
+                const lessonCount = Object.keys(mod.lessons || {}).length;
+                const locked = false; // por ahora todos abiertos
+                return `
+                  <div class="module-card ${locked ? 'locked' : ''}" onclick="${locked ? 'toast(\'Módulo bloqueado\')' : `openModule('${mKey}')`}">
+                    <div class="mod-num">Módulo ${mKey}</div>
+                    <div class="mod-title">${mod.title}</div>
+                    <div class="mod-title-es">${mod.titleEs || ''}</div>
+                    <div class="mod-progress"><div style="width:${locked ? 0 : 0}%"></div></div>
+                    <div class="mod-meta">
+                      <span>${lessonCount} lecciones</span>
+                      <span class="${locked ? 'badge-lock' : 'badge-open'}">${locked ? '🔒 Bloqueado' : 'Disponible'}</span>
+                    </div>
+                  </div>`;
+              }).join('') : '<div class="empty-state">Aún no hay módulos en este nivel</div>'}
+            </div>
+          </div>`;
+        return;
+      }
+
+      const mod = level.modules[view.module];
+
+      // Vista: lecciones del módulo
+      if (!view.lesson) {
+        const lessons = mod.lessons || {};
+        const lesKeys = Object.keys(lessons).sort((a, b) => Number(a) - Number(b));
+
+        el.innerHTML = `
+          <div class="breadcrumb">
+            <button type="button" onclick="view.level=null; view.module=null; view.lesson=null; renderNiveles()">Niveles</button>
+            <span class="sep">›</span>
+            <button type="button" onclick="view.module=null; view.lesson=null; renderNiveles()">${view.level}</button>
+            <span class="sep">›</span>
+            <span>Módulo ${view.module}</span>
+          </div>
+          <div class="card">
+            <h2>Módulo ${view.module} · ${mod.title}</h2>
+            <p class="subtitle">${mod.titleEs || ''}</p>
+            <div class="lessons-list">
+              ${lesKeys.map((lKey, idx) => {
+                const les = lessons[lKey];
+                const locked = false; // por ahora
+                const done = false;
+                return `
+                  <div class="lesson-row ${locked ? 'locked' : ''} ${done ? 'done' : ''}"
+                       onclick="${locked ? 'toast(\'Lección bloqueada\')' : `openLesson('${lKey}')`}">
+                    <div class="lesson-num">${lKey}</div>
+                    <div class="lesson-info">
+                      <div class="ltitle">${les.title}</div>
+                      <div class="ltitle-es">${les.titleEs || ''}</div>
+                      <div class="skills">
+                        <span class="skill-pill">Grammar</span>
+                        <span class="skill-pill">Reading</span>
+                        <span class="skill-pill">Listening</span>
+                        <span class="skill-pill">Writing</span>
+                        <span class="skill-pill">Practice</span>
+                        <span class="skill-pill">Exam</span>
+                      </div>
+                    </div>
+                    <div class="lesson-status ${locked ? 'locked' : done ? 'done' : 'open'}">
+                      ${locked ? '🔒 Bloqueada' : done ? '✓ Completada' : 'Disponible'}
+                    </div>
+                  </div>`;
+              }).join('')}
+            </div>
+          </div>`;
+        return;
+      }
+
+      // Vista: detalle de lección
+      const les = mod.lessons[view.lesson];
+      el.innerHTML = `
+        <div class="breadcrumb">
+          <button type="button" onclick="view.level=null; view.module=null; view.lesson=null; renderNiveles()">Niveles</button>
+          <span class="sep">›</span>
+          <button type="button" onclick="view.module=null; view.lesson=null; renderNiveles()">${view.level}</button>
+          <span class="sep">›</span>
+          <button type="button" onclick="view.lesson=null; renderNiveles()">Módulo ${view.module}</button>
+          <span class="sep">›</span>
+          <span>Lección ${view.lesson}</span>
+        </div>
+        <div class="card">
+          <h2>Lección ${view.lesson} · ${les.title}</h2>
+          <p class="subtitle">${les.titleEs || ''}</p>
+
+          <div class="lesson-tabs" id="lessonTabs">
+            <button type="button" class="active" data-sec="overview">Overview</button>
+            <button type="button" data-sec="grammar">Grammar</button>
+            <button type="button" data-sec="reading">Reading</button>
+            <button type="button" data-sec="listening">Listening</button>
+            <button type="button" data-sec="writing">Writing</button>
+            <button type="button" data-sec="practice">Practice</button>
+            <button type="button" data-sec="exam">Exam</button>
+          </div>
+
+          <div class="lesson-section active" id="sec-overview">
+            <h3 style="font-size:0.95rem; margin-bottom:0.6rem; color:var(--accent);">Objetivos de la lección</h3>
+            <ul class="objectives">
+              ${(les.objectives || []).map(o => `<li>${o}</li>`).join('') || '<li>Por definir</li>'}
+            </ul>
+            <p style="margin-top:1.2rem; color:var(--muted); font-size:0.9rem; font-weight:600;">
+              El contenido de Grammar, Reading, Listening, Writing, Practice y Exam se irá añadiendo en los próximos pasos.
+            </p>
+          </div>
+
+          <div class="lesson-section" id="sec-grammar">
+            <div class="empty-state">Contenido de Grammar · próximamente</div>
+          </div>
+          <div class="lesson-section" id="sec-reading">
+            <div class="empty-state">Contenido de Reading · próximamente</div>
+          </div>
+          <div class="lesson-section" id="sec-listening">
+            <div class="empty-state">Contenido de Listening · próximamente</div>
+          </div>
+          <div class="lesson-section" id="sec-writing">
+            <div class="empty-state">Contenido de Writing · próximamente</div>
+          </div>
+          <div class="lesson-section" id="sec-practice">
+            <div class="empty-state">Ejercicios de Practice · próximamente</div>
+          </div>
+          <div class="lesson-section" id="sec-exam">
+            <div class="empty-state">Examen de la lección · próximamente</div>
+          </div>
+        </div>`;
+
+      // Wire lesson tabs
+      document.getElementById('lessonTabs').addEventListener('click', e => {
+        if (e.target.tagName !== 'BUTTON') return;
+        const sec = e.target.dataset.sec;
+        document.querySelectorAll('#lessonTabs button').forEach(b => b.classList.toggle('active', b.dataset.sec === sec));
+        document.querySelectorAll('.lesson-section').forEach(s => s.classList.toggle('active', s.id === 'sec-' + sec));
+      });
+    }
+
+    function openLevel(code) {
+      view.level = code;
+      view.module = null;
+      view.lesson = null;
+      renderNiveles();
+    }
+
+    function openModule(mKey) {
+      view.module = mKey;
+      view.lesson = null;
+      renderNiveles();
+    }
+
+    function openLesson(lKey) {
+      view.lesson = lKey;
+      renderNiveles();
+    }
   </script>
 </body>
 </html>
