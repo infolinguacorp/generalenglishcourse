@@ -6,643 +6,285 @@
   <title>LinguaCorp – El mundo en tus manos</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <style>
-    /* ========== THEME: LIGHT ========== */
     :root, [data-theme="light"] {
-      --bg: #f8fafc;
-      --bg2: #f1f5f9;
-      --card: #ffffff;
-      --card-hover: #f8fafc;
-      --border: #e2e8f0;
-      --text: #0f172a;
-      --muted: #64748b;
-      --accent: #3b5bdb;
-      --accent-dim: #2d4bc4;
-      --accent-soft: rgba(59, 91, 219, 0.12);
-      --gold: #f59e0b;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
-      --header-bg: #ffffff;
-      --nav-bg: #f1f5f9;
+      --bg: #f8fafc; --bg2: #f1f5f9; --card: #ffffff; --card-hover: #f8fafc;
+      --border: #e2e8f0; --text: #0f172a; --muted: #64748b;
+      --accent: #3b5bdb; --accent-dim: #2d4bc4; --accent-soft: rgba(59,91,219,0.12);
+      --gold: #f59e0b; --success: #10b981; --danger: #ef4444; --warning: #f59e0b;
+      --shadow: 0 4px 20px rgba(15,23,42,0.06); --header-bg: #ffffff; --nav-bg: #f1f5f9;
     }
-
-    /* ========== THEME: DARK ========== */
     [data-theme="dark"] {
-      --bg: #0b1120;
-      --bg2: #111827;
-      --card: #1e293b;
-      --card-hover: #334155;
-      --border: #334155;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --accent: #5b7cfa;
-      --accent-dim: #3b5bdb;
-      --accent-soft: rgba(91, 124, 250, 0.18);
-      --gold: #fbbf24;
-      --success: #34d399;
-      --danger: #f87171;
-      --warning: #fbbf24;
-      --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-      --header-bg: #111827;
-      --nav-bg: #0f172a;
+      --bg: #0b1120; --bg2: #111827; --card: #1e293b; --card-hover: #334155;
+      --border: #334155; --text: #f1f5f9; --muted: #94a3b8;
+      --accent: #5b7cfa; --accent-dim: #3b5bdb; --accent-soft: rgba(91,124,250,0.18);
+      --gold: #fbbf24; --success: #34d399; --danger: #f87171; --warning: #fbbf24;
+      --shadow: 0 4px 24px rgba(0,0,0,0.35); --header-bg: #111827; --nav-bg: #0f172a;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-      min-height: 100vh;
+      background: var(--bg); color: var(--text); line-height: 1.55; min-height: 100vh;
       transition: background 0.25s ease, color 0.25s ease;
     }
-
-    /* ========== HEADER ========== */
     header {
-      background: var(--header-bg);
-      border-bottom: 2px solid var(--accent);
-      padding: 0.7rem 1.25rem 0.6rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      box-shadow: var(--shadow);
-      transition: background 0.25s ease;
+      background: var(--header-bg); border-bottom: 2px solid var(--accent);
+      padding: 0.7rem 1.25rem 0.6rem; position: sticky; top: 0; z-index: 100;
+      display: flex; flex-direction: column; gap: 0.5rem; box-shadow: var(--shadow);
     }
-
-    .header-top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: var(--text);
-      cursor: pointer;
-    }
-
-    .brand img {
-      height: 42px;
-      width: auto;
-      display: block;
-      border-radius: 6px;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-
-    .brand-text strong {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
+    .header-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); cursor: pointer; }
+    .brand img { height: 42px; width: auto; display: block; border-radius: 6px; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-text strong { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
     .brand-text strong span { color: var(--accent); }
-
-    .brand-text small {
-      font-size: 0.72rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
+    .brand-text small { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
     .theme-switch {
-      display: flex;
-      align-items: center;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.2rem;
-      gap: 0.15rem;
+      display: flex; align-items: center; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.2rem; gap: 0.15rem;
     }
-
     .theme-switch button {
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      border: none; background: transparent; color: var(--muted); font-size: 0.85rem; font-weight: 700;
+      padding: 0.35rem 0.7rem; border-radius: 999px; cursor: pointer; transition: all 0.15s ease;
     }
-
     .theme-switch button.active {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(59, 91, 219, 0.35);
+      background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(59,91,219,0.35);
     }
-
-    .theme-switch button:hover:not(.active) { color: var(--text); }
-
     button, .btn {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 0.45rem 0.85rem;
-      font-size: 0.88rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 9px;
+      padding: 0.45rem 0.85rem; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.15s ease;
     }
-
-    button:hover, .btn:hover {
-      background: var(--card-hover);
-      transform: translateY(-1px);
-    }
-
+    button:hover, .btn:hover { background: var(--card-hover); transform: translateY(-1px); }
     button.primary {
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 2px 12px rgba(59, 91, 219, 0.3);
+      color: #fff; border-color: transparent; box-shadow: 0 2px 12px rgba(59,91,219,0.3);
     }
-
     button.primary:hover { filter: brightness(1.08); }
-
-    button.ghost {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    button.ghost:hover { color: var(--text); border-color: #94a3b8; }
-
+    button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     nav {
-      display: flex;
-      gap: 0.3rem;
-      background: var(--nav-bg);
-      padding: 0.3rem;
-      border-radius: 11px;
-      border: 1px solid var(--border);
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
+      display: flex; gap: 0.3rem; background: var(--nav-bg); padding: 0.3rem; border-radius: 11px;
+      border: 1px solid var(--border); overflow-x: auto; scrollbar-width: thin;
     }
-
     nav button {
-      background: transparent;
-      border: none;
-      padding: 0.42rem 0.95rem;
-      border-radius: 8px;
-      color: var(--muted);
-      font-weight: 600;
-      white-space: nowrap;
-      flex-shrink: 0;
+      background: transparent; border: none; padding: 0.42rem 0.95rem; border-radius: 8px;
+      color: var(--muted); font-weight: 600; white-space: nowrap; flex-shrink: 0;
     }
-
-    nav button.active {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(59, 91, 219, 0.3);
-    }
-
-    /* ========== MAIN ========== */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.35rem 1.15rem 3rem;
-    }
-
+    nav button.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(59,91,219,0.3); }
+    main { max-width: 1100px; margin: 0 auto; padding: 1.35rem 1.15rem 3rem; }
     .panel { display: none; }
     .panel.active { display: block; animation: fadeIn 0.25s ease; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: none; }
-    }
-
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.25rem 1.4rem;
-      box-shadow: var(--shadow);
-      margin-bottom: 1rem;
-      transition: background 0.25s ease, border-color 0.25s ease;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.25rem 1.4rem; box-shadow: var(--shadow); margin-bottom: 1rem;
     }
-
-    .card h2 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 0.4rem;
-    }
-
-    .card .subtitle {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Breadcrumb */
+    .card h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem; }
+    .card .subtitle { color: var(--muted); font-size: 0.92rem; margin-bottom: 1rem; }
     .breadcrumb {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 1rem;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 1rem;
     }
-
     .breadcrumb button {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0;
-      cursor: pointer;
+      background: none; border: none; color: var(--accent); font-weight: 700;
+      font-size: 0.85rem; padding: 0; cursor: pointer;
     }
-
     .breadcrumb button:hover { text-decoration: underline; transform: none; }
-
     .breadcrumb .sep { opacity: 0.5; }
-
-    /* Levels grid */
-    .levels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 0.85rem;
-    }
-
+    .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.85rem; }
     .level-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem 1rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.2rem 1rem; text-align: center; cursor: pointer; transition: all 0.18s ease;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
     }
-
     .level-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 4px;
-      background: var(--accent);
-      opacity: 0.7;
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: var(--accent); opacity: 0.7;
     }
-
     .level-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(59, 91, 219, 0.15);
+      border-color: var(--accent); transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(59,91,219,0.15);
     }
-
-    .level-card .code {
-      font-size: 1.7rem;
-      font-weight: 900;
-      color: var(--accent);
-      letter-spacing: -0.03em;
-    }
-
-    .level-card .name {
-      font-weight: 800;
-      font-size: 0.98rem;
-      margin: 0.3rem 0 0.2rem;
-    }
-
-    .level-card .desc {
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-
+    .level-card .code { font-size: 1.7rem; font-weight: 900; color: var(--accent); }
+    .level-card .name { font-weight: 800; font-size: 0.98rem; margin: 0.3rem 0 0.2rem; }
+    .level-card .desc { font-size: 0.78rem; color: var(--muted); line-height: 1.35; }
     .level-card .meta {
-      margin-top: 0.65rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--accent-soft);
-      display: inline-block;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
+      margin-top: 0.65rem; font-size: 0.75rem; font-weight: 700; color: var(--accent);
+      background: var(--accent-soft); display: inline-block; padding: 0.2rem 0.55rem; border-radius: 999px;
     }
-
-    /* Modules grid */
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 0.85rem;
-    }
-
+    .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; }
     .module-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.1rem 1.15rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.1rem 1.15rem; cursor: pointer; transition: all 0.18s ease; box-shadow: var(--shadow);
     }
-
     .module-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(59, 91, 219, 0.12);
+      border-color: var(--accent); transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(59,91,219,0.12);
     }
-
-    .module-card.locked {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .module-card.locked:hover {
-      transform: none;
-      border-color: var(--border);
-      box-shadow: var(--shadow);
-    }
-
     .module-card .mod-num {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
+      font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--accent);
     }
-
-    .module-card .mod-title {
-      font-weight: 800;
-      font-size: 1.05rem;
-    }
-
-    .module-card .mod-title-es {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .module-card .mod-progress {
-      margin-top: 0.35rem;
-      height: 6px;
-      background: var(--bg2);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .module-card .mod-progress > div {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
-      border-radius: 4px;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-
+    .module-card .mod-title { font-weight: 800; font-size: 1.05rem; margin: 0.25rem 0 0.1rem; }
+    .module-card .mod-title-es { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
     .module-card .mod-meta {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      margin-top: 0.55rem; font-size: 0.78rem; color: var(--muted); font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
-    .badge-lock {
-      font-size: 0.72rem;
-      background: rgba(239, 68, 68, 0.12);
-      color: var(--danger);
-      padding: 0.15rem 0.45rem;
-      border-radius: 6px;
-      font-weight: 800;
-    }
-
     .badge-open {
-      font-size: 0.72rem;
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 0.15rem 0.45rem;
-      border-radius: 6px;
-      font-weight: 800;
+      font-size: 0.72rem; background: var(--accent-soft); color: var(--accent);
+      padding: 0.15rem 0.45rem; border-radius: 6px; font-weight: 800;
     }
-
-    /* Lessons list */
-    .lessons-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-    }
-
+    .lessons-list { display: flex; flex-direction: column; gap: 0.65rem; }
     .lesson-row {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.9rem 1.1rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 0.85rem;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: var(--shadow);
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0.9rem 1.1rem; display: grid; grid-template-columns: auto 1fr auto;
+      gap: 0.85rem; align-items: center; cursor: pointer; transition: all 0.15s ease; box-shadow: var(--shadow);
     }
-
-    .lesson-row:hover {
-      border-color: var(--accent);
-      box-shadow: 0 6px 18px rgba(59, 91, 219, 0.1);
-    }
-
-    .lesson-row.locked {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .lesson-row.locked:hover {
-      border-color: var(--border);
-      box-shadow: var(--shadow);
-    }
-
+    .lesson-row:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(59,91,219,0.1); }
     .lesson-num {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 900;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 42px; height: 42px; border-radius: 10px; background: var(--accent-soft);
+      color: var(--accent); font-weight: 900; font-size: 1.05rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
-    .lesson-row.done .lesson-num {
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--success);
-    }
-
-    .lesson-info { min-width: 0; }
-
-    .lesson-info .ltitle {
-      font-weight: 800;
-      font-size: 1rem;
-      margin-bottom: 0.15rem;
-    }
-
-    .lesson-info .ltitle-es {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .lesson-info .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-    }
-
+    .lesson-info .ltitle { font-weight: 800; font-size: 1rem; margin-bottom: 0.15rem; }
+    .lesson-info .ltitle-es { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+    .lesson-info .skills { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.4rem; }
     .skill-pill {
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 0.12rem 0.4rem;
-      border-radius: 5px;
-      background: var(--bg2);
-      color: var(--muted);
-      border: 1px solid var(--border);
+      font-size: 0.68rem; font-weight: 700; padding: 0.12rem 0.4rem; border-radius: 5px;
+      background: var(--bg2); color: var(--muted); border: 1px solid var(--border);
     }
-
-    .lesson-status {
-      font-size: 0.78rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .lesson-status.open { color: var(--accent); }
-    .lesson-status.done { color: var(--success); }
-    .lesson-status.locked { color: var(--muted); }
-
-    /* Lesson detail (placeholder tabs) */
+    .lesson-status { font-size: 0.78rem; font-weight: 800; color: var(--accent); white-space: nowrap; }
     .lesson-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-bottom: 1rem;
-      background: var(--bg2);
-      padding: 0.3rem;
-      border-radius: 11px;
+      display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1rem;
+      background: var(--bg2); padding: 0.3rem; border-radius: 11px; border: 1px solid var(--border);
+    }
+    .lesson-tabs button {
+      background: transparent; border: none; padding: 0.4rem 0.85rem; border-radius: 8px;
+      color: var(--muted); font-weight: 600; font-size: 0.85rem;
+    }
+    .lesson-tabs button.active { background: var(--accent); color: #fff; }
+    .lesson-section { display: none; }
+    .lesson-section.active { display: block; animation: fadeIn 0.2s ease; }
+    .objectives { list-style: none; padding: 0; }
+    .objectives li {
+      padding: 0.45rem 0; border-bottom: 1px dashed var(--border); font-size: 0.92rem;
+      color: var(--muted); font-weight: 600; display: flex; gap: 0.5rem;
+    }
+    .objectives li:last-child { border-bottom: none; }
+    .objectives li::before { content: '✓'; color: var(--accent); font-weight: 900; }
+
+    /* Content blocks */
+    .section-title {
+      font-size: 0.95rem; font-weight: 800; color: var(--accent);
+      margin: 1.1rem 0 0.55rem; text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .section-title:first-child { margin-top: 0; }
+    .grammar-table {
+      width: 100%; border-collapse: collapse; margin: 0.75rem 0 1rem;
+      font-size: 0.9rem; border-radius: 10px; overflow: hidden;
       border: 1px solid var(--border);
     }
-
-    .lesson-tabs button {
-      background: transparent;
-      border: none;
-      padding: 0.4rem 0.85rem;
-      border-radius: 8px;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.85rem;
+    .grammar-table th {
+      background: var(--bg2); color: var(--muted); font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.04em; padding: 0.55rem 0.75rem; text-align: left;
     }
-
-    .lesson-tabs button.active {
-      background: var(--accent);
-      color: #fff;
+    .grammar-table td {
+      padding: 0.55rem 0.75rem; border-top: 1px solid var(--border); font-weight: 600;
     }
-
-    .lesson-section {
-      display: none;
+    .grammar-table tr:hover td { background: var(--accent-soft); }
+    .example-box {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 0.85rem 1rem; margin: 0.6rem 0; font-size: 0.92rem; font-weight: 600;
     }
-
-    .lesson-section.active {
-      display: block;
-      animation: fadeIn 0.2s ease;
+    .example-box .label {
+      font-size: 0.7rem; font-weight: 800; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.3rem;
     }
-
-    .objectives {
-      list-style: none;
-      padding: 0;
+    .reading-text {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.1rem 1.2rem; font-size: 1.02rem; line-height: 1.7; font-weight: 500;
+      margin-bottom: 1rem;
     }
-
-    .objectives li {
-      padding: 0.45rem 0;
-      border-bottom: 1px dashed var(--border);
-      font-size: 0.92rem;
-      color: var(--muted);
-      font-weight: 600;
-      display: flex;
-      gap: 0.5rem;
-      align-items: flex-start;
+    .reading-text .speaker { color: var(--accent); font-weight: 800; }
+    .q-block {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1rem 1.1rem; margin-bottom: 0.75rem;
     }
-
-    .objectives li:last-child { border-bottom: none; }
-
-    .objectives li::before {
-      content: '✓';
-      color: var(--accent);
-      font-weight: 900;
-      flex-shrink: 0;
+    .q-block .q-text { font-weight: 700; margin-bottom: 0.65rem; font-size: 0.95rem; }
+    .q-options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .q-opt {
+      text-align: left; padding: 0.55rem 0.85rem; border-radius: 9px;
+      border: 1px solid var(--border); background: var(--bg); font-weight: 600;
+      font-size: 0.9rem; cursor: pointer; transition: all 0.15s;
     }
-
-    .empty-state {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 600;
+    .q-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+    .q-opt.correct { background: rgba(16,185,129,0.15); border-color: var(--success); color: var(--success); }
+    .q-opt.wrong { background: rgba(239,68,68,0.12); border-color: var(--danger); color: var(--danger); }
+    .q-opt.dim { opacity: 0.4; }
+    .q-opt:disabled { cursor: default; }
+    .feedback {
+      margin-top: 0.5rem; font-size: 0.85rem; font-weight: 700; display: none;
     }
-
+    .feedback.show { display: block; }
+    .feedback.ok { color: var(--success); }
+    .feedback.bad { color: var(--danger); }
+    .score-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
+      margin: 0.75rem 0 1rem; font-size: 0.9rem; font-weight: 700;
+    }
+    .score-bar strong { color: var(--accent); font-size: 1.15rem; }
+    .writing-prompt {
+      background: var(--accent-soft); border: 1px solid rgba(59,91,219,0.25);
+      border-radius: 12px; padding: 1rem 1.15rem; margin-bottom: 0.85rem;
+      font-weight: 600; font-size: 0.95rem;
+    }
+    .writing-area {
+      width: 100%; min-height: 120px; border: 1px solid var(--border); border-radius: 10px;
+      padding: 0.85rem 1rem; font-size: 0.95rem; font-family: inherit;
+      background: var(--bg); color: var(--text); resize: vertical;
+    }
+    .writing-area:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .checklist { list-style: none; padding: 0; margin: 0.75rem 0; }
+    .checklist li {
+      padding: 0.35rem 0; font-size: 0.88rem; font-weight: 600; color: var(--muted);
+      display: flex; gap: 0.45rem; align-items: center;
+    }
+    .checklist li input { accent-color: var(--accent); width: 16px; height: 16px; }
+    .listening-script {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1rem 1.15rem; font-size: 0.95rem; line-height: 1.65; margin: 0.75rem 0;
+    }
+    .listening-script .sp { color: var(--accent); font-weight: 800; }
+    .gap-input {
+      display: inline-block; width: 4.5rem; margin: 0 0.15rem; padding: 0.2rem 0.35rem;
+      border: 1.5px solid var(--border); border-radius: 6px; background: var(--card);
+      color: var(--text); font-weight: 700; text-align: center; font-size: 0.9rem;
+    }
+    .gap-input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .gap-input.ok { border-color: var(--success); background: rgba(16,185,129,0.1); }
+    .gap-input.bad { border-color: var(--danger); background: rgba(239,68,68,0.08); }
+    .empty-state { text-align: center; padding: 2rem 1rem; color: var(--muted); font-weight: 600; }
     .toast {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
       background: linear-gradient(135deg, var(--accent), var(--accent-dim));
-      color: #fff;
-      padding: 0.8rem 1.3rem;
-      border-radius: 12px;
-      font-weight: 800;
-      box-shadow: 0 8px 28px rgba(59, 91, 219, 0.35);
-      z-index: 200;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: all 0.28s ease;
-      pointer-events: none;
+      color: #fff; padding: 0.8rem 1.3rem; border-radius: 12px; font-weight: 800;
+      box-shadow: 0 8px 28px rgba(59,91,219,0.35); z-index: 200;
+      opacity: 0; transform: translateY(16px); transition: all 0.28s ease; pointer-events: none;
     }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .exam-result {
+      text-align: center; padding: 1.5rem 1rem; border-radius: 14px;
+      border: 1px solid var(--border); margin-top: 1rem;
     }
-
+    .exam-result .big { font-size: 2.2rem; font-weight: 900; margin: 0.3rem 0; }
+    .exam-result.pass .big { color: var(--success); }
+    .exam-result.fail .big { color: var(--danger); }
     @media (max-width: 640px) {
       header { padding: 0.6rem 0.9rem; }
       .brand img { height: 36px; }
-      .brand-text strong { font-size: 1.05rem; }
       main { padding: 1.1rem 0.9rem 2.5rem; }
-      .lesson-row {
-        grid-template-columns: auto 1fr;
-      }
-      .lesson-status {
-        grid-column: 2;
-      }
+      .lesson-row { grid-template-columns: auto 1fr; }
+      .lesson-status { grid-column: 2; }
     }
   </style>
 </head>
@@ -656,16 +298,14 @@
           <small>El mundo en tus manos</small>
         </div>
       </div>
-
       <div class="header-actions">
-        <div class="theme-switch" title="Cambiar tema">
+        <div class="theme-switch">
           <button type="button" id="themeLight" class="active" onclick="setTheme('light')">☀️ Claro</button>
           <button type="button" id="themeDark" onclick="setTheme('dark')">🌙 Oscuro</button>
         </div>
-        <button class="primary" onclick="toast('Próximamente: guardar progreso en la nube')">💾 Guardar</button>
+        <button class="primary" onclick="toast('Progreso guardado localmente ✓')">💾 Guardar</button>
       </div>
     </div>
-
     <nav id="mainNav">
       <button data-panel="inicio" class="active">Inicio</button>
       <button data-panel="niveles">Niveles</button>
@@ -677,7 +317,6 @@
   </header>
 
   <main>
-    <!-- INICIO -->
     <div id="inicio" class="panel active">
       <div class="card">
         <h2>Bienvenido a LinguaCorp</h2>
@@ -688,71 +327,52 @@
         <button class="primary" onclick="showPanel('niveles')">Empezar → Ver niveles</button>
       </div>
     </div>
-
-    <!-- NIVELES (vista dinámica) -->
-    <div id="niveles" class="panel">
-      <div id="nivelesContent"></div>
-    </div>
-
-    <!-- PROGRESO -->
+    <div id="niveles" class="panel"><div id="nivelesContent"></div></div>
     <div id="progreso" class="panel">
       <div class="card">
         <h2>Mi progreso</h2>
-        <p class="subtitle">XP, racha, lecciones completadas y badges. Se conectará al sistema de progreso en el siguiente paso.</p>
-        <div class="empty-state">Aún no has completado ninguna lección</div>
+        <p class="subtitle">XP, racha y lecciones completadas. Próximo paso: conectar sistema de progreso.</p>
+        <div class="empty-state">Completa lecciones para ver tu progreso aquí</div>
       </div>
     </div>
-
-    <!-- RANKING -->
     <div id="ranking" class="panel">
       <div class="card">
         <h2>Ranking del grupo</h2>
-        <p class="subtitle">Clasificación por puntos y precisión (estilo Champions). Próximo paso.</p>
-        <div class="empty-state">El ranking aparecerá cuando haya partidas / lecciones jugadas</div>
+        <p class="subtitle">Clasificación por puntos y precisión. Próximo paso.</p>
+        <div class="empty-state">Aún no hay datos de ranking</div>
       </div>
     </div>
-
-    <!-- JUEGOS -->
     <div id="juegos" class="panel">
       <div class="card">
         <h2>Juegos</h2>
-        <p class="subtitle">Trivia, adivina la palabra, sentence race… Próximo paso.</p>
-        <div class="empty-state">Los minijuegos se activarán por lección</div>
+        <p class="subtitle">Minijuegos por lección. Próximo paso.</p>
+        <div class="empty-state">Pronto: Trivia y más</div>
       </div>
     </div>
-
-    <!-- REGLAS -->
     <div id="reglas" class="panel">
       <div class="card">
         <h2>Cómo funciona</h2>
-        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.75; font-weight: 600;">
-          <li><strong style="color: var(--text);">5 niveles</strong>: A1 → C1</li>
-          <li><strong style="color: var(--text);">10 módulos</strong> por nivel</li>
-          <li><strong style="color: var(--text);">4 lecciones</strong> por módulo</li>
+        <ul style="padding-left:1.2rem;color:var(--muted);line-height:1.75;font-weight:600;">
+          <li><strong style="color:var(--text)">5 niveles</strong>: A1 → C1</li>
+          <li><strong style="color:var(--text)">10 módulos</strong> por nivel · <strong style="color:var(--text)">4 lecciones</strong> por módulo</li>
           <li>Cada lección: Grammar · Reading · Listening · Writing · Practice · Exam</li>
-          <li>Debes aprobar el examen de la lección (y del módulo) para avanzar</li>
-          <li>Gana XP, mantén la racha y sube en el ranking</li>
-          <li>Usa el switch ☀️ / 🌙 para cambiar entre tema claro y oscuro</li>
+          <li>Aprueba el examen de la lección (70 %) para avanzar</li>
+          <li>Tema claro / oscuro con el switch ☀️ 🌙</li>
         </ul>
       </div>
     </div>
   </main>
-
   <div class="toast" id="toast"></div>
 
   <script>
-    // ========== THEME ==========
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('lc_theme', theme);
-      document.getElementById('themeLight').classList.toggle('active', theme === 'light');
-      document.getElementById('themeDark').classList.toggle('active', theme === 'dark');
+    function setTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('lc_theme', t);
+      document.getElementById('themeLight').classList.toggle('active', t === 'light');
+      document.getElementById('themeDark').classList.toggle('active', t === 'dark');
     }
-    (function () {
-      setTheme(localStorage.getItem('lc_theme') || 'light');
-    })();
+    setTheme(localStorage.getItem('lc_theme') || 'light');
 
-    // ========== TOAST ==========
     function toast(msg) {
       const el = document.getElementById('toast');
       el.textContent = msg;
@@ -760,17 +380,15 @@
       setTimeout(() => el.classList.remove('show'), 2600);
     }
 
-    // ========== DATA (inline por ahora) ==========
+    // ========== COURSE DATA ==========
     const COURSE = {
       levels: {
         A1: {
-          name: 'Beginner',
-          nameEs: 'Principiante',
+          name: 'Beginner', nameEs: 'Principiante',
           desc: 'Fundamentos del inglés: presentaciones, verbos básicos, vocabulario cotidiano.',
           modules: {
             1: {
-              title: 'Hello & Introductions',
-              titleEs: 'Hola y presentaciones',
+              title: 'Hello & Introductions', titleEs: 'Hola y presentaciones',
               lessons: {
                 1: {
                   title: 'Present Simple – Be',
@@ -779,96 +397,137 @@
                     'Usar am / is / are correctamente',
                     'Presentarse a uno mismo y a otros',
                     'Hacer preguntas básicas con to be'
-                  ]
+                  ],
+                  grammar: {
+                    intro: 'El verbo <strong>to be</strong> (ser / estar) es el más importante en inglés. En presente tiene tres formas: <strong>am</strong>, <strong>is</strong> y <strong>are</strong>.',
+                    table: [
+                      { subject: 'I', form: 'am', example: "I am a student." },
+                      { subject: 'He / She / It', form: 'is', example: 'She is a teacher.' },
+                      { subject: 'You / We / They', form: 'are', example: 'They are friends.' }
+                    ],
+                    negatives: [
+                      { full: 'I am not', short: "I'm not", ex: "I'm not from Spain." },
+                      { full: 'He is not', short: "He isn't", ex: "He isn't at home." },
+                      { full: 'They are not', short: "They aren't", ex: "They aren't students." }
+                    ],
+                    questions: [
+                      { q: 'Am I…?', a: 'Yes, I am. / No, I’m not.' },
+                      { q: 'Is she…?', a: 'Yes, she is. / No, she isn’t.' },
+                      { q: 'Are you…?', a: 'Yes, you are. / No, you aren’t.' }
+                    ],
+                    tips: [
+                      'Con <strong>I</strong> siempre usamos <strong>am</strong>.',
+                      'Con <strong>he, she, it</strong> usamos <strong>is</strong>.',
+                      'Con <strong>you, we, they</strong> usamos <strong>are</strong>.',
+                      'En preguntas, el verbo va <em>antes</em> del sujeto: <strong>Are you…?</strong>'
+                    ]
+                  },
+                  reading: {
+                    title: 'At the language school',
+                    text: [
+                      { sp: 'Anna', line: "Hi! I am Anna. I am from Italy. I am a student." },
+                      { sp: 'Tom', line: "Hello, Anna. I am Tom. I am from Canada. I am a teacher." },
+                      { sp: 'Anna', line: "Nice to meet you, Tom. Are you a new teacher?" },
+                      { sp: 'Tom', line: "Yes, I am. And you? Are you in the beginner class?" },
+                      { sp: 'Anna', line: "Yes, I am. My friends are in the class too. They are from Mexico and Japan." }
+                    ],
+                    questions: [
+                      { q: 'Where is Anna from?', options: ['Canada', 'Italy', 'Mexico', 'Japan'], answer: 1 },
+                      { q: 'What is Tom’s job?', options: ['Student', 'Doctor', 'Teacher', 'Engineer'], answer: 2 },
+                      { q: 'Is Anna in the beginner class?', options: ['Yes, she is.', 'No, she isn’t.', 'Yes, he is.', 'We don’t know.'], answer: 0 },
+                      { q: 'Where are Anna’s friends from?', options: ['Italy and Canada', 'Mexico and Japan', 'Spain and Brazil', 'Only Mexico'], answer: 1 }
+                    ]
+                  },
+                  listening: {
+                    note: 'Lee el diálogo en voz alta (o pide a alguien que te lo lea). Luego completa los huecos.',
+                    script: [
+                      { sp: 'Lisa', line: "Hello! My name is Lisa. I ___ from Brazil." },
+                      { sp: 'Mark', line: "Hi, Lisa. I ___ Mark. I ___ a student." },
+                      { sp: 'Lisa', line: "Nice to meet you. ___ you from the USA?" },
+                      { sp: 'Mark', line: "No, I ___ not. I ___ from Australia." }
+                    ],
+                    answers: ['am', 'am', 'am', 'Are', 'am', 'am']
+                  },
+                  writing: {
+                    prompt: 'Write 4–6 sentences about yourself. Use am / is / are.\n\nExample:\nHi! I am Carlos. I am from Colombia. I am a student. My best friend is Ana. She is from Spain. We are in the same class.',
+                    checklist: [
+                      'Usé "I am" para hablar de mí',
+                      'Usé "is" con he / she',
+                      'Usé "are" con we / they',
+                      'Escribí al menos 4 oraciones',
+                      'Revisé mayúsculas y puntos'
+                    ],
+                    minWords: 25
+                  },
+                  practice: [
+                    { type: 'mc', q: 'She ___ a doctor.', options: ['am', 'is', 'are'], answer: 1 },
+                    { type: 'mc', q: 'I ___ not from France.', options: ['am', 'is', 'are'], answer: 0 },
+                    { type: 'mc', q: '___ you a student?', options: ['Am', 'Is', 'Are'], answer: 2 },
+                    { type: 'mc', q: 'They ___ my friends.', options: ['am', 'is', 'are'], answer: 2 },
+                    { type: 'mc', q: 'He ___ not at school today.', options: ["am", "isn't", "aren't"], answer: 1 },
+                    { type: 'mc', q: 'We ___ in the same class.', options: ['am', 'is', 'are'], answer: 2 },
+                    { type: 'mc', q: '___ she your sister?', options: ['Am', 'Is', 'Are'], answer: 1 },
+                    { type: 'mc', q: "I ___ hungry.", options: ["'m", "'s", "'re"], answer: 0 }
+                  ],
+                  exam: {
+                    passScore: 70,
+                    questions: [
+                      { q: 'Choose the correct form: I ___ a teacher.', options: ['am', 'is', 'are'], answer: 0 },
+                      { q: 'Choose the correct form: She ___ from Spain.', options: ['am', 'is', 'are'], answer: 1 },
+                      { q: 'Choose the correct form: They ___ students.', options: ['am', 'is', 'are'], answer: 2 },
+                      { q: 'Negative: He ___ at home.', options: ["am not", "isn't", "aren't"], answer: 1 },
+                      { q: 'Question: ___ you from Mexico?', options: ['Am', 'Is', 'Are'], answer: 2 },
+                      { q: 'Short answer: Are they friends? — Yes, ___ .', options: ['they am', 'they is', 'they are'], answer: 2 },
+                      { q: 'Contraction of “I am”:', options: ["I'm", "I's", "I're"], answer: 0 },
+                      { q: '“We are not” can be:', options: ["We isn't", "We aren't", "We am not"], answer: 1 },
+                      { q: '___ it your book?', options: ['Am', 'Is', 'Are'], answer: 1 },
+                      { q: 'My parents ___ doctors.', options: ['am', 'is', 'are'], answer: 2 }
+                    ]
+                  }
                 },
                 2: {
-                  title: 'Greetings & Goodbyes',
-                  titleEs: 'Saludos y despedidas',
-                  objectives: [
-                    'Saludar en contextos formales e informales',
-                    'Despedirse de forma natural',
-                    'Usar expresiones de cortesía básicas'
-                  ]
+                  title: 'Greetings & Goodbyes', titleEs: 'Saludos y despedidas',
+                  objectives: ['Saludar en contextos formales e informales', 'Despedirse de forma natural', 'Usar expresiones de cortesía básicas']
                 },
                 3: {
-                  title: 'Countries & Nationalities',
-                  titleEs: 'Países y nacionalidades',
-                  objectives: [
-                    'Nombrar países comunes',
-                    'Formar nacionalidades',
-                    'Preguntar y decir de dónde eres'
-                  ]
+                  title: 'Countries & Nationalities', titleEs: 'Países y nacionalidades',
+                  objectives: ['Nombrar países comunes', 'Formar nacionalidades', 'Preguntar y decir de dónde eres']
                 },
                 4: {
-                  title: 'Numbers & Age',
-                  titleEs: 'Números y edad',
-                  objectives: [
-                    'Contar del 1 al 100',
-                    'Preguntar y decir la edad',
-                    'Usar números en contextos cotidianos'
-                  ]
+                  title: 'Numbers & Age', titleEs: 'Números y edad',
+                  objectives: ['Contar del 1 al 100', 'Preguntar y decir la edad', 'Usar números en contextos cotidianos']
                 }
               }
             }
-            // Módulos 2–10 se irán añadiendo
           }
         },
-        A2: {
-          name: 'Elementary',
-          nameEs: 'Elemental',
-          desc: 'Expansión de vocabulario y estructuras del día a día.',
-          modules: {}
-        },
-        B1: {
-          name: 'Intermediate',
-          nameEs: 'Intermedio',
-          desc: 'Comunicación más fluida sobre temas familiares.',
-          modules: {}
-        },
-        B2: {
-          name: 'Upper Intermediate',
-          nameEs: 'Intermedio alto',
-          desc: 'Estructuras complejas y mayor precisión.',
-          modules: {}
-        },
-        C1: {
-          name: 'Advanced',
-          nameEs: 'Avanzado',
-          desc: 'Expresión flexible en contextos sociales y profesionales.',
-          modules: {}
-        }
+        A2: { name: 'Elementary', nameEs: 'Elemental', desc: 'Expansión de vocabulario y estructuras del día a día.', modules: {} },
+        B1: { name: 'Intermediate', nameEs: 'Intermedio', desc: 'Comunicación más fluida sobre temas familiares.', modules: {} },
+        B2: { name: 'Upper Intermediate', nameEs: 'Intermedio alto', desc: 'Estructuras complejas y mayor precisión.', modules: {} },
+        C1: { name: 'Advanced', nameEs: 'Avanzado', desc: 'Expresión flexible en contextos sociales y profesionales.', modules: {} }
       }
     };
 
-    // Navigation state
     let view = { level: null, module: null, lesson: null };
+    let practiceState = {};
+    let examState = {};
 
-    // ========== NAV ==========
     function showPanel(id) {
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      document.querySelectorAll('#mainNav button').forEach(b => {
-        b.classList.toggle('active', b.dataset.panel === id);
-      });
+      document.querySelectorAll('#mainNav button').forEach(b => b.classList.toggle('active', b.dataset.panel === id));
       if (id === 'niveles') renderNiveles();
     }
-
     document.getElementById('mainNav').addEventListener('click', e => {
-      if (e.target.tagName !== 'BUTTON') return;
-      showPanel(e.target.dataset.panel);
+      if (e.target.tagName === 'BUTTON') showPanel(e.target.dataset.panel);
     });
-
     function goHome() {
       view = { level: null, module: null, lesson: null };
       showPanel('inicio');
     }
 
-    // ========== RENDER NIVELES / MÓDULOS / LECCIONES ==========
     function renderNiveles() {
       const el = document.getElementById('nivelesContent');
-      if (!el) return;
-
-      // Vista: lista de niveles
       if (!view.level) {
         el.innerHTML = `
           <div class="card">
@@ -876,14 +535,13 @@
             <p class="subtitle">Cada nivel tiene 10 módulos. Completa el examen de módulo para desbloquear el siguiente.</p>
             <div class="levels-grid">
               ${Object.entries(COURSE.levels).map(([code, info]) => {
-                const modCount = Object.keys(info.modules || {}).length;
-                return `
-                  <div class="level-card" onclick="openLevel('${code}')">
-                    <div class="code">${code}</div>
-                    <div class="name">${info.nameEs}</div>
-                    <div class="desc">${info.desc}</div>
-                    <div class="meta">${modCount > 0 ? modCount + ' módulo' + (modCount > 1 ? 's' : '') + ' disponible' + (modCount > 1 ? 's' : '') : 'Próximamente'}</div>
-                  </div>`;
+                const n = Object.keys(info.modules || {}).length;
+                return `<div class="level-card" onclick="openLevel('${code}')">
+                  <div class="code">${code}</div>
+                  <div class="name">${info.nameEs}</div>
+                  <div class="desc">${info.desc}</div>
+                  <div class="meta">${n ? n + ' módulo' + (n > 1 ? 's' : '') : 'Próximamente'}</div>
+                </div>`;
               }).join('')}
             </div>
           </div>`;
@@ -892,37 +550,28 @@
 
       const level = COURSE.levels[view.level];
 
-      // Vista: módulos del nivel
       if (!view.module) {
-        const modules = level.modules || {};
-        const modKeys = Object.keys(modules).sort((a, b) => Number(a) - Number(b));
-
+        const mods = level.modules || {};
+        const keys = Object.keys(mods).sort((a,b) => +a - +b);
         el.innerHTML = `
           <div class="breadcrumb">
-            <button type="button" onclick="view.level=null; view.module=null; view.lesson=null; renderNiveles()">Niveles</button>
-            <span class="sep">›</span>
-            <span>${view.level} · ${level.nameEs}</span>
+            <button onclick="view.level=null;view.module=null;view.lesson=null;renderNiveles()">Niveles</button>
+            <span class="sep">›</span><span>${view.level} · ${level.nameEs}</span>
           </div>
           <div class="card">
             <h2>${view.level} · ${level.nameEs}</h2>
             <p class="subtitle">${level.desc}</p>
             <div class="modules-grid">
-              ${modKeys.length ? modKeys.map((mKey, idx) => {
-                const mod = modules[mKey];
-                const lessonCount = Object.keys(mod.lessons || {}).length;
-                const locked = false; // por ahora todos abiertos
-                return `
-                  <div class="module-card ${locked ? 'locked' : ''}" onclick="${locked ? 'toast(\'Módulo bloqueado\')' : `openModule('${mKey}')`}">
-                    <div class="mod-num">Módulo ${mKey}</div>
-                    <div class="mod-title">${mod.title}</div>
-                    <div class="mod-title-es">${mod.titleEs || ''}</div>
-                    <div class="mod-progress"><div style="width:${locked ? 0 : 0}%"></div></div>
-                    <div class="mod-meta">
-                      <span>${lessonCount} lecciones</span>
-                      <span class="${locked ? 'badge-lock' : 'badge-open'}">${locked ? '🔒 Bloqueado' : 'Disponible'}</span>
-                    </div>
-                  </div>`;
-              }).join('') : '<div class="empty-state">Aún no hay módulos en este nivel</div>'}
+              ${keys.length ? keys.map(k => {
+                const m = mods[k];
+                const lc = Object.keys(m.lessons || {}).length;
+                return `<div class="module-card" onclick="openModule('${k}')">
+                  <div class="mod-num">Módulo ${k}</div>
+                  <div class="mod-title">${m.title}</div>
+                  <div class="mod-title-es">${m.titleEs || ''}</div>
+                  <div class="mod-meta"><span>${lc} lecciones</span><span class="badge-open">Disponible</span></div>
+                </div>`;
+              }).join('') : '<div class="empty-state">Aún no hay módulos</div>'}
             </div>
           </div>`;
         return;
@@ -930,69 +579,73 @@
 
       const mod = level.modules[view.module];
 
-      // Vista: lecciones del módulo
       if (!view.lesson) {
         const lessons = mod.lessons || {};
-        const lesKeys = Object.keys(lessons).sort((a, b) => Number(a) - Number(b));
-
+        const keys = Object.keys(lessons).sort((a,b) => +a - +b);
         el.innerHTML = `
           <div class="breadcrumb">
-            <button type="button" onclick="view.level=null; view.module=null; view.lesson=null; renderNiveles()">Niveles</button>
+            <button onclick="view.level=null;view.module=null;view.lesson=null;renderNiveles()">Niveles</button>
             <span class="sep">›</span>
-            <button type="button" onclick="view.module=null; view.lesson=null; renderNiveles()">${view.level}</button>
-            <span class="sep">›</span>
-            <span>Módulo ${view.module}</span>
+            <button onclick="view.module=null;view.lesson=null;renderNiveles()">${view.level}</button>
+            <span class="sep">›</span><span>Módulo ${view.module}</span>
           </div>
           <div class="card">
             <h2>Módulo ${view.module} · ${mod.title}</h2>
             <p class="subtitle">${mod.titleEs || ''}</p>
             <div class="lessons-list">
-              ${lesKeys.map((lKey, idx) => {
-                const les = lessons[lKey];
-                const locked = false; // por ahora
-                const done = false;
-                return `
-                  <div class="lesson-row ${locked ? 'locked' : ''} ${done ? 'done' : ''}"
-                       onclick="${locked ? 'toast(\'Lección bloqueada\')' : `openLesson('${lKey}')`}">
-                    <div class="lesson-num">${lKey}</div>
-                    <div class="lesson-info">
-                      <div class="ltitle">${les.title}</div>
-                      <div class="ltitle-es">${les.titleEs || ''}</div>
-                      <div class="skills">
-                        <span class="skill-pill">Grammar</span>
-                        <span class="skill-pill">Reading</span>
-                        <span class="skill-pill">Listening</span>
-                        <span class="skill-pill">Writing</span>
-                        <span class="skill-pill">Practice</span>
-                        <span class="skill-pill">Exam</span>
-                      </div>
+              ${keys.map(k => {
+                const les = lessons[k];
+                const hasContent = !!(les.grammar || les.reading || les.practice);
+                return `<div class="lesson-row" onclick="openLesson('${k}')">
+                  <div class="lesson-num">${k}</div>
+                  <div class="lesson-info">
+                    <div class="ltitle">${les.title}</div>
+                    <div class="ltitle-es">${les.titleEs || ''}</div>
+                    <div class="skills">
+                      <span class="skill-pill">Grammar</span>
+                      <span class="skill-pill">Reading</span>
+                      <span class="skill-pill">Listening</span>
+                      <span class="skill-pill">Writing</span>
+                      <span class="skill-pill">Practice</span>
+                      <span class="skill-pill">Exam</span>
                     </div>
-                    <div class="lesson-status ${locked ? 'locked' : done ? 'done' : 'open'}">
-                      ${locked ? '🔒 Bloqueada' : done ? '✓ Completada' : 'Disponible'}
-                    </div>
-                  </div>`;
+                  </div>
+                  <div class="lesson-status">${hasContent ? 'Contenido listo' : 'Disponible'}</div>
+                </div>`;
               }).join('')}
             </div>
           </div>`;
         return;
       }
 
-      // Vista: detalle de lección
+      renderLessonDetail(el, level, mod);
+    }
+
+    function openLevel(c) { view.level = c; view.module = null; view.lesson = null; renderNiveles(); }
+    function openModule(k) { view.module = k; view.lesson = null; renderNiveles(); }
+    function openLesson(k) {
+      view.lesson = k;
+      practiceState = {};
+      examState = {};
+      renderNiveles();
+    }
+
+    function renderLessonDetail(el, level, mod) {
       const les = mod.lessons[view.lesson];
+      const has = !!(les.grammar);
+
       el.innerHTML = `
         <div class="breadcrumb">
-          <button type="button" onclick="view.level=null; view.module=null; view.lesson=null; renderNiveles()">Niveles</button>
+          <button onclick="view.level=null;view.module=null;view.lesson=null;renderNiveles()">Niveles</button>
           <span class="sep">›</span>
-          <button type="button" onclick="view.module=null; view.lesson=null; renderNiveles()">${view.level}</button>
+          <button onclick="view.module=null;view.lesson=null;renderNiveles()">${view.level}</button>
           <span class="sep">›</span>
-          <button type="button" onclick="view.lesson=null; renderNiveles()">Módulo ${view.module}</button>
-          <span class="sep">›</span>
-          <span>Lección ${view.lesson}</span>
+          <button onclick="view.lesson=null;renderNiveles()">Módulo ${view.module}</button>
+          <span class="sep">›</span><span>Lección ${view.lesson}</span>
         </div>
         <div class="card">
           <h2>Lección ${view.lesson} · ${les.title}</h2>
           <p class="subtitle">${les.titleEs || ''}</p>
-
           <div class="lesson-tabs" id="lessonTabs">
             <button type="button" class="active" data-sec="overview">Overview</button>
             <button type="button" data-sec="grammar">Grammar</button>
@@ -1002,38 +655,15 @@
             <button type="button" data-sec="practice">Practice</button>
             <button type="button" data-sec="exam">Exam</button>
           </div>
-
-          <div class="lesson-section active" id="sec-overview">
-            <h3 style="font-size:0.95rem; margin-bottom:0.6rem; color:var(--accent);">Objetivos de la lección</h3>
-            <ul class="objectives">
-              ${(les.objectives || []).map(o => `<li>${o}</li>`).join('') || '<li>Por definir</li>'}
-            </ul>
-            <p style="margin-top:1.2rem; color:var(--muted); font-size:0.9rem; font-weight:600;">
-              El contenido de Grammar, Reading, Listening, Writing, Practice y Exam se irá añadiendo en los próximos pasos.
-            </p>
-          </div>
-
-          <div class="lesson-section" id="sec-grammar">
-            <div class="empty-state">Contenido de Grammar · próximamente</div>
-          </div>
-          <div class="lesson-section" id="sec-reading">
-            <div class="empty-state">Contenido de Reading · próximamente</div>
-          </div>
-          <div class="lesson-section" id="sec-listening">
-            <div class="empty-state">Contenido de Listening · próximamente</div>
-          </div>
-          <div class="lesson-section" id="sec-writing">
-            <div class="empty-state">Contenido de Writing · próximamente</div>
-          </div>
-          <div class="lesson-section" id="sec-practice">
-            <div class="empty-state">Ejercicios de Practice · próximamente</div>
-          </div>
-          <div class="lesson-section" id="sec-exam">
-            <div class="empty-state">Examen de la lección · próximamente</div>
-          </div>
+          <div class="lesson-section active" id="sec-overview">${renderOverview(les)}</div>
+          <div class="lesson-section" id="sec-grammar">${has ? renderGrammar(les) : empty('Grammar')}</div>
+          <div class="lesson-section" id="sec-reading">${les.reading ? renderReading(les) : empty('Reading')}</div>
+          <div class="lesson-section" id="sec-listening">${les.listening ? renderListening(les) : empty('Listening')}</div>
+          <div class="lesson-section" id="sec-writing">${les.writing ? renderWriting(les) : empty('Writing')}</div>
+          <div class="lesson-section" id="sec-practice">${les.practice ? renderPractice(les) : empty('Practice')}</div>
+          <div class="lesson-section" id="sec-exam">${les.exam ? renderExam(les) : empty('Exam')}</div>
         </div>`;
 
-      // Wire lesson tabs
       document.getElementById('lessonTabs').addEventListener('click', e => {
         if (e.target.tagName !== 'BUTTON') return;
         const sec = e.target.dataset.sec;
@@ -1042,22 +672,258 @@
       });
     }
 
-    function openLevel(code) {
-      view.level = code;
-      view.module = null;
-      view.lesson = null;
-      renderNiveles();
+    function empty(name) {
+      return `<div class="empty-state">Contenido de ${name} · próximamente</div>`;
     }
 
-    function openModule(mKey) {
-      view.module = mKey;
-      view.lesson = null;
-      renderNiveles();
+    function renderOverview(les) {
+      return `
+        <h3 class="section-title">Objetivos de la lección</h3>
+        <ul class="objectives">
+          ${(les.objectives || []).map(o => `<li>${o}</li>`).join('') || '<li>Por definir</li>'}
+        </ul>
+        <p style="margin-top:1.1rem;color:var(--muted);font-size:0.9rem;font-weight:600;">
+          Recorre las pestañas en orden o salta a Practice y Exam cuando te sientas listo.
+        </p>`;
     }
 
-    function openLesson(lKey) {
-      view.lesson = lKey;
-      renderNiveles();
+    function renderGrammar(les) {
+      const g = les.grammar;
+      return `
+        <p style="font-size:0.95rem;font-weight:600;color:var(--muted);margin-bottom:0.75rem;">${g.intro}</p>
+        <h3 class="section-title">Formas afirmativas</h3>
+        <table class="grammar-table">
+          <thead><tr><th>Sujeto</th><th>Forma</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            ${g.table.map(r => `<tr><td><strong>${r.subject}</strong></td><td>${r.form}</td><td>${r.example}</td></tr>`).join('')}
+          </tbody>
+        </table>
+        <h3 class="section-title">Negativas</h3>
+        <table class="grammar-table">
+          <thead><tr><th>Completa</th><th>Contracción</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            ${g.negatives.map(r => `<tr><td>${r.full}</td><td><strong>${r.short}</strong></td><td>${r.ex}</td></tr>`).join('')}
+          </tbody>
+        </table>
+        <h3 class="section-title">Preguntas</h3>
+        ${g.questions.map(r => `
+          <div class="example-box">
+            <div class="label">Pregunta</div>
+            <div><strong>${r.q}</strong> → ${r.a}</div>
+          </div>`).join('')}
+        <h3 class="section-title">Recuerda</h3>
+        <ul class="objectives">
+          ${g.tips.map(t => `<li>${t}</li>`).join('')}
+        </ul>`;
+    }
+
+    function renderReading(les) {
+      const r = les.reading;
+      let html = `
+        <h3 class="section-title">${r.title}</h3>
+        <div class="reading-text">
+          ${r.text.map(l => `<div><span class="speaker">${l.sp}:</span> ${l.line}</div>`).join('')}
+        </div>
+        <h3 class="section-title">Comprensión</h3>
+        <div id="readingQs">`;
+      r.questions.forEach((q, i) => {
+        html += `
+          <div class="q-block" data-qi="${i}">
+            <div class="q-text">${i + 1}. ${q.q}</div>
+            <div class="q-options">
+              ${q.options.map((opt, j) => `
+                <button type="button" class="q-opt" onclick="answerReading(${i},${j})">${opt}</button>
+              `).join('')}
+            </div>
+            <div class="feedback" id="rfb-${i}"></div>
+          </div>`;
+      });
+      html += `</div>
+        <div class="score-bar">Aciertos: <strong id="readingScore">0</strong> / ${r.questions.length}</div>`;
+      return html;
+    }
+
+    function answerReading(qi, oi) {
+      const les = COURSE.levels[view.level].modules[view.module].lessons[view.lesson];
+      const q = les.reading.questions[qi];
+      const block = document.querySelector(`.q-block[data-qi="${qi}"]`);
+      const btns = block.querySelectorAll('.q-opt');
+      btns.forEach((b, j) => {
+        b.disabled = true;
+        if (j === q.answer) b.classList.add('correct');
+        else if (j === oi && oi !== q.answer) b.classList.add('wrong');
+        else b.classList.add('dim');
+      });
+      const fb = document.getElementById('rfb-' + qi);
+      fb.classList.add('show', oi === q.answer ? 'ok' : 'bad');
+      fb.textContent = oi === q.answer ? '✓ Correcto' : '✗ Incorrecto. La respuesta es: ' + q.options[q.answer];
+      // recount
+      let score = 0;
+      les.reading.questions.forEach((_, i) => {
+        const b = document.querySelector(`.q-block[data-qi="${i}"] .q-opt.correct`);
+        const chosen = document.querySelector(`.q-block[data-qi="${i}"] .q-opt.wrong`);
+        // if correct was clicked (has correct class and was the chosen - simpler: check if any wrong in that block)
+        const hasWrong = document.querySelector(`.q-block[data-qi="${i}"] .q-opt.wrong`);
+        const hasCorrect = document.querySelector(`.q-block[data-qi="${i}"] .q-opt.correct`);
+        if (hasCorrect && !hasWrong) score++;
+        else if (hasCorrect && hasWrong) { /* answered wrong */ }
+        else if (hasCorrect) score++;
+      });
+      // better recount
+      score = 0;
+      document.querySelectorAll('#readingQs .q-block').forEach(bl => {
+        const wrong = bl.querySelector('.q-opt.wrong');
+        const correct = bl.querySelector('.q-opt.correct');
+        if (correct && !wrong) score++;
+      });
+      document.getElementById('readingScore').textContent = score;
+    }
+
+    function renderListening(les) {
+      const L = les.listening;
+      return `
+        <p style="color:var(--muted);font-weight:600;margin-bottom:0.5rem;">${L.note}</p>
+        <div class="listening-script" id="listeningScript">
+          ${L.script.map(s => `<div><span class="sp">${s.sp}:</span> ${s.line.replace(/___/g, '<input type="text" class="gap-input" maxlength="8" />')}</div>`).join('')}
+        </div>
+        <button class="primary" onclick="checkListening()">Comprobar respuestas</button>
+        <div class="score-bar" id="listeningResult" style="display:none;">Resultado: <strong id="listeningScore">0</strong></div>`;
+    }
+
+    function checkListening() {
+      const les = COURSE.levels[view.level].modules[view.module].lessons[view.lesson];
+      const answers = les.listening.answers;
+      const inputs = document.querySelectorAll('#listeningScript .gap-input');
+      let ok = 0;
+      inputs.forEach((inp, i) => {
+        const val = (inp.value || '').trim().toLowerCase();
+        const correct = (answers[i] || '').toLowerCase();
+        inp.classList.remove('ok', 'bad');
+        if (val === correct) { inp.classList.add('ok'); ok++; }
+        else { inp.classList.add('bad'); }
+      });
+      document.getElementById('listeningResult').style.display = 'flex';
+      document.getElementById('listeningScore').textContent = ok + ' / ' + answers.length;
+      toast(ok === answers.length ? '¡Perfecto!' : 'Revisa los huecos en rojo');
+    }
+
+    function renderWriting(les) {
+      const w = les.writing;
+      return `
+        <div class="writing-prompt">${w.prompt.replace(/\n/g, '<br>')}</div>
+        <textarea class="writing-area" id="writingArea" placeholder="Write here..."></textarea>
+        <h3 class="section-title">Checklist</h3>
+        <ul class="checklist">
+          ${w.checklist.map((c, i) => `<li><input type="checkbox" id="wc-${i}" /> <label for="wc-${i}">${c}</label></li>`).join('')}
+        </ul>
+        <button class="primary" onclick="toast('¡Buen trabajo! Guarda tu texto y sigue a Practice.')">Marcar como hecho</button>`;
+    }
+
+    function renderPractice(les) {
+      const items = les.practice;
+      let html = `<div class="score-bar">Aciertos: <strong id="practiceScore">0</strong> / ${items.length}</div><div id="practiceQs">`;
+      items.forEach((q, i) => {
+        html += `
+          <div class="q-block" data-pi="${i}">
+            <div class="q-text">${i + 1}. ${q.q}</div>
+            <div class="q-options">
+              ${q.options.map((opt, j) => `
+                <button type="button" class="q-opt" onclick="answerPractice(${i},${j})">${opt}</button>
+              `).join('')}
+            </div>
+            <div class="feedback" id="pfb-${i}"></div>
+          </div>`;
+      });
+      html += '</div>';
+      return html;
+    }
+
+    function answerPractice(qi, oi) {
+      const les = COURSE.levels[view.level].modules[view.module].lessons[view.lesson];
+      const q = les.practice[qi];
+      const block = document.querySelector(`.q-block[data-pi="${qi}"]`);
+      if (block.dataset.done) return;
+      block.dataset.done = '1';
+      const btns = block.querySelectorAll('.q-opt');
+      btns.forEach((b, j) => {
+        b.disabled = true;
+        if (j === q.answer) b.classList.add('correct');
+        else if (j === oi) b.classList.add('wrong');
+        else b.classList.add('dim');
+      });
+      const fb = document.getElementById('pfb-' + qi);
+      fb.classList.add('show', oi === q.answer ? 'ok' : 'bad');
+      fb.textContent = oi === q.answer ? '✓ Correcto' : '✗ La respuesta es: ' + q.options[q.answer];
+      let score = 0;
+      document.querySelectorAll('#practiceQs .q-block').forEach(bl => {
+        if (bl.querySelector('.q-opt.correct') && !bl.querySelector('.q-opt.wrong')) score++;
+      });
+      document.getElementById('practiceScore').textContent = score;
+    }
+
+    function renderExam(les) {
+      const ex = les.exam;
+      return `
+        <p style="color:var(--muted);font-weight:600;margin-bottom:0.75rem;">
+          ${ex.questions.length} preguntas · Necesitas <strong style="color:var(--accent)">${ex.passScore}%</strong> para aprobar.
+        </p>
+        <div id="examQs">
+          ${ex.questions.map((q, i) => `
+            <div class="q-block" data-ei="${i}">
+              <div class="q-text">${i + 1}. ${q.q}</div>
+              <div class="q-options">
+                ${q.options.map((opt, j) => `
+                  <button type="button" class="q-opt" onclick="selectExam(${i},${j})">${opt}</button>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <button class="primary" id="examSubmitBtn" onclick="submitExam()">Entregar examen</button>
+        <div id="examResult"></div>`;
+    }
+
+    function selectExam(qi, oi) {
+      const block = document.querySelector(`.q-block[data-ei="${qi}"]`);
+      if (block.dataset.locked) return;
+      block.querySelectorAll('.q-opt').forEach((b, j) => {
+        b.style.outline = j === oi ? '2px solid var(--accent)' : 'none';
+        b.dataset.selected = j === oi ? '1' : '0';
+      });
+      examState[qi] = oi;
+    }
+
+    function submitExam() {
+      const les = COURSE.levels[view.level].modules[view.module].lessons[view.lesson];
+      const ex = les.exam;
+      let correct = 0;
+      ex.questions.forEach((q, i) => {
+        const block = document.querySelector(`.q-block[data-ei="${i}"]`);
+        block.dataset.locked = '1';
+        const chosen = examState[i];
+        const btns = block.querySelectorAll('.q-opt');
+        btns.forEach((b, j) => {
+          b.disabled = true;
+          if (j === q.answer) b.classList.add('correct');
+          else if (j === chosen && chosen !== q.answer) b.classList.add('wrong');
+          else b.classList.add('dim');
+        });
+        if (chosen === q.answer) correct++;
+      });
+      const pct = Math.round((correct / ex.questions.length) * 100);
+      const pass = pct >= ex.passScore;
+      const res = document.getElementById('examResult');
+      res.innerHTML = `
+        <div class="exam-result ${pass ? 'pass' : 'fail'}">
+          <div>${pass ? '¡Aprobado!' : 'No superado'}</div>
+          <div class="big">${pct}%</div>
+          <div style="color:var(--muted);font-weight:600;">${correct} de ${ex.questions.length} correctas · Mínimo ${ex.passScore}%</div>
+          ${pass
+            ? '<p style="margin-top:0.75rem;font-weight:700;color:var(--success);">Puedes continuar a la siguiente lección.</p>'
+            : '<p style="margin-top:0.75rem;font-weight:700;color:var(--danger);">Repasa Grammar y Practice, y vuelve a intentarlo.</p>'}
+        </div>`;
+      document.getElementById('examSubmitBtn').disabled = true;
+      toast(pass ? '¡Examen aprobado! 🎉' : 'Sigue practicando');
     }
   </script>
 </body>
