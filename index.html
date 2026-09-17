@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinguaCorp – El mundo en tus manos</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <style>
+    /* ========== THEME: LIGHT (default) ========== */
+    :root, [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg2: #f1f5f9;
+      --card: #ffffff;
+      --card-hover: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #3b5bdb;
+      --accent-dim: #2d4bc4;
+      --accent-soft: rgba(59, 91, 219, 0.12);
+      --gold: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+      --header-bg: #ffffff;
+      --nav-bg: #f1f5f9;
+    }
+
+    /* ========== THEME: DARK ========== */
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --bg2: #111827;
+      --card: #1e293b;
+      --card-hover: #334155;
+      --border: #334155;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #5b7cfa;
+      --accent-dim: #3b5bdb;
+      --accent-soft: rgba(91, 124, 250, 0.18);
+      --gold: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --warning: #fbbf24;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      --header-bg: #111827;
+      --nav-bg: #0f172a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      background: var(--header-bg);
+      border-bottom: 2px solid var(--accent);
+      padding: 0.7rem 1.25rem 0.6rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: var(--shadow);
+      transition: background 0.25s ease;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text strong {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text strong span {
+      color: var(--accent);
+    }
+
+    .brand-text small {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Theme switch */
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.2rem;
+      gap: 0.15rem;
+    }
+
+    .theme-switch button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .theme-switch button.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(59, 91, 219, 0.35);
+    }
+
+    .theme-switch button:hover:not(.active) {
+      color: var(--text);
+    }
+
+    /* Buttons */
+    button, .btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    button:hover, .btn:hover {
+      background: var(--card-hover);
+      transform: translateY(-1px);
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 2px 12px rgba(59, 91, 219, 0.3);
+    }
+
+    button.primary:hover {
+      filter: brightness(1.08);
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      gap: 0.3rem;
+      background: var(--nav-bg);
+      padding: 0.3rem;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    nav button {
+      background: transparent;
+      border: none;
+      padding: 0.42rem 0.95rem;
+      border-radius: 8px;
+      color: var(--muted);
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    nav button.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(59, 91, 219, 0.3);
+    }
+
+    /* ========== MAIN ========== */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.15rem 3rem;
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      box-shadow: var(--shadow);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Level grid */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+
+    .level-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.15rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .level-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(59, 91, 219, 0.15);
+    }
+
+    .level-card .code {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .level-card .name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0.25rem 0 0.15rem;
+    }
+
+    .level-card .desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    /* Welcome / status */
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .status-bar strong {
+      color: var(--accent);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+      color: #fff;
+      padding: 0.8rem 1.3rem;
+      border-radius: 12px;
+      font-weight: 800;
+      box-shadow: 0 8px 28px rgba(59, 91, 219, 0.35);
+      z-index: 200;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.28s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header { padding: 0.6rem 0.9rem; }
+      .brand img { height: 36px; }
+      .brand-text strong { font-size: 1.05rem; }
+      main { padding: 1.1rem 0.9rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <a href="#" class="brand" onclick="showPanel('inicio'); return false;">
+        <img src="assets/logo.png" alt="LinguaCorp" />
+        <div class="brand-text">
+          <strong>Lingua<span>Corp</span></strong>
+          <small>El mundo en tus manos</small>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <div class="theme-switch" title="Cambiar tema">
+          <button type="button" id="themeLight" class="active" onclick="setTheme('light')">☀️ Claro</button>
+          <button type="button" id="themeDark" onclick="setTheme('dark')">🌙 Oscuro</button>
+        </div>
+        <button class="primary" onclick="toast('Próximamente: guardar progreso')">💾 Guardar</button>
+      </div>
+    </div>
+
+    <nav id="mainNav">
+      <button data-panel="inicio" class="active">Inicio</button>
+      <button data-panel="niveles">Niveles</button>
+      <button data-panel="progreso">Mi progreso</button>
+      <button data-panel="ranking">Ranking</button>
+      <button data-panel="juegos">Juegos</button>
+      <button data-panel="reglas">Cómo funciona</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- INICIO -->
+    <div id="inicio" class="panel active">
+      <div class="card">
+        <h2>Bienvenido a LinguaCorp</h2>
+        <p>
+          Curso de inglés interactivo con 5 niveles (A1 → C1), 10 módulos por nivel
+          y 4 lecciones por módulo. Cada lección incluye gramática, reading, listening,
+          writing, ejercicios y un examen para avanzar.
+        </p>
+        <div class="status-bar">
+          <span>Estado: <strong>Estructura base lista</strong></span>
+          <span>Tema: <strong id="currentThemeLabel">Claro</strong></span>
+          <span>Versión datos: <strong>0.1.0</strong></span>
+        </div>
+        <button class="primary" onclick="showPanel('niveles')">Empezar → Ver niveles</button>
+      </div>
+    </div>
+
+    <!-- NIVELES -->
+    <div id="niveles" class="panel">
+      <div class="card">
+        <h2>Elige tu nivel</h2>
+        <p>Cada nivel tiene 10 módulos. Completa el examen de módulo para desbloquear el siguiente.</p>
+        <div class="levels-grid" id="levelsGrid">
+          <!-- se llena con JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESO -->
+    <div id="progreso" class="panel">
+      <div class="card">
+        <h2>Mi progreso</h2>
+        <p>Aquí verás XP, racha, lecciones completadas y badges. (Próximo paso)</p>
+      </div>
+    </div>
+
+    <!-- RANKING -->
+    <div id="ranking" class="panel">
+      <div class="card">
+        <h2>Ranking del grupo</h2>
+        <p>Clasificación por puntos y precisión, al estilo de la app de Champions. (Próximo paso)</p>
+      </div>
+    </div>
+
+    <!-- JUEGOS -->
+    <div id="juegos" class="panel">
+      <div class="card">
+        <h2>Juegos</h2>
+        <p>Trivia, adivina la palabra, sentence race… (Próximo paso)</p>
+      </div>
+    </div>
+
+    <!-- REGLAS -->
+    <div id="reglas" class="panel">
+      <div class="card">
+        <h2>Cómo funciona</h2>
+        <ul style="padding-left: 1.2rem; color: var(--muted); line-height: 1.7;">
+          <li><strong style="color: var(--text);">5 niveles</strong>: A1 → C1</li>
+          <li><strong style="color: var(--text);">10 módulos</strong> por nivel</li>
+          <li><strong style="color: var(--text);">4 lecciones</strong> por módulo</li>
+          <li>Cada lección: Grammar · Reading · Listening · Writing · Practice · Exam</li>
+          <li>Debes aprobar el examen de la lección (y del módulo) para avanzar</li>
+          <li>Gana XP, mantén la racha y sube en el ranking</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ========== THEME ==========
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('lc_theme', theme);
+
+      document.getElementById('themeLight').classList.toggle('active', theme === 'light');
+      document.getElementById('themeDark').classList.toggle('active', theme === 'dark');
+
+      const label = document.getElementById('currentThemeLabel');
+      if (label) label.textContent = theme === 'light' ? 'Claro' : 'Oscuro';
+    }
+
+    // Restore saved theme
+    (function initTheme() {
+      const saved = localStorage.getItem('lc_theme') || 'light';
+      setTheme(saved);
+    })();
+
+    // ========== NAV ==========
+    function showPanel(id) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('#mainNav button').forEach(b => {
+        b.classList.toggle('active', b.dataset.panel === id);
+      });
+    }
+
+    document.getElementById('mainNav').addEventListener('click', e => {
+      if (e.target.tagName !== 'BUTTON') return;
+      showPanel(e.target.dataset.panel);
+    });
+
+    // ========== TOAST ==========
+    function toast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2600);
+    }
+
+    // ========== LEVELS (from data) ==========
+    const LEVEL_INFO = {
+      A1: { name: 'Beginner', nameEs: 'Principiante', desc: 'Fundamentos: presentaciones, verbos básicos, vocabulario cotidiano.' },
+      A2: { name: 'Elementary', nameEs: 'Elemental', desc: 'Expansión de vocabulario y estructuras del día a día.' },
+      B1: { name: 'Intermediate', nameEs: 'Intermedio', desc: 'Comunicación más fluida sobre temas familiares.' },
+      B2: { name: 'Upper Intermediate', nameEs: 'Intermedio alto', desc: 'Estructuras complejas y mayor precisión.' },
+      C1: { name: 'Advanced', nameEs: 'Avanzado', desc: 'Expresión flexible en contextos sociales y profesionales.' }
+    };
+
+    function renderLevels() {
+      const grid = document.getElementById('levelsGrid');
+      if (!grid) return;
+      grid.innerHTML = Object.entries(LEVEL_INFO).map(([code, info]) => `
+        <div class="level-card" onclick="toast('Nivel ${code} – próximamente módulos')">
+          <div class="code">${code}</div>
+          <div class="name">${info.nameEs}</div>
+          <div class="desc">${info.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    renderLevels();
+  </script>
+</body>
+</html>
