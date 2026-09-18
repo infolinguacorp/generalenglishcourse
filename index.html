@@ -635,33 +635,223 @@
         },
         A2: {
           name: 'Elementary', nameEs: 'Elemental',
-          desc: 'Expansión de vocabulario y estructuras del día a día.',
+          desc: 'Expansión de vocabulario y estructuras del día a día. Pasado, futuro, comparaciones y más.',
           modules: {
             1: {
               title: 'Past & Stories', titleEs: 'Pasado e historias',
               lessons: {
-                1: { title: 'Past Simple – Be', titleEs: 'Pasado simple – to be', objectives: [] },
-                2: { title: 'Past Simple – Regular Verbs', titleEs: 'Pasado – verbos regulares', objectives: [] },
-                3: { title: 'Past Simple – Irregular Verbs', titleEs: 'Pasado – verbos irregulares', objectives: [] },
-                4: { title: 'Time Expressions in the Past', titleEs: 'Expresiones de tiempo en pasado', objectives: [] }
+                1: {
+                  title: 'Past Simple – Be',
+                  titleEs: 'Pasado simple – to be',
+                  objectives: [
+                    'Usar was / were correctamente',
+                    'Formar negativas y preguntas en pasado con to be',
+                    'Hablar de estados y situaciones en el pasado'
+                  ],
+                  grammar: {
+                    intro: 'En pasado, el verbo <strong>to be</strong> tiene dos formas: <strong>was</strong> y <strong>were</strong>. Se usa para describir estados, lugares y situaciones en el pasado.',
+                    table: [
+                      { subject: 'I / He / She / It', form: 'was', example: 'I was at home yesterday.' },
+                      { subject: 'You / We / They', form: 'were', example: 'They were in London last year.' }
+                    ],
+                    negatives: [
+                      { full: 'I was not', short: "I wasn't", ex: "I wasn't tired." },
+                      { full: 'She was not', short: "She wasn't", ex: "She wasn't at school." },
+                      { full: 'They were not', short: "They weren't", ex: "They weren't happy." }
+                    ],
+                    questions: [
+                      { q: 'Was I…?', a: 'Yes, I was. / No, I wasn’t.' },
+                      { q: 'Was she…?', a: 'Yes, she was. / No, she wasn’t.' },
+                      { q: 'Were you…?', a: 'Yes, you were. / No, you weren’t.' },
+                      { q: 'Were they…?', a: 'Yes, they were. / No, they weren’t.' }
+                    ],
+                    tips: [
+                      'Con <strong>I, he, she, it</strong> → <strong>was</strong>.',
+                      'Con <strong>you, we, they</strong> → <strong>were</strong>.',
+                      'En preguntas: <strong>Was</strong> / <strong>Were</strong> + sujeto.',
+                      'Expresiones típicas: yesterday, last week, last year, in 2019.'
+                    ]
+                  },
+                  reading: {
+                    title: 'A weekend in the past',
+                    text: [
+                      { sp: 'Narrator', line: "Last Saturday was a special day for Mia." },
+                      { sp: 'Mia', line: "I was at my grandmother’s house. The weather was perfect." },
+                      { sp: 'Narrator', line: "Her cousins were there too. They were very happy." },
+                      { sp: 'Mia', line: "The food was delicious. My grandmother was an excellent cook." },
+                      { sp: 'Narrator', line: "In the evening, everyone was tired but the day wasn’t boring at all." }
+                    ],
+                    questions: [
+                      { q: 'When was the special day?', options: ['Last Friday', 'Last Saturday', 'Last Sunday', 'Last year'], answer: 1 },
+                      { q: 'Where was Mia?', options: ['At school', 'At her grandmother’s house', 'In London', 'At work'], answer: 1 },
+                      { q: 'Were her cousins there?', options: ['Yes, they were.', 'No, they weren’t.', 'Yes, she was.', 'We don’t know.'], answer: 0 },
+                      { q: 'Was the day boring?', options: ['Yes, it was.', 'No, it wasn’t.', 'Yes, they were.', 'Only in the evening.'], answer: 1 }
+                    ]
+                  },
+                  listening: {
+                    note: 'Escucha el diálogo (voz del navegador en inglés). Luego completa los huecos con was / were / wasn’t / weren’t.',
+                    audioLines: [
+                      { sp: 'Emma', text: "Hi Paul. How was your weekend?" },
+                      { sp: 'Paul', text: "It was great. I was in the mountains with my family." },
+                      { sp: 'Emma', text: "Nice! Were the mountains cold?" },
+                      { sp: 'Paul', text: "No, they weren’t. The weather was warm. What about you?" },
+                      { sp: 'Emma', text: "I was at home. It wasn’t exciting, but it was relaxing." }
+                    ],
+                    script: [
+                      { sp: 'Emma', line: "Hi Paul. How ___ your weekend?" },
+                      { sp: 'Paul', line: "It ___ great. I ___ in the mountains with my family." },
+                      { sp: 'Emma', line: "Nice! ___ the mountains cold?" },
+                      { sp: 'Paul', line: "No, they ___. The weather ___ warm. What about you?" },
+                      { sp: 'Emma', line: "I ___ at home. It ___ exciting, but it ___ relaxing." }
+                    ],
+                    answers: ['was', 'was', 'was', 'Were', "weren't", 'was', 'was', "wasn't", 'was']
+                  },
+                  writing: {
+                    prompt: 'Write 5–7 sentences about last weekend. Use was / were.\n\nExample:\nLast weekend I was at the beach. The weather was sunny. My friends were with me. The water was cold, but we were happy. It wasn’t a boring day.',
+                    checklist: [
+                      'Usé was / were correctamente',
+                      'Incluí al menos una negativa (wasn’t / weren’t)',
+                      'Mencioné lugar o actividad',
+                      'Escribí 5 o más oraciones',
+                      'Revisé ortografía y puntuación'
+                    ],
+                    minWords: 40
+                  },
+                  practice: [
+                    { type: 'mc', q: 'She ___ at the cinema yesterday.', options: ['was', 'were', 'is'], answer: 0 },
+                    { type: 'mc', q: 'They ___ in Paris last summer.', options: ['was', 'were', 'are'], answer: 1 },
+                    { type: 'mc', q: 'I ___ not tired after the trip.', options: ['was', 'were', "wasn't"], answer: 2 },
+                    { type: 'mc', q: '___ you at the party?', options: ['Was', 'Were', 'Are'], answer: 1 },
+                    { type: 'mc', q: 'The film ___ interesting.', options: ["wasn't", "weren't", 'not was'], answer: 0 },
+                    { type: 'mc', q: 'We ___ late for the meeting.', options: ['was', 'were', 'is'], answer: 1 },
+                    { type: 'mc', q: '___ he your teacher in 2020?', options: ['Was', 'Were', 'Is'], answer: 0 },
+                    { type: 'mc', q: 'My parents ___ at home last night.', options: ["wasn't", "weren't", 'not were'], answer: 1 }
+                  ],
+                  exam: {
+                    passScore: 70,
+                    questions: [
+                      { q: 'I ___ in Madrid last year.', options: ['was', 'were', 'am'], answer: 0 },
+                      { q: 'You ___ very kind yesterday.', options: ['was', 'were', 'is'], answer: 1 },
+                      { q: 'She ___ not at work on Monday.', options: ["weren't", "wasn't", 'not was'], answer: 1 },
+                      { q: '___ they happy with the result?', options: ['Was', 'Were', 'Are'], answer: 1 },
+                      { q: 'The weather ___ cold last week.', options: ['was', 'were', 'is'], answer: 0 },
+                      { q: 'We ___ in the same class in 2018.', options: ['was', 'were', 'are'], answer: 1 },
+                      { q: '___ it your birthday yesterday?', options: ['Was', 'Were', 'Is'], answer: 0 },
+                      { q: 'My friends ___ at the concert.', options: ["wasn't", "weren't", 'not were'], answer: 1 },
+                      { q: 'He ___ a good student.', options: ['was', 'were', 'are'], answer: 0 },
+                      { q: '___ you tired after the exam?', options: ['Was', 'Were', 'Is'], answer: 1 }
+                    ]
+                  }
+                },
+                2: {
+                  title: 'Past Simple – Regular Verbs',
+                  titleEs: 'Pasado – verbos regulares',
+                  objectives: [
+                    'Formar el pasado de verbos regulares (-ed)',
+                    'Usar negativas con did not / didn’t',
+                    'Hacer preguntas con Did…?'
+                  ]
+                },
+                3: {
+                  title: 'Past Simple – Irregular Verbs',
+                  titleEs: 'Pasado – verbos irregulares',
+                  objectives: [
+                    'Memorizar verbos irregulares frecuentes (go, have, see…)',
+                    'Usarlos en afirmativa, negativa y pregunta',
+                    'Contar una anécdota simple en pasado'
+                  ]
+                },
+                4: {
+                  title: 'Time Expressions in the Past',
+                  titleEs: 'Expresiones de tiempo en pasado',
+                  objectives: [
+                    'Usar yesterday, last week, ago, in + year',
+                    'Combinar expresiones con past simple',
+                    'Ordenar eventos en una historia corta'
+                  ]
+                }
               }
             },
             2: {
               title: 'Future & Plans', titleEs: 'Futuro y planes',
               lessons: {
-                5: { title: 'Going to', titleEs: 'Going to (planes)', objectives: [] },
-                6: { title: 'Present Continuous for Future', titleEs: 'Presente continuo con valor de futuro', objectives: [] },
-                7: { title: 'Comparatives', titleEs: 'Comparativos', objectives: [] },
-                8: { title: 'Superlatives', titleEs: 'Superlativos', objectives: [] }
+                5: {
+                  title: 'Going to',
+                  titleEs: 'Going to (planes)',
+                  objectives: [
+                    'Expresar planes e intenciones con going to',
+                    'Formar afirmativa, negativa y pregunta',
+                    'Hablar de planes para el fin de semana'
+                  ]
+                },
+                6: {
+                  title: 'Present Continuous for Future',
+                  titleEs: 'Presente continuo con valor de futuro',
+                  objectives: [
+                    'Usar presente continuo para planes fijos',
+                    'Diferenciar going to vs present continuous',
+                    'Hablar de citas y planes concretos'
+                  ]
+                },
+                7: {
+                  title: 'Comparatives',
+                  titleEs: 'Comparativos',
+                  objectives: [
+                    'Formar comparativos (bigger, more interesting)',
+                    'Usar than en comparaciones',
+                    'Comparar personas, lugares y cosas'
+                  ]
+                },
+                8: {
+                  title: 'Superlatives',
+                  titleEs: 'Superlativos',
+                  objectives: [
+                    'Formar superlativos (the biggest, the most…)',
+                    'Usar in / of con superlativos',
+                    'Describir extremos (the best, the worst)'
+                  ]
+                }
               }
             },
             3: {
               title: 'Communication Boost', titleEs: 'Impulso comunicativo',
               lessons: {
-                9: { title: 'Countable & Uncountable', titleEs: 'Contables e incontables', objectives: [] },
-                10: { title: 'Present Perfect Intro', titleEs: 'Presente perfecto (intro)', objectives: [] },
-                11: { title: 'Review & Skills', titleEs: 'Repaso y destrezas', objectives: [] },
-                12: { title: 'A2 Level Final Exam', titleEs: 'Examen final del nivel A2', objectives: ['Aprobar con al menos 70 %'], isLevelExam: true }
+                9: {
+                  title: 'Countable & Uncountable',
+                  titleEs: 'Contables e incontables',
+                  objectives: [
+                    'Distinguir sustantivos contables e incontables',
+                    'Usar some / any / much / many / a lot of',
+                    'Hablar de comida y cantidades'
+                  ]
+                },
+                10: {
+                  title: 'Present Perfect Intro',
+                  titleEs: 'Presente perfecto (intro)',
+                  objectives: [
+                    'Formar have / has + past participle',
+                    'Usar ever / never',
+                    'Hablar de experiencias de vida'
+                  ]
+                },
+                11: {
+                  title: 'Review & Skills',
+                  titleEs: 'Repaso y destrezas',
+                  objectives: [
+                    'Repasar pasado, futuro y comparaciones',
+                    'Integrar reading, listening y writing',
+                    'Prepararse para el examen de nivel A2'
+                  ]
+                },
+                12: {
+                  title: 'A2 Level Final Exam',
+                  titleEs: 'Examen final del nivel A2',
+                  objectives: [
+                    'Demostrar dominio de los contenidos de A2',
+                    'Aprobar con al menos 70 % para desbloquear B1'
+                  ],
+                  isLevelExam: true
+                }
               }
             }
           }
