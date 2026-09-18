@@ -347,7 +347,7 @@
       <div class="card">
         <h2>Bienvenido a LinguaCorp</h2>
         <p class="subtitle">
-          Curso de inglés interactivo · 5 niveles (A1 → C1) · 10 módulos por nivel · 4 lecciones por módulo.
+          Curso de inglés interactivo · 5 niveles (A1 → C1) · 3 módulos por nivel · 12 lecciones · la 12 es el examen final.
           Cada lección incluye gramática, reading, listening, writing, ejercicios y un examen para avanzar.
         </p>
         <button class="primary" onclick="showPanel('niveles')">Empezar → Ver niveles</button>
@@ -380,10 +380,10 @@
         <h2>Cómo funciona</h2>
         <ul style="padding-left:1.2rem;color:var(--muted);line-height:1.75;font-weight:600;">
           <li><strong style="color:var(--text)">5 niveles</strong>: A1 → C1</li>
-          <li><strong style="color:var(--text)">10 módulos</strong> por nivel · <strong style="color:var(--text)">4 lecciones</strong> por módulo</li>
+          <li><strong style="color:var(--text)">3 módulos</strong> por nivel · <strong style="color:var(--text)">12 lecciones</strong> (4 por módulo)</li>
+          <li>La <strong style="color:var(--text)">lección 12</strong> es el examen final del nivel</li>
           <li>Cada lección: Grammar · Reading · Listening · Writing · Practice · Exam</li>
-          <li>Aprueba el examen de la lección (70 %) para avanzar</li>
-          <li>Tema claro / oscuro con el switch ☀️ 🌙</li>
+          <li>Aprueba con 70 % para avanzar · Tema claro / oscuro ☀️ 🌙</li>
         </ul>
       </div>
     </div>
@@ -414,7 +414,8 @@
           desc: 'Fundamentos del inglés: presentaciones, verbos básicos, vocabulario cotidiano.',
           modules: {
             1: {
-              title: 'Hello & Introductions', titleEs: 'Hola y presentaciones',
+              title: 'Hello & Identity',
+              titleEs: 'Hola e identidad',
               lessons: {
                 1: {
                   title: 'Present Simple – Be',
@@ -466,14 +467,12 @@
                   },
                   listening: {
                     note: 'Escucha el diálogo completo (voz del navegador en inglés). Luego completa los huecos con am / is / are.',
-                    // Texto completo para el audio (sin huecos)
                     audioLines: [
                       { sp: 'Lisa', text: "Hello! My name is Lisa. I am from Brazil." },
                       { sp: 'Mark', text: "Hi, Lisa. I am Mark. I am a student." },
                       { sp: 'Lisa', text: "Nice to meet you. Are you from the USA?" },
                       { sp: 'Mark', text: "No, I am not. I am from Australia." }
                     ],
-                    // Versión con huecos para el ejercicio
                     script: [
                       { sp: 'Lisa', line: "Hello! My name is Lisa. I ___ from Brazil." },
                       { sp: 'Mark', line: "Hi, Lisa. I ___ Mark. I ___ a student." },
@@ -520,25 +519,252 @@
                   }
                 },
                 2: {
-                  title: 'Greetings & Goodbyes', titleEs: 'Saludos y despedidas',
-                  objectives: ['Saludar en contextos formales e informales', 'Despedirse de forma natural', 'Usar expresiones de cortesía básicas']
+                  title: 'Greetings & Goodbyes',
+                  titleEs: 'Saludos y despedidas',
+                  objectives: [
+                    'Saludar en contextos formales e informales',
+                    'Despedirse de forma natural',
+                    'Usar expresiones de cortesía (please, thank you, nice to meet you)'
+                  ]
                 },
                 3: {
-                  title: 'Countries & Nationalities', titleEs: 'Países y nacionalidades',
-                  objectives: ['Nombrar países comunes', 'Formar nacionalidades', 'Preguntar y decir de dónde eres']
+                  title: 'Countries & Nationalities',
+                  titleEs: 'Países y nacionalidades',
+                  objectives: [
+                    'Nombrar países comunes',
+                    'Formar y usar nacionalidades',
+                    'Preguntar y decir de dónde eres (Where are you from?)'
+                  ]
                 },
                 4: {
-                  title: 'Numbers & Age', titleEs: 'Números y edad',
-                  objectives: ['Contar del 1 al 100', 'Preguntar y decir la edad', 'Usar números en contextos cotidianos']
+                  title: 'Numbers, Age & Contact',
+                  titleEs: 'Números, edad y contacto',
+                  objectives: [
+                    'Contar del 1 al 100',
+                    'Preguntar y decir la edad',
+                    'Dar un número de teléfono básico'
+                  ]
+                }
+              }
+            },
+            2: {
+              title: 'People & Everyday Life',
+              titleEs: 'Personas y vida cotidiana',
+              lessons: {
+                5: {
+                  title: 'Family & Possessives',
+                  titleEs: 'Familia y posesivos',
+                  objectives: [
+                    'Nombrar miembros de la familia',
+                    'Usar my / your / his / her',
+                    'Describir la familia con to be'
+                  ]
+                },
+                6: {
+                  title: 'Jobs & a/an',
+                  titleEs: 'Trabajos y a/an',
+                  objectives: [
+                    'Vocabulario de profesiones',
+                    'Usar a / an correctamente',
+                    'Decir qué trabajo tiene alguien'
+                  ]
+                },
+                7: {
+                  title: 'Present Simple – Daily Routines',
+                  titleEs: 'Presente simple – rutinas',
+                  objectives: [
+                    'Usar verbos de rutina (get up, work, study…)',
+                    'Formar afirmativa y negativa en presente simple',
+                    'Hablar de la rutina diaria'
+                  ]
+                },
+                8: {
+                  title: 'Days, Time & Frequency',
+                  titleEs: 'Días, hora y frecuencia',
+                  objectives: [
+                    'Decir la hora',
+                    'Usar los días de la semana',
+                    'Adverbios de frecuencia básicos (always, sometimes, never)'
+                  ]
+                }
+              }
+            },
+            3: {
+              title: 'World Around You',
+              titleEs: 'El mundo a tu alrededor',
+              lessons: {
+                9: {
+                  title: 'Food, Drink & Likes',
+                  titleEs: 'Comida, bebida y gustos',
+                  objectives: [
+                    'Vocabulario de comida y bebida',
+                    'Usar I like / I don’t like',
+                    'Hacer preguntas con Do you like…?'
+                  ]
+                },
+                10: {
+                  title: 'Places & There is/are',
+                  titleEs: 'Lugares y There is/are',
+                  objectives: [
+                    'Lugares de la ciudad',
+                    'Usar there is / there are',
+                    'Describir un lugar simple'
+                  ]
+                },
+                11: {
+                  title: 'Can for Ability & Review',
+                  titleEs: 'Can (habilidad) y repaso',
+                  objectives: [
+                    'Expresar habilidad con can / can’t',
+                    'Repasar to be y presente simple',
+                    'Prepararse para el examen de nivel'
+                  ]
+                },
+                12: {
+                  title: 'A1 Level Final Exam',
+                  titleEs: 'Examen final del nivel A1',
+                  objectives: [
+                    'Demostrar dominio de los contenidos de A1',
+                    'Aprobar con al menos 70 % para desbloquear A2'
+                  ],
+                  isLevelExam: true
                 }
               }
             }
           }
         },
-        A2: { name: 'Elementary', nameEs: 'Elemental', desc: 'Expansión de vocabulario y estructuras del día a día.', modules: {} },
-        B1: { name: 'Intermediate', nameEs: 'Intermedio', desc: 'Comunicación más fluida sobre temas familiares.', modules: {} },
-        B2: { name: 'Upper Intermediate', nameEs: 'Intermedio alto', desc: 'Estructuras complejas y mayor precisión.', modules: {} },
-        C1: { name: 'Advanced', nameEs: 'Avanzado', desc: 'Expresión flexible en contextos sociales y profesionales.', modules: {} }
+        A2: {
+          name: 'Elementary', nameEs: 'Elemental',
+          desc: 'Expansión de vocabulario y estructuras del día a día.',
+          modules: {
+            1: {
+              title: 'Past & Stories', titleEs: 'Pasado e historias',
+              lessons: {
+                1: { title: 'Past Simple – Be', titleEs: 'Pasado simple – to be', objectives: [] },
+                2: { title: 'Past Simple – Regular Verbs', titleEs: 'Pasado – verbos regulares', objectives: [] },
+                3: { title: 'Past Simple – Irregular Verbs', titleEs: 'Pasado – verbos irregulares', objectives: [] },
+                4: { title: 'Time Expressions in the Past', titleEs: 'Expresiones de tiempo en pasado', objectives: [] }
+              }
+            },
+            2: {
+              title: 'Future & Plans', titleEs: 'Futuro y planes',
+              lessons: {
+                5: { title: 'Going to', titleEs: 'Going to (planes)', objectives: [] },
+                6: { title: 'Present Continuous for Future', titleEs: 'Presente continuo con valor de futuro', objectives: [] },
+                7: { title: 'Comparatives', titleEs: 'Comparativos', objectives: [] },
+                8: { title: 'Superlatives', titleEs: 'Superlativos', objectives: [] }
+              }
+            },
+            3: {
+              title: 'Communication Boost', titleEs: 'Impulso comunicativo',
+              lessons: {
+                9: { title: 'Countable & Uncountable', titleEs: 'Contables e incontables', objectives: [] },
+                10: { title: 'Present Perfect Intro', titleEs: 'Presente perfecto (intro)', objectives: [] },
+                11: { title: 'Review & Skills', titleEs: 'Repaso y destrezas', objectives: [] },
+                12: { title: 'A2 Level Final Exam', titleEs: 'Examen final del nivel A2', objectives: ['Aprobar con al menos 70 %'], isLevelExam: true }
+              }
+            }
+          }
+        },
+        B1: {
+          name: 'Intermediate', nameEs: 'Intermedio',
+          desc: 'Comunicación más fluida sobre temas familiares y de interés personal.',
+          modules: {
+            1: {
+              title: 'Narrative & Experience', titleEs: 'Narración y experiencia',
+              lessons: {
+                1: { title: 'Present Perfect vs Past Simple', titleEs: 'Presente perfecto vs pasado simple', objectives: [] },
+                2: { title: 'Used to', titleEs: 'Used to (hábitos pasados)', objectives: [] },
+                3: { title: 'Past Continuous', titleEs: 'Pasado continuo', objectives: [] },
+                4: { title: 'Storytelling Practice', titleEs: 'Práctica de narración', objectives: [] }
+              }
+            },
+            2: {
+              title: 'Opinion & Debate', titleEs: 'Opinión y debate',
+              lessons: {
+                5: { title: 'Modals of Advice', titleEs: 'Modales de consejo', objectives: [] },
+                6: { title: 'Conditionals (First)', titleEs: 'Condicionales tipo 1', objectives: [] },
+                7: { title: 'Conditionals (Second)', titleEs: 'Condicionales tipo 2', objectives: [] },
+                8: { title: 'Agreeing & Disagreeing', titleEs: 'Acordar y discrepar', objectives: [] }
+              }
+            },
+            3: {
+              title: 'Real-World English', titleEs: 'Inglés del mundo real',
+              lessons: {
+                9: { title: 'Passive Voice Intro', titleEs: 'Voz pasiva (intro)', objectives: [] },
+                10: { title: 'Reported Speech Intro', titleEs: 'Estilo indirecto (intro)', objectives: [] },
+                11: { title: 'Review & Fluency', titleEs: 'Repaso y fluidez', objectives: [] },
+                12: { title: 'B1 Level Final Exam', titleEs: 'Examen final del nivel B1', objectives: ['Aprobar con al menos 70 %'], isLevelExam: true }
+              }
+            }
+          }
+        },
+        B2: {
+          name: 'Upper Intermediate', nameEs: 'Intermedio alto',
+          desc: 'Dominio de estructuras complejas y mayor precisión.',
+          modules: {
+            1: {
+              title: 'Precision & Nuance', titleEs: 'Precisión y matices',
+              lessons: {
+                1: { title: 'Advanced Modals', titleEs: 'Modales avanzados', objectives: [] },
+                2: { title: 'Mixed Conditionals', titleEs: 'Condicionales mixtos', objectives: [] },
+                3: { title: 'Relative Clauses', titleEs: 'Oraciones de relativo', objectives: [] },
+                4: { title: 'Cleft Sentences', titleEs: 'Oraciones enfáticas', objectives: [] }
+              }
+            },
+            2: {
+              title: 'Argument & Analysis', titleEs: 'Argumentación y análisis',
+              lessons: {
+                5: { title: 'Discourse Markers', titleEs: 'Conectores del discurso', objectives: [] },
+                6: { title: 'Hypothetical Language', titleEs: 'Lenguaje hipotético', objectives: [] },
+                7: { title: 'Nominalisation', titleEs: 'Nominalización', objectives: [] },
+                8: { title: 'Academic Vocabulary', titleEs: 'Vocabulario académico', objectives: [] }
+              }
+            },
+            3: {
+              title: 'Mastery Path', titleEs: 'Camino al dominio',
+              lessons: {
+                9: { title: 'Complex Passive', titleEs: 'Pasiva compleja', objectives: [] },
+                10: { title: 'Advanced Reported Speech', titleEs: 'Estilo indirecto avanzado', objectives: [] },
+                11: { title: 'Review & Register', titleEs: 'Repaso y registro', objectives: [] },
+                12: { title: 'B2 Level Final Exam', titleEs: 'Examen final del nivel B2', objectives: ['Aprobar con al menos 70 %'], isLevelExam: true }
+              }
+            }
+          }
+        },
+        C1: {
+          name: 'Advanced', nameEs: 'Avanzado',
+          desc: 'Expresión flexible y eficaz en contextos sociales, académicos y profesionales.',
+          modules: {
+            1: {
+              title: 'Sophisticated Expression', titleEs: 'Expresión sofisticada',
+              lessons: {
+                1: { title: 'Inversion & Emphasis', titleEs: 'Inversión y énfasis', objectives: [] },
+                2: { title: 'Subjunctive & Formality', titleEs: 'Subjuntivo y formalidad', objectives: [] },
+                3: { title: 'Idiomatic Language', titleEs: 'Lenguaje idiomático', objectives: [] },
+                4: { title: 'Nuanced Opinion', titleEs: 'Opinión con matices', objectives: [] }
+              }
+            },
+            2: {
+              title: 'Professional & Academic', titleEs: 'Profesional y académico',
+              lessons: {
+                5: { title: 'Report Writing', titleEs: 'Redacción de informes', objectives: [] },
+                6: { title: 'Presentations Language', titleEs: 'Lenguaje de presentaciones', objectives: [] },
+                7: { title: 'Critical Analysis', titleEs: 'Análisis crítico', objectives: [] },
+                8: { title: 'Negotiation & Persuasion', titleEs: 'Negociación y persuasión', objectives: [] }
+              }
+            },
+            3: {
+              title: 'Near-Native Control', titleEs: 'Control casi nativo',
+              lessons: {
+                9: { title: 'Subtle Grammar Choices', titleEs: 'Elecciones gramaticales sutiles', objectives: [] },
+                10: { title: 'Style & Voice', titleEs: 'Estilo y voz', objectives: [] },
+                11: { title: 'Full Skills Review', titleEs: 'Repaso integral de destrezas', objectives: [] },
+                12: { title: 'C1 Level Final Exam', titleEs: 'Examen final del nivel C1', objectives: ['Aprobar con al menos 70 %'], isLevelExam: true }
+              }
+            }
+          }
+        }
       }
     };
 
@@ -566,7 +792,7 @@
         el.innerHTML = `
           <div class="card">
             <h2>Elige tu nivel</h2>
-            <p class="subtitle">Cada nivel tiene 10 módulos. Completa el examen de módulo para desbloquear el siguiente.</p>
+            <p class="subtitle">Cada nivel tiene 3 módulos y 12 lecciones. La lección 12 es el examen final del nivel.</p>
             <div class="levels-grid">
               ${Object.entries(COURSE.levels).map(([code, info]) => {
                 const n = Object.keys(info.modules || {}).length;
@@ -629,22 +855,25 @@
             <div class="lessons-list">
               ${keys.map(k => {
                 const les = lessons[k];
-                const hasContent = !!(les.grammar || les.reading || les.practice);
+                const hasContent = !!(les.grammar || les.reading || les.practice || les.exam);
+                const isExam = !!les.isLevelExam;
                 return `<div class="lesson-row" onclick="openLesson('${k}')">
                   <div class="lesson-num">${k}</div>
                   <div class="lesson-info">
-                    <div class="ltitle">${les.title}</div>
+                    <div class="ltitle">${les.title}${isExam ? ' 🏆' : ''}</div>
                     <div class="ltitle-es">${les.titleEs || ''}</div>
                     <div class="skills">
-                      <span class="skill-pill">Grammar</span>
+                      ${isExam
+                        ? '<span class="skill-pill">Examen de nivel</span><span class="skill-pill">70% mínimo</span>'
+                        : `<span class="skill-pill">Grammar</span>
                       <span class="skill-pill">Reading</span>
                       <span class="skill-pill">Listening</span>
                       <span class="skill-pill">Writing</span>
                       <span class="skill-pill">Practice</span>
-                      <span class="skill-pill">Exam</span>
+                      <span class="skill-pill">Exam</span>`}
                     </div>
                   </div>
-                  <div class="lesson-status">${hasContent ? 'Contenido listo' : 'Disponible'}</div>
+                  <div class="lesson-status">${isExam ? 'Examen final' : hasContent ? 'Contenido listo' : 'Disponible'}</div>
                 </div>`;
               }).join('')}
             </div>
