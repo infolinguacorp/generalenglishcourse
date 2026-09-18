@@ -255,6 +255,32 @@
       padding: 1rem 1.15rem; font-size: 0.95rem; line-height: 1.65; margin: 0.75rem 0;
     }
     .listening-script .sp { color: var(--accent); font-weight: 800; }
+    .listening-script .line-row {
+      display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.35rem 0.25rem;
+      border-radius: 8px; transition: background 0.2s;
+    }
+    .listening-script .line-row.playing {
+      background: var(--accent-soft);
+    }
+    .audio-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+      margin-bottom: 0.85rem; padding: 0.75rem 0.9rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .audio-bar .audio-label {
+      font-size: 0.8rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.03em; width: 100%;
+      margin-bottom: 0.15rem;
+    }
+    .audio-bar button {
+      font-size: 0.85rem; padding: 0.4rem 0.75rem;
+    }
+    .audio-bar button.playing-btn {
+      background: var(--accent); color: #fff; border-color: transparent;
+    }
+    .audio-status {
+      font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-left: auto;
+    }
     .gap-input {
       display: inline-block; width: 4.5rem; margin: 0 0.15rem; padding: 0.2rem 0.35rem;
       border: 1.5px solid var(--border); border-radius: 6px; background: var(--card);
@@ -439,7 +465,15 @@
                     ]
                   },
                   listening: {
-                    note: 'Lee el diálogo en voz alta (o pide a alguien que te lo lea). Luego completa los huecos.',
+                    note: 'Escucha el diálogo completo (voz del navegador en inglés). Luego completa los huecos con am / is / are.',
+                    // Texto completo para el audio (sin huecos)
+                    audioLines: [
+                      { sp: 'Lisa', text: "Hello! My name is Lisa. I am from Brazil." },
+                      { sp: 'Mark', text: "Hi, Lisa. I am Mark. I am a student." },
+                      { sp: 'Lisa', text: "Nice to meet you. Are you from the USA?" },
+                      { sp: 'Mark', text: "No, I am not. I am from Australia." }
+                    ],
+                    // Versión con huecos para el ejercicio
                     script: [
                       { sp: 'Lisa', line: "Hello! My name is Lisa. I ___ from Brazil." },
                       { sp: 'Mark', line: "Hi, Lisa. I ___ Mark. I ___ a student." },
@@ -779,15 +813,132 @@
       document.getElementById('readingScore').textContent = score;
     }
 
+    // ========== SPEECH (Listening audio) ==========
+    let speechQueue = [];
+    let speechPlaying = false;
+
+    function getEnglishVoice() {
+      const voices = speechSynthesis.getVoices();
+      // Prefer natural English voices
+      const preferred = [
+        v => v.lang.startsWith('en') && /google|neural|premium|natural/i.test(v.name),
+        v => v.lang === 'en-US' || v.lang === 'en-GB',
+        v => v.lang.startsWith('en')
+      ];
+      for (const test of preferred) {
+        const found = voices.find(test);
+        if (found) return found;
+      }
+      return voices[0] || null;
+    }
+
+    function stopSpeech() {
+      speechSynthesis.cancel();
+      speechQueue = [];
+      speechPlaying = false;
+      document.querySelectorAll('.listening-script .line-row').forEach(r => r.classList.remove('playing'));
+      const btn = document.getElementById('btnPlayAll');
+      const st = document.getElementById('audioStatus');
+      if (btn) { btn.classList.remove('playing-btn'); btn.textContent = '▶ Play dialogue'; }
+      if (st) st.textContent = '';
+    }
+
+    function speakLines(lines, startIndex) {
+      if (!('speechSynthesis' in window)) {
+        toast('Tu navegador no soporta audio de voz');
+        return;
+      }
+      stopSpeech();
+      // Chrome sometimes needs voices loaded
+      const voice = getEnglishVoice();
+      speechPlaying = true;
+      const btn = document.getElementById('btnPlayAll');
+      const st = document.getElementById('audioStatus');
+      if (btn) { btn.classList.add('playing-btn'); btn.textContent = '⏹ Stop'; }
+      if (st) st.textContent = 'Reproduciendo…';
+
+      let i = startIndex || 0;
+
+      function next() {
+        if (i >= lines.length || !speechPlaying) {
+          stopSpeech();
+          if (st) st.textContent = 'Listo';
+          return;
+        }
+        document.querySelectorAll('.listening-script .line-row').forEach(r => r.classList.remove('playing'));
+        const row = document.querySelector(`.listening-script .line-row[data-line="${i}"]`);
+        if (row) row.classList.add('playing');
+
+        const line = lines[i];
+        const u = new SpeechSynthesisUtterance(line.text);
+        u.lang = 'en-US';
+        u.rate = 0.88;   // un poco más lento para A1
+        u.pitch = line.sp === 'Lisa' ? 1.15 : 0.92; // voz un poco distinta por personaje
+        if (voice) u.voice = voice;
+        u.onend = () => {
+          i++;
+          setTimeout(next, 420); // pausa entre turnos
+        };
+        u.onerror = () => { i++; next(); };
+        if (st) st.textContent = line.sp + '…';
+        speechSynthesis.speak(u);
+      }
+      next();
+    }
+
+    function playListeningAll() {
+      if (speechPlaying) {
+        stopSpeech();
+        return;
+      }
+      const les = COURSE.levels[view.level].modules[view.module].lessons[view.lesson];
+      const lines = les.listening.audioLines || [];
+      if (!lines.length) { toast('No hay audio en esta lección'); return; }
+      // Ensure voices are loaded (Chrome)
+      if (speechSynthesis.getVoices().length === 0) {
+        speechSynthesis.onvoiceschanged = () => speakLines(lines, 0);
+        // trigger
+        speechSynthesis.getVoices();
+        setTimeout(() => speakLines(lines, 0), 300);
+      } else {
+        speakLines(lines, 0);
+      }
+    }
+
+    function playListeningLine(idx) {
+      const les = COURSE.levels[view.level].modules[view.module].lessons[view.lesson];
+      const lines = les.listening.audioLines || [];
+      if (!lines[idx]) return;
+      stopSpeech();
+      speakLines([lines[idx]], 0);
+    }
+
     function renderListening(les) {
       const L = les.listening;
+      const hasAudio = L.audioLines && L.audioLines.length;
       return `
-        <p style="color:var(--muted);font-weight:600;margin-bottom:0.5rem;">${L.note}</p>
+        <p style="color:var(--muted);font-weight:600;margin-bottom:0.65rem;">${L.note}</p>
+        ${hasAudio ? `
+        <div class="audio-bar">
+          <div class="audio-label">Audio · inglés (voz del navegador)</div>
+          <button type="button" class="primary" id="btnPlayAll" onclick="playListeningAll()">▶ Play dialogue</button>
+          <button type="button" onclick="stopSpeech()">⏹ Stop</button>
+          <span class="audio-status" id="audioStatus"></span>
+        </div>` : ''}
         <div class="listening-script" id="listeningScript">
-          ${L.script.map(s => `<div><span class="sp">${s.sp}:</span> ${s.line.replace(/___/g, '<input type="text" class="gap-input" maxlength="8" />')}</div>`).join('')}
+          ${L.script.map((s, idx) => `
+            <div class="line-row" data-line="${idx}">
+              <button type="button" title="Escuchar esta línea" onclick="playListeningLine(${idx})"
+                style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.75rem;border-radius:6px;">▶</button>
+              <div><span class="sp">${s.sp}:</span> ${s.line.replace(/___/g, '<input type="text" class="gap-input" maxlength="8" />')}</div>
+            </div>
+          `).join('')}
         </div>
         <button class="primary" onclick="checkListening()">Comprobar respuestas</button>
-        <div class="score-bar" id="listeningResult" style="display:none;">Resultado: <strong id="listeningScore">0</strong></div>`;
+        <div class="score-bar" id="listeningResult" style="display:none;">Resultado: <strong id="listeningScore">0</strong></div>
+        <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--muted);font-weight:600;">
+          Tip: en Chrome o Edge la voz suena más natural. Usa auriculares si puedes.
+        </p>`;
     }
 
     function checkListening() {
