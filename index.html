@@ -340,6 +340,17 @@
       font-size: 0.95rem; font-weight: 600;
     }
     .auth-field input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+
+    .pass-wrap { position: relative; }
+    .pass-wrap input { padding-right: 3.2rem; }
+    .pass-toggle {
+      position: absolute; right: 0.35rem; top: 50%; transform: translateY(-50%);
+      border: none; background: transparent; color: var(--muted);
+      font-size: 0.78rem; font-weight: 800; padding: 0.35rem 0.55rem;
+      cursor: pointer; border-radius: 6px;
+    }
+    .pass-toggle:hover { color: var(--accent); background: var(--accent-soft); transform: translateY(-50%); }
+
     .auth-error { color: var(--danger); font-size: 0.85rem; font-weight: 700; min-height: 1.2em; margin-bottom: 0.5rem; }
     .auth-ok { color: var(--success); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; }
     .user-chip {
@@ -356,6 +367,12 @@
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Fallback if jsdelivr is blocked
+    if (!window.supabase) {
+      document.write('<script src="https://unpkg.com/@supabase/supabase-js@2"><\/script>');
+    }
+  </script>
 </head>
 <body>
 
@@ -377,7 +394,10 @@
       </div>
       <div class="auth-field">
         <label for="authPass">Contraseña</label>
-        <input id="authPass" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres" />
+        <div class="pass-wrap">
+          <input id="authPass" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres" />
+          <button type="button" class="pass-toggle" id="passToggle" onclick="togglePassVisibility()" aria-label="Mostrar contraseña">Mostrar</button>
+        </div>
       </div>
       <div class="auth-error" id="authError"></div>
       <div class="auth-ok" id="authOk"></div>
@@ -472,7 +492,19 @@
     // ========== SUPABASE ==========
     const SUPABASE_URL = 'https://azupxtaclclqlwctnkjkq.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6dXB4dGFjbGNxbHdjdG5ramtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4MjcwMjQsImV4cCI6MjEwNTQwMzAyNH0.EBfF1t7JYb4qMpGYSKgtlAZOqNi5CxqQ7RQXYguWG3k';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    function getSupabase() {
+      if (!window.supabase || !window.supabase.createClient) {
+        throw new Error('No se cargó la librería de Supabase. Revisa la red o el bloqueador de anuncios.');
+      }
+      if (!window.__lcSupabase) {
+        window.__lcSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+      return window.__lcSupabase;
+    }
+    // alias usado en el resto del código
+    let supabaseClient = null;
+    try { supabaseClient = getSupabase(); } catch (e) { console.error(e); }
 
     let currentUser = null;
     let userProgress = {}; // lesson_key -> { score, passed }
@@ -480,6 +512,17 @@
 
     function lessonKey(level, mod, les) {
       return level + '-' + mod + '-' + les;
+    }
+
+
+    function togglePassVisibility() {
+      const input = document.getElementById('authPass');
+      const btn = document.getElementById('passToggle');
+      if (!input || !btn) return;
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.textContent = show ? 'Ocultar' : 'Mostrar';
+      btn.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
     }
 
     function switchAuthTab(mode) {
@@ -506,6 +549,7 @@
       const btn = document.getElementById('authSubmitBtn');
       btn.disabled = true;
       try {
+        supabaseClient = getSupabase();
         if (authMode === 'register') {
           const { data, error } = await supabaseClient.auth.signUp({
             email,
@@ -534,7 +578,15 @@
           await onAuthSuccess(data.user);
         }
       } catch (e) {
-        err.textContent = (e && e.message) ? e.message : 'Error de autenticación';
+        console.error('Auth error', e);
+        let msg = (e && e.message) ? e.message : 'Error de autenticación';
+        if (/failed to fetch|networkerror|load failed|fetch/i.test(msg)) {
+          const isFile = location.protocol === 'file:';
+          msg = isFile
+            ? 'No se puede conectar abriendo el archivo local (file://). Usa GitHub Pages o localhost.'
+            : 'No se pudo conectar con Supabase. Comprueba internet, que el proyecto esté activo y que abras el curso por https:// (GitHub Pages), no como archivo.';
+        }
+        err.textContent = msg;
       } finally {
         btn.disabled = false;
       }
