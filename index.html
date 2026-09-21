@@ -165,13 +165,115 @@
     .lesson-tabs button.active { background: var(--accent); color: #fff; }
     .lesson-section { display: none; }
     .lesson-section.active { display: block; animation: fadeIn 0.2s ease; }
-    .objectives { list-style: none; padding: 0; }
-    .objectives li {
-      padding: 0.45rem 0; border-bottom: 1px dashed var(--border); font-size: 0.92rem;
-      color: var(--muted); font-weight: 600; display: flex; gap: 0.5rem;
+    /* Objetivos — plantilla visual del curso */
+    .objectives-wrap {
+      display: grid; gap: 0.65rem;
     }
-    .objectives li:last-child { border-bottom: none; }
-    .objectives li::before { content: '✓'; color: var(--accent); font-weight: 900; }
+    .obj-card {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 0.9rem 1rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .obj-card:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+    .obj-num {
+      flex-shrink: 0;
+      width: 2rem; height: 2rem;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+    .obj-body { flex: 1; min-width: 0; }
+    .obj-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.15rem;
+    }
+    .obj-text {
+      font-size: 0.95rem; font-weight: 700; color: var(--text); line-height: 1.35;
+    }
+    .overview-hero {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 0.75rem; margin-bottom: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, var(--card)), var(--card));
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+    }
+    .overview-hero h3 {
+      margin: 0; font-size: 1.05rem; font-weight: 900; color: var(--text);
+    }
+    .overview-hero .hero-sub {
+      margin: 0.25rem 0 0; font-size: 0.85rem; font-weight: 600; color: var(--muted);
+    }
+    .overview-badge {
+      font-size: 0.75rem; font-weight: 800;
+      padding: 0.35rem 0.7rem; border-radius: 999px;
+      background: var(--accent); color: #fff; white-space: nowrap;
+    }
+    .overview-path {
+      margin-top: 1.15rem; padding: 0.85rem 1rem;
+      border-radius: 12px; background: var(--bg2); border: 1px dashed var(--border);
+      font-size: 0.88rem; font-weight: 600; color: var(--muted); line-height: 1.45;
+    }
+    .overview-path strong { color: var(--accent); }
+
+    /* Brainy presenta objetivos */
+    .brainy-row {
+      display: flex; align-items: flex-end; gap: 0.75rem;
+      margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .brainy-avatar {
+      width: 88px; height: 88px; object-fit: contain;
+      flex-shrink: 0; filter: drop-shadow(0 4px 10px rgba(15,23,42,0.12));
+    }
+    .brainy-bubble {
+      flex: 1; min-width: 200px;
+      position: relative;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 0.85rem 1rem;
+      box-shadow: var(--shadow);
+    }
+    .brainy-bubble::before {
+      content: '';
+      position: absolute; left: -10px; bottom: 22px;
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 10px solid var(--accent);
+    }
+    .brainy-bubble::after {
+      content: '';
+      position: absolute; left: -6px; bottom: 24px;
+      width: 0; height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 8px solid var(--card);
+    }
+    .brainy-name {
+      font-size: 0.72rem; font-weight: 900; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem;
+    }
+    .brainy-msg {
+      font-size: 0.92rem; font-weight: 700; color: var(--text); line-height: 1.4;
+    }
+    @media (max-width: 520px) {
+      .brainy-avatar { width: 72px; height: 72px; }
+      .brainy-bubble::before, .brainy-bubble::after { display: none; }
+    }
+
 
     /* Content blocks */
     .section-title {
@@ -18797,14 +18899,38 @@ let view = { level: null, module: null, lesson: null };
     }
 
     function renderOverview(les) {
+      const objs = les.objectives || [];
+      const cards = objs.length
+        ? objs.map((o, i) => `
+            <div class="obj-card">
+              <div class="obj-num">${i + 1}</div>
+              <div class="obj-body">
+                <div class="obj-label">Objetivo ${i + 1}</div>
+                <div class="obj-text">${o}</div>
+              </div>
+            </div>`).join('')
+        : `<div class="obj-card"><div class="obj-num">?</div><div class="obj-body"><div class="obj-text">Objetivos por definir</div></div></div>`;
+      const title = les.title || 'esta lección';
       return `
-        <h3 class="section-title">Objetivos de la lección</h3>
-        <ul class="objectives">
-          ${(les.objectives || []).map(o => `<li>${o}</li>`).join('') || '<li>Por definir</li>'}
-        </ul>
-        <p style="margin-top:1.1rem;color:var(--muted);font-size:0.9rem;font-weight:600;">
-          Recorre las pestañas en orden o salta a Practice y Exam cuando te sientas listo.
-        </p>`;
+        <div class="brainy-row">
+          <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" onerror="this.src='assets/brainy.jpg'; this.onerror=null;"/>
+          <div class="brainy-bubble">
+            <div class="brainy-name">Brainy</div>
+            <div class="brainy-msg">¡Hola! Soy Brainy. En <strong>${title}</strong> vamos a lograr estas metas. ¡Tú puedes!</div>
+          </div>
+        </div>
+        <div class="overview-hero">
+          <div>
+            <h3>🎯 Objetivos de la lección</h3>
+            <p class="hero-sub">Al terminar esta lección serás capaz de:</p>
+          </div>
+          <span class="overview-badge">${objs.length || 0} meta${objs.length === 1 ? '' : 's'}</span>
+        </div>
+        <div class="objectives-wrap">${cards}</div>
+        <div class="overview-path">
+          <strong>Ruta sugerida:</strong> Grammar → Reading → Listening → Writing → Practice → Exam.
+          También puedes saltar a Practice y Exam cuando te sientas listo.
+        </div>`;
     }
 
     function renderGrammar(les) {
