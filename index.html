@@ -33,7 +33,7 @@
     }
     .header-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }
     .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); cursor: pointer; }
-    .brand img { height: 42px; width: auto; display: block; border-radius: 6px; }
+    .brand img { height: 48px; width: auto; display: block; border-radius: 6px; }
     .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
     .brand-text strong { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
     .brand-text strong span { color: var(--accent); }
@@ -426,7 +426,7 @@
     .exam-result.fail .big { color: var(--danger); }
     @media (max-width: 640px) {
       header { padding: 0.6rem 0.9rem; }
-      .brand img { height: 36px; }
+      .brand img { height: 42px; }
       main { padding: 1.1rem 0.9rem 2.5rem; }
       .lesson-row { grid-template-columns: auto 1fr; }
       .lesson-status { grid-column: 2; }
@@ -553,12 +553,8 @@
 
   <header>
     <div class="header-top">
-      <div class="brand" onclick="goHome()">
-        <img src="logo.png" alt="LinguaCorp" onerror="this.style.display='none'" />
-        <div class="brand-text">
-          <strong>Lingua<span>Corp</span></strong>
-          <small>El mundo en tus manos</small>
-        </div>
+            <div class="brand" onclick="goHome()">
+        <img src="Logo.png" alt="LinguaCorp" onerror="this.onerror=null;this.src='logo.png';" />
       </div>
       <div class="header-actions">
         <div class="user-chip" id="userChip"><strong id="userEmailLabel"></strong>
