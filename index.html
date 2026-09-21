@@ -490,8 +490,8 @@
   <script>
 
     // ========== SUPABASE ==========
-    const SUPABASE_URL = 'https://azupxtaclclqlwctnkjkq.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6dXB4dGFjbGNxbHdjdG5ramtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4MjcwMjQsImV4cCI6MjEwNTQwMzAyNH0.EBfF1t7JYb4qMpGYSKgtlAZOqNi5CxqQ7RQXYguWG3k';
+    const SUPABASE_URL = 'https://eaovbtzlplupctqlobkh.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhb3ZidHpscGx1cGN0cWxvYmtoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMDc5NjQsImV4cCI6MjEwNTU4Mzk2NH0.TJLipUahp9bs6QszY3eJNzb63TpwVEnBEzA2gM9_094';
 
     function getSupabase() {
       if (!window.supabase || !window.supabase.createClient) {
@@ -665,29 +665,39 @@
 
     /** Primera lección de cada módulo siempre abierta; el resto requiere aprobar la anterior en orden global del nivel */
     function isLessonUnlocked(level, mod, les) {
+      // MODO REVISIÓN: todas las lecciones abiertas (sin login)
+      if (window.LC_REVIEW_MODE !== false) return true;
       const m = +mod, l = +les;
       if (m === 1 && l === 1) return true;
-      // previous lesson in same module
       if (l > 1) return hasPassed(level, m, l - 1);
-      // first of module 2 or 3 → need last of previous module (lesson 4)
       if (l === 1 && m > 1) return hasPassed(level, m - 1, 4);
       return false;
     }
 
-    // Restore session on load
+    // Restore session on load (en modo revisión el gate no se muestra)
     (async function initAuth() {
-      const { data: { session } } = await supabaseClient.auth.getSession();
-      if (session && session.user) {
-        await onAuthSuccess(session.user);
+      if (window.LC_REVIEW_MODE) {
+        const gate = document.getElementById('authGate');
+        if (gate) { gate.classList.add('hidden'); gate.style.display = 'none'; }
+        return;
       }
-      supabaseClient.auth.onAuthStateChange(async (event, session) => {
-        if (event === 'SIGNED_OUT') {
-          currentUser = null;
-          userProgress = {};
-        } else if (session && session.user && event === 'SIGNED_IN') {
-          // already handled
+      try {
+        if (!supabaseClient) supabaseClient = getSupabase();
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session && session.user) {
+          await onAuthSuccess(session.user);
         }
-      });
+        supabaseClient.auth.onAuthStateChange(async (event, session) => {
+          if (event === 'SIGNED_OUT') {
+            currentUser = null;
+            userProgress = {};
+          }
+        });
+      } catch (e) {
+        console.warn('Auth init skipped', e);
+        const gate = document.getElementById('authGate');
+        if (gate) { gate.classList.add('hidden'); gate.style.display = 'none'; }
+      }
     })();
 
     function setTheme(t) {
