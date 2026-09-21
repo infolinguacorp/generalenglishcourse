@@ -236,6 +236,23 @@
     .brainy-avatar {
       width: 88px; height: 88px; object-fit: contain;
       flex-shrink: 0; filter: drop-shadow(0 4px 10px rgba(15,23,42,0.12));
+      animation: brainyFloat 3.2s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+    .brainy-avatar.pose-idea { animation: brainyPulse 2.4s ease-in-out infinite; }
+    .brainy-avatar.pose-ok { animation: brainyPop 0.7s ease-out 1; }
+    @keyframes brainyFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+    @keyframes brainyPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.04); }
+    }
+    @keyframes brainyPop {
+      0% { transform: scale(0.85); opacity: 0.6; }
+      60% { transform: scale(1.08); }
+      100% { transform: scale(1); opacity: 1; }
     }
     .brainy-bubble {
       flex: 1; min-width: 200px;
@@ -888,7 +905,7 @@
     }
 
     // ========== COURSE DATA ==========
-                    const COURSE = {
+                            const COURSE = {
       levels: {
         A1: {
           name: "Beginner",
@@ -1265,7 +1282,8 @@
                         answer: 2
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Present Simple – Be</strong> el propósito es claro: Usar am / is / are correctamente. Usa las pestañas en el orden que prefieras."
                 },
                 "2": {
                   title: "Greetings & Goodbyes",
@@ -1274,7 +1292,8 @@
                     "Saludar en contextos formales e informales",
                     "Despedirse de forma natural",
                     "Usar expresiones de cortesía (please, thank you, nice to meet you)"
-                  ]
+                  ],
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Greetings & Goodbyes</strong> nos concentraremos en: Saludar en contextos formales e informales. Avancemos con calma y precisión."
                 },
                 "3": {
                   title: "Countries & Nationalities",
@@ -1283,7 +1302,8 @@
                     "Nombrar países comunes",
                     "Formar y usar nacionalidades",
                     "Preguntar y decir de dónde eres (Where are you from?)"
-                  ]
+                  ],
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Countries & Nationalities</strong>. Objetivo central: Nombrar países comunes."
                 },
                 "4": {
                   title: "Numbers, Age & Contact",
@@ -1292,7 +1312,8 @@
                     "Contar del 1 al 100",
                     "Preguntar y decir la edad",
                     "Dar un número de teléfono básico"
-                  ]
+                  ],
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Numbers, Age & Contact</strong>, trabajaremos principalmente: Contar del 1 al 100."
                 }
               }
             },
@@ -1307,7 +1328,8 @@
                     "Nombrar miembros de la familia",
                     "Usar my / your / his / her",
                     "Describir la familia con to be"
-                  ]
+                  ],
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Family & Possessives</strong> nos concentraremos en: Nombrar miembros de la familia. Avancemos con calma y precisión."
                 },
                 "6": {
                   title: "Jobs & a/an",
@@ -1316,7 +1338,8 @@
                     "Vocabulario de profesiones",
                     "Usar a / an correctamente",
                     "Decir qué trabajo tiene alguien"
-                  ]
+                  ],
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Jobs & a/an</strong>. Objetivo central: Vocabulario de profesiones."
                 },
                 "7": {
                   title: "Present Simple – Daily Routines",
@@ -1325,7 +1348,8 @@
                     "Usar verbos de rutina (get up, work, study…)",
                     "Formar afirmativa y negativa en presente simple",
                     "Hablar de la rutina diaria"
-                  ]
+                  ],
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Present Simple – Daily Routines</strong>, trabajaremos principalmente: Usar verbos de rutina (get up, work, study…)."
                 },
                 "8": {
                   title: "Days, Time & Frequency",
@@ -1334,7 +1358,8 @@
                     "Decir la hora",
                     "Usar los días de la semana",
                     "Adverbios de frecuencia básicos (always, sometimes, never)"
-                  ]
+                  ],
+                  brainyMsg: "En <strong>Days, Time & Frequency</strong> practicaremos de forma estructurada. Punto de partida: Decir la hora."
                 }
               }
             },
@@ -1349,7 +1374,8 @@
                     "Vocabulario de comida y bebida",
                     "Usar I like / I don’t like",
                     "Hacer preguntas con Do you like…?"
-                  ]
+                  ],
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Food, Drink & Likes</strong>. Objetivo central: Vocabulario de comida y bebida."
                 },
                 "10": {
                   title: "Places & There is/are",
@@ -1358,7 +1384,8 @@
                     "Lugares de la ciudad",
                     "Usar there is / there are",
                     "Describir un lugar simple"
-                  ]
+                  ],
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Places & There is/are</strong>, trabajaremos principalmente: Lugares de la ciudad."
                 },
                 "11": {
                   title: "Can for Ability & Review",
@@ -1367,7 +1394,8 @@
                     "Expresar habilidad con can / can’t",
                     "Repasar to be y presente simple",
                     "Prepararse para el examen de nivel"
-                  ]
+                  ],
+                  brainyMsg: "En <strong>Can for Ability & Review</strong> practicaremos de forma estructurada. Punto de partida: Expresar habilidad con can / can’t."
                 },
                 "12": {
                   title: "A1 Level Final Exam",
@@ -1376,7 +1404,8 @@
                     "Demostrar dominio de los contenidos de A1",
                     "Aprobar con al menos 70 % para desbloquear A2"
                   ],
-                  isLevelExam: true
+                  isLevelExam: true,
+                  brainyMsg: "Hola, soy Brainy. Preparémonos para <strong>A1 Level Final Exam</strong>. Meta principal: Demostrar dominio de los contenidos de A1."
                 }
               }
             }
@@ -1767,7 +1796,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Past Simple – Be</strong> el propósito es claro: Usar was / were correctamente. Usa las pestañas en el orden que prefieras."
                 },
                 "2": {
                   title: "Past Simple – Regular Verbs",
@@ -2145,7 +2175,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Past Simple – Regular Verbs</strong> nos concentraremos en: Formar el pasado de verbos regulares (-ed). Avancemos con calma y precisión."
                 },
                 "3": {
                   title: "Past Simple – Irregular Verbs",
@@ -2537,7 +2568,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Past Simple – Irregular Verbs</strong>. Objetivo central: Usar verbos irregulares frecuentes (go, have, see, buy…)."
                 },
                 "4": {
                   title: "Time Expressions in the Past",
@@ -2908,7 +2940,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Time Expressions in the Past</strong>, trabajaremos principalmente: Usar yesterday, last week/month/year, ago, in + year."
                 }
               }
             },
@@ -3289,7 +3322,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Going to</strong> nos concentraremos en: Expresar planes e intenciones con be + going to. Avancemos con calma y precisión."
                 },
                 "6": {
                   title: "Present Continuous for Future",
@@ -3655,7 +3689,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Present Continuous for Future</strong>. Objetivo central: Usar presente continuo para planes fijos / citas."
                 },
                 "7": {
                   title: "Comparatives",
@@ -4007,7 +4042,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Comparatives</strong>, trabajaremos principalmente: Formar comparativos cortos y largos."
                 },
                 "8": {
                   title: "Superlatives",
@@ -4367,7 +4403,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "En <strong>Superlatives</strong> practicaremos de forma estructurada. Punto de partida: Formar superlativos (the + -est / the most)."
                 }
               }
             },
@@ -4738,7 +4775,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Countable & Uncountable</strong>. Objetivo central: Distinguir sustantivos contables e incontables."
                 },
                 "10": {
                   title: "Present Perfect Intro",
@@ -5092,7 +5130,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Present Perfect Intro</strong>, trabajaremos principalmente: Formar have/has + past participle."
                 },
                 "11": {
                   title: "Review & Skills",
@@ -5455,7 +5494,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "En <strong>Review & Skills</strong> practicaremos de forma estructurada. Punto de partida: Repasar pasado, going to, comparativos y present perfect."
                 },
                 "12": {
                   title: "A2 Level Final Exam",
@@ -5797,7 +5837,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. Preparémonos para <strong>A2 Level Final Exam</strong>. Meta principal: Demostrar dominio de los contenidos de A2."
                 }
               }
             }
@@ -6177,7 +6218,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy, tu guía en el curso. La lección <strong>Present Perfect vs Past Simple</strong> busca que puedas: Diferenciar present perfect y past simple."
                 },
                 "2": {
                   title: "Used to",
@@ -6537,7 +6579,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Used to</strong> el propósito es claro: Expresar hábitos y estados pasados con used to. Usa las pestañas en el orden que prefieras."
                 },
                 "3": {
                   title: "Past Continuous",
@@ -6904,7 +6947,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Past Continuous</strong> nos concentraremos en: Formar was/were + -ing. Avancemos con calma y precisión."
                 },
                 "4": {
                   title: "Storytelling Practice",
@@ -7253,7 +7297,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Storytelling Practice</strong>. Objetivo central: Combinar past simple, past continuous y used to."
                 }
               }
             },
@@ -7625,7 +7670,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Modals of Advice</strong> el propósito es claro: Usar should / shouldn’t / ought to. Usa las pestañas en el orden que prefieras."
                 },
                 "6": {
                   title: "Conditionals (First)",
@@ -7981,7 +8027,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Conditionals (First)</strong> nos concentraremos en: Formar first conditional (if + present, will). Avancemos con calma y precisión."
                 },
                 "7": {
                   title: "Conditionals (Second)",
@@ -8340,7 +8387,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Conditionals (Second)</strong>. Objetivo central: Formar second conditional (if + past, would)."
                 },
                 "8": {
                   title: "Agreeing & Disagreeing",
@@ -8703,7 +8751,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Agreeing & Disagreeing</strong>, trabajaremos principalmente: Expresar acuerdo y desacuerdo con naturalidad."
                 }
               }
             },
@@ -9072,7 +9121,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Passive Voice Intro</strong> nos concentraremos en: Formar pasiva en presente y pasado (be + past participle). Avancemos con calma y precisión."
                 },
                 "10": {
                   title: "Reported Speech Intro",
@@ -9443,7 +9493,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Reported Speech Intro</strong>. Objetivo central: Reportar afirmaciones en presente → pasado."
                 },
                 "11": {
                   title: "Review & Fluency",
@@ -9803,7 +9854,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Review & Fluency</strong>, trabajaremos principalmente: Integrar narración, consejos, condicionales y pasiva."
                 },
                 "12": {
                   title: "B1 Level Final Exam",
@@ -10145,7 +10197,8 @@
                       }
                     ]
                   },
-                  isLevelExam: true
+                  isLevelExam: true,
+                  brainyMsg: "En <strong>B1 Level Final Exam</strong> practicaremos de forma estructurada. Punto de partida: Demostrar dominio de los contenidos de B1."
                 }
               }
             }
@@ -10523,7 +10576,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy, tu guía en el curso. La lección <strong>Advanced Modals</strong> busca que puedas: Usar must/can’t/might/may/could para deducción."
                 },
                 "2": {
                   title: "Mixed Conditionals",
@@ -10877,7 +10931,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Mixed Conditionals</strong> el propósito es claro: Combinar pasado irreal con resultado presente. Usa las pestañas en el orden que prefieras."
                 },
                 "3": {
                   title: "Relative Clauses",
@@ -11233,7 +11288,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Relative Clauses</strong> nos concentraremos en: Usar who/which/that/whose/where. Avancemos con calma y precisión."
                 },
                 "4": {
                   title: "Cleft Sentences",
@@ -11589,7 +11645,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Cleft Sentences</strong>. Objetivo central: Enfatizar con It is/was… that/who."
                 }
               }
             },
@@ -11960,7 +12017,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Discourse Markers</strong> el propósito es claro: Organizar ideas con conectores formales. Usa las pestañas en el orden que prefieras."
                 },
                 "6": {
                   title: "Hypothetical Language",
@@ -12325,7 +12383,8 @@
                         answer: 2
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Hypothetical Language</strong> nos concentraremos en: Usar wish / if only. Avancemos con calma y precisión."
                 },
                 "7": {
                   title: "Nominalisation",
@@ -12681,7 +12740,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Nominalisation</strong>. Objetivo central: Convertir verbos/adjetivos en nombres."
                 },
                 "8": {
                   title: "Academic Vocabulary",
@@ -13046,7 +13106,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Academic Vocabulary</strong>, trabajaremos principalmente: Usar collocations académicas frecuentes."
                 }
               }
             },
@@ -13408,7 +13469,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Complex Passive</strong> nos concentraremos en: Pasiva con modales y perfect. Avancemos con calma y precisión."
                 },
                 "10": {
                   title: "Advanced Reported Speech",
@@ -13764,7 +13826,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Advanced Reported Speech</strong>. Objetivo central: Reportar preguntas y órdenes."
                 },
                 "11": {
                   title: "Review & Register",
@@ -14104,7 +14167,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>Review & Register</strong>, trabajaremos principalmente: Elegir registro formal vs informal."
                 },
                 "12": {
                   title: "B2 Level Final Exam",
@@ -14445,7 +14509,8 @@
                       }
                     ]
                   },
-                  isLevelExam: true
+                  isLevelExam: true,
+                  brainyMsg: "En <strong>B2 Level Final Exam</strong> practicaremos de forma estructurada. Punto de partida: Demostrar dominio de los contenidos de B2."
                 }
               }
             }
@@ -14814,7 +14879,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido a <strong>Inversion & Emphasis</strong>. Empezaremos por este objetivo: Usar inversión tras adverbios negativos (Never, Rarely, Not only…). Estoy aquí para orientarte."
                 },
                 "2": {
                   title: "Subjunctive & Formality",
@@ -15170,7 +15236,8 @@
                         answer: 1
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy, tu guía en el curso. La lección <strong>Subjunctive & Formality</strong> busca que puedas: Usar subjuntivo en demandas formales (insist that… be)."
                 },
                 "3": {
                   title: "Idiomatic Language",
@@ -15526,7 +15593,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Idiomatic Language</strong> el propósito es claro: Usar idioms y phrasal verbs de nivel avanzado con precisión. Usa las pestañas en el orden que prefieras."
                 },
                 "4": {
                   title: "Nuanced Opinion",
@@ -15882,7 +15950,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Nuanced Opinion</strong> nos concentraremos en: Matizar posturas con hedging. Avancemos con calma y precisión."
                 }
               }
             },
@@ -16244,7 +16313,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy, tu guía en el curso. La lección <strong>Report Writing</strong> busca que puedas: Estructurar un report (background, findings, recommendations)."
                 },
                 "6": {
                   title: "Presentations Language",
@@ -16600,7 +16670,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Presentations Language</strong> el propósito es claro: Señalizar estructura oral (signposting). Usa las pestañas en el orden que prefieras."
                 },
                 "7": {
                   title: "Critical Analysis",
@@ -16956,7 +17027,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Critical Analysis</strong> nos concentraremos en: Evaluar argumentos y evidencia. Avancemos con calma y precisión."
                 },
                 "8": {
                   title: "Negotiation & Persuasion",
@@ -17312,7 +17384,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Negotiation & Persuasion</strong>. Objetivo central: Lenguaje para negociar intereses."
                 }
               }
             },
@@ -17674,7 +17747,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Hola. En <strong>Subtle Grammar Choices</strong> el propósito es claro: Distinguir will/going to/present continuous con matiz. Usa las pestañas en el orden que prefieras."
                 },
                 "10": {
                   title: "Style & Voice",
@@ -18030,7 +18104,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Soy Brainy. Hoy en <strong>Style & Voice</strong> nos concentraremos en: Adaptar estilo al género (email, ensayo, pitch). Avancemos con calma y precisión."
                 },
                 "11": {
                   title: "Full Skills Review",
@@ -18370,7 +18445,8 @@
                         answer: 0
                       }
                     ]
-                  }
+                  },
+                  brainyMsg: "Bienvenido. Soy Brainy y te acompañaré en <strong>Full Skills Review</strong>. Objetivo central: Integrar estructuras C1 en tareas mixtas."
                 },
                 "12": {
                   title: "C1 Level Final Exam",
@@ -18709,7 +18785,8 @@
                       }
                     ]
                   },
-                  isLevelExam: true
+                  isLevelExam: true,
+                  brainyMsg: "Hola, soy Brainy. En esta lección, <strong>C1 Level Final Exam</strong>, trabajaremos principalmente: Demostrar control avanzado del inglés."
                 }
               }
             }
@@ -18916,7 +18993,7 @@ let view = { level: null, module: null, lesson: null };
           <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" onerror="this.src='assets/brainy.jpg'; this.onerror=null;"/>
           <div class="brainy-bubble">
             <div class="brainy-name">Brainy</div>
-            <div class="brainy-msg">¡Hola! Soy Brainy. En <strong>${title}</strong> vamos a lograr estas metas. ¡Tú puedes!</div>
+            <div class="brainy-msg">${les.brainyMsg || ('¡Hola! Soy Brainy. En <strong>' + title + '</strong> vamos a lograr estas metas. ¡Tú puedes!')}</div>
           </div>
         </div>
         <div class="overview-hero">
@@ -18927,9 +19004,12 @@ let view = { level: null, module: null, lesson: null };
           <span class="overview-badge">${objs.length || 0} meta${objs.length === 1 ? '' : 's'}</span>
         </div>
         <div class="objectives-wrap">${cards}</div>
-        <div class="overview-path">
-          <strong>Ruta sugerida:</strong> Grammar → Reading → Listening → Writing → Practice → Exam.
-          También puedes saltar a Practice y Exam cuando te sientas listo.
+        <div class="brainy-row" style="margin-top:1.1rem;margin-bottom:0">
+          <img class="brainy-avatar pose-idea" src="brainylight.jpg" alt="Brainy idea" onerror="this.src='brainy.jpg'"/>
+          <div class="brainy-bubble">
+            <div class="brainy-name">Brainy · consejo</div>
+            <div class="brainy-msg"><strong>Ruta sugerida:</strong> Grammar → Reading → Listening → Writing → Practice → Exam. También puedes ir directo a Practice y Exam cuando te sientas preparado.</div>
+          </div>
         </div>`;
     }
 
@@ -19349,7 +19429,13 @@ let view = { level: null, module: null, lesson: null };
           <div class="big">${pct}%</div>
           <div style="color:var(--muted);font-weight:600;">${correct} de ${ex.questions.length} correctas · Mínimo ${ex.passScore}%</div>
           ${pass
-            ? '<p style="margin-top:0.75rem;font-weight:700;color:var(--success);">Puedes continuar a la siguiente lección.</p>'
+            ? `<div class="brainy-row" style="margin-top:1rem;justify-content:center">
+                <img class="brainy-avatar pose-ok" src="brainycheck.jpg" alt="Brainy ok" onerror="this.src='brainy.jpg'"/>
+                <div class="brainy-bubble">
+                  <div class="brainy-name">Brainy</div>
+                  <div class="brainy-msg">Muy bien. Has aprobado esta lección. Puedes continuar a la siguiente.</div>
+                </div>
+              </div>`
             : '<p style="margin-top:0.75rem;font-weight:700;color:var(--danger);">Repasa Grammar y Practice, y vuelve a intentarlo.</p>'}
         </div>`;
       document.getElementById('examSubmitBtn').disabled = true;
