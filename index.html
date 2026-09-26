@@ -240,7 +240,166 @@
       transform-origin: center bottom;
     }
     .brainy-avatar.pose-idea { animation: brainyPulse 2.4s ease-in-out infinite; }
-    .brainy-avatar.pose-ok { animation: brainyPop 0.7s ease-out 1; }
+    .brainy-avatar.pose-ok {
+      width: 140px; height: 140px;
+      animation: brainyPop 0.7s ease-out 1;
+    }
+    .exam-brainy {
+      margin-top: 1.15rem;
+      justify-content: center;
+      align-items: center;
+    }
+    .exam-brainy .brainy-bubble {
+      max-width: 420px;
+      text-align: left;
+    }
+    @media (max-width: 520px) {
+      .brainy-avatar.pose-ok { width: 110px; height: 110px; }
+    }
+
+    /* ===== Juegos / Sopa de letras ===== */
+    .games-levels {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem; margin-top: 0.75rem;
+    }
+    .game-level-card {
+      border: 1px solid var(--border); border-radius: 14px; padding: 1rem 0.85rem;
+      background: var(--bg2); text-align: center; cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .game-level-card:hover {
+      transform: translateY(-2px); border-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+    .game-level-card.active-level {
+      border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--card));
+    }
+    .game-level-card .lvl { font-size: 1.35rem; font-weight: 900; color: var(--accent); }
+    .game-level-card .meta { font-size: 0.78rem; font-weight: 700; color: var(--muted); margin-top: 0.25rem; }
+    .games-list { display: grid; gap: 0.65rem; margin-top: 1rem; }
+    .game-item {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.9rem 1rem; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--card);
+      cursor: pointer; transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .game-item:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .game-item .gi-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .game-item .gi-body { flex: 1; min-width: 0; }
+    .game-item .gi-title { font-weight: 800; font-size: 0.98rem; }
+    .game-item .gi-sub { font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-top: 0.15rem; }
+    .ws-wrap { margin-top: 0.5rem; }
+    .ws-toolbar {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+      justify-content: space-between; margin-bottom: 0.45rem;
+    }
+    .ws-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2px;
+      max-width: min(320px, 92vw);
+      margin: 0 auto;
+      user-select: none;
+      touch-action: none;
+    }
+    .ws-cell {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: clamp(0.58rem, 2.2vw, 0.78rem);
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text); cursor: pointer;
+      transition: background 0.12s ease, color 0.12s ease, transform 0.1s ease;
+      padding: 0;
+      line-height: 1;
+    }
+    .ws-cell.sel { background: color-mix(in srgb, var(--accent) 35%, var(--bg2)); color: var(--accent); }
+    .ws-cell.found {
+      background: color-mix(in srgb, #16a34a 28%, var(--bg2));
+      color: #15803d; border-color: #86efac;
+    }
+    [data-theme="dark"] .ws-cell.found { color: #86efac; border-color: #166534; }
+    .ws-words {
+      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      margin-top: 0.55rem; justify-content: center;
+    }
+    .ws-word-chip {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.03em;
+      padding: 0.22rem 0.5rem; border-radius: 999px;
+      background: var(--bg2); border: 1px solid var(--border); color: var(--muted);
+    }
+    .ws-word-chip.done {
+      background: color-mix(in srgb, #16a34a 18%, var(--bg2));
+      color: #15803d; text-decoration: line-through; border-color: #86efac;
+    }
+    .ws-status {
+      text-align: center; margin-top: 0.45rem;
+      font-weight: 700; color: var(--muted); font-size: 0.82rem;
+    }
+    .ws-status.win { color: #16a34a; font-size: 1rem; }
+
+    /* Detective de implicatura C1 */
+    .imp-meta {
+      display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center;
+      margin: 0.35rem 0 0.65rem;
+    }
+    .imp-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid var(--border); font-size: 0.68rem; font-weight: 900;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--muted);
+    }
+    .imp-dot.on { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .imp-dot.done { border-color: #16a34a; background: #16a34a; color: #fff; }
+    .imp-file {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 0.75rem 0.9rem; margin-bottom: 0.7rem;
+    }
+    .imp-file .tag {
+      font-size: 0.68rem; font-weight: 900; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .imp-file p {
+      margin: 0; font-size: 0.88rem; font-weight: 600; line-height: 1.45; color: var(--text);
+      font-style: italic;
+    }
+    .imp-zones {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.45rem;
+      margin-bottom: 0.65rem;
+    }
+    .imp-zone {
+      min-height: 92px; border: 2px dashed var(--border); border-radius: 12px;
+      padding: 0.4rem; background: var(--card);
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .imp-zone.over { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--card)); }
+    .imp-zone h4 {
+      margin: 0 0 0.35rem; font-size: 0.68rem; font-weight: 900;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
+      text-align: center;
+    }
+    .imp-cards { display: grid; gap: 0.4rem; }
+    .imp-card {
+      font-size: 0.8rem; font-weight: 700; line-height: 1.3;
+      padding: 0.55rem 0.65rem; border-radius: 10px; cursor: grab;
+      background: var(--bg2); border: 1px solid var(--border); color: var(--text);
+      user-select: none;
+    }
+    .imp-card:active { cursor: grabbing; }
+    .imp-card.picked { outline: 2px solid var(--accent); }
+    .imp-card.ok { border-color: #86efac; background: color-mix(in srgb, #16a34a 14%, var(--bg2)); }
+    .imp-card.bad { border-color: #fca5a5; background: color-mix(in srgb, #ef4444 12%, var(--bg2)); }
+    .imp-zone .imp-card { margin-bottom: 0.3rem; }
+    .imp-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; margin-top: 0.4rem; }
+    @media (max-width: 640px) {
+      .imp-zones { grid-template-columns: 1fr; }
+    }
+
+
     @keyframes brainyFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-7px); }
@@ -605,11 +764,7 @@
       </div>
     </div>
     <div id="juegos" class="panel">
-      <div class="card">
-        <h2>Juegos</h2>
-        <p class="subtitle">Minijuegos por lección. Próximo paso.</p>
-        <div class="empty-state">Pronto: Trivia y más</div>
-      </div>
+      <div class="card" id="juegosContent"></div>
     </div>
     <div id="reglas" class="panel">
       <div class="card">
@@ -18800,6 +18955,7 @@ let view = { level: null, module: null, lesson: null };
       document.getElementById(id).classList.add('active');
       document.querySelectorAll('#mainNav button').forEach(b => b.classList.toggle('active', b.dataset.panel === id));
       if (id === 'niveles') renderNiveles();
+      if (id === 'juegos') renderJuegos();
     }
     document.getElementById('mainNav').addEventListener('click', e => {
       if (e.target.tagName === 'BUTTON') showPanel(e.target.dataset.panel);
@@ -18808,6 +18964,7 @@ let view = { level: null, module: null, lesson: null };
       view = { level: null, module: null, lesson: null };
       showPanel('inicio');
     }
+
 
     function renderNiveles() {
       const el = document.getElementById('nivelesContent');
@@ -19425,7 +19582,7 @@ let view = { level: null, module: null, lesson: null };
           <div class="big">${pct}%</div>
           <div style="color:var(--muted);font-weight:600;">${correct} de ${ex.questions.length} correctas · Mínimo ${ex.passScore}%</div>
           ${pass
-            ? `<div class="brainy-row" style="margin-top:1rem;justify-content:center">
+            ? `<div class="brainy-row exam-brainy">
                 <img class="brainy-avatar pose-ok" src="brainycheck.jpg" alt="Brainy ok" onerror="this.src='brainy.jpg'"/>
                 <div class="brainy-bubble">
                   <div class="brainy-name">Brainy</div>
@@ -19439,6 +19596,578 @@ let view = { level: null, module: null, lesson: null };
       // Guardar progreso (Supabase + local)
       saveExamProgress(view.level, view.module, view.lesson, pct, pass);
     }
+
+    // ========== JUEGOS ==========
+    const GAMES = {
+      A1: [
+        {
+          id: 'ws-a1-1',
+          type: 'wordsearch',
+          title: 'Sopa de letras · Vocabulario A1',
+          subtitle: '12×12 · 10 palabras de principiante',
+          icon: '🔤',
+          size: 12,
+          words: ['HELLO','APPLE','HOUSE','WATER','SCHOOL','FRIEND','FAMILY','HAPPY','TEACHER','ENGLISH']
+        }
+      ],
+      A2: [],
+      B1: [],
+      B2: [],
+      C1: [
+        {
+          id: 'imp-c1-1',
+          type: 'implicature',
+          title: 'Detective de implicatura',
+          subtitle: '3 casos · clasifica lo que se deduce, lo que no está y la trampa',
+          icon: '🔍',
+          cases: [
+            {
+              tag: 'Correo interno',
+              text: 'I wouldn\'t go so far as to say the proposal is unworkable. That said, I remain to be convinced that the timeline is anything other than optimistic. Perhaps we might revisit this once Finance have had a look.',
+              hint: 'Fíjate en el eufemismo: “anything other than optimistic” ya es una crítica. “Wouldn\'t go so far” evita un rechazo total.',
+              cards: [
+                { id: 'c1a', zone: 'implied', text: 'El autor considera que el calendario peca de optimista.' },
+                { id: 'c1b', zone: 'trap', text: 'El autor ya ha rechazado la propuesta por inviable.' },
+                { id: 'c1c', zone: 'absent', text: 'Finanzas ya revisó la propuesta y envió un informe.' }
+              ]
+            },
+            {
+              tag: 'Reunión de dirección',
+              text: 'With all due respect to the consultants, their model rather assumes a level of cooperation we have yet to see. I\'m not suggesting we discard it outright; merely that we treat the projections as illustrative rather than binding.',
+              hint: '“Not suggesting we discard it outright” niega el descarte. “Have yet to see” señala una duda, no un hecho ya comprobado por ellos.',
+              cards: [
+                { id: 'c2a', zone: 'implied', text: 'El hablante duda de la hipótesis de cooperación del modelo.' },
+                { id: 'c2b', zone: 'trap', text: 'El hablante quiere tirar el modelo a la basura de inmediato.' },
+                { id: 'c2c', zone: 'absent', text: 'Los consultores admitieron que su modelo estaba equivocado.' }
+              ]
+            },
+            {
+              tag: 'Crítica literaria',
+              text: 'The novel is not without merit, particularly in its quieter passages. One might, however, wish the author had trusted the reader a little more; the closing chapters labour a point that was already unmistakable.',
+              hint: '“Not without merit” es un elogio contenido, no un desprecio. “Labour a point” señala insistencia excesiva al final.',
+              cards: [
+                { id: 'c3a', zone: 'implied', text: 'El crítico considera el final demasiado insistente.' },
+                { id: 'c3b', zone: 'trap', text: 'El crítico sostiene que la novela carece de valor.' },
+                { id: 'c3c', zone: 'absent', text: 'El autor ha anunciado una secuela para el año que viene.' }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    let gamesView = { level: null, gameId: null };
+    let wsState = null;
+
+    function renderJuegos() {
+      const el = document.getElementById('juegosContent');
+      if (!el) return;
+      if (gamesView.gameId && gamesView.level) {
+        const game = (GAMES[gamesView.level] || []).find(g => g.id === gamesView.gameId);
+        if (game && game.type === 'wordsearch') {
+          el.innerHTML = renderWordSearchShell(game);
+          initWordSearch(game);
+          return;
+        }
+        if (game && game.type === 'implicature') {
+          el.innerHTML = renderImpShell();
+          initImplicature(game);
+          return;
+        }
+      }
+      if (gamesView.level) {
+        el.innerHTML = renderGamesForLevel(gamesView.level);
+        return;
+      }
+      el.innerHTML = renderGamesHub();
+    }
+
+    function renderGamesHub() {
+      const levels = ['A1','A2','B1','B2','C1'];
+      const cards = levels.map(lv => {
+        const n = (GAMES[lv] || []).length;
+        return `<div class="game-level-card" onclick="openGamesLevel('${lv}')">
+          <div class="lvl">${lv}</div>
+          <div class="meta">${n ? n + ' juego' + (n===1?'':'s') : 'Pronto'}</div>
+        </div>`;
+      }).join('');
+      return `
+        <div class="brainy-row">
+          <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" onerror="this.src='brainylight.jpg'"/>
+          <div class="brainy-bubble">
+            <div class="brainy-name">Brainy · Juegos</div>
+            <div class="brainy-msg">Elige un nivel. En <strong>A1</strong> hay sopa de letras; en <strong>C1</strong>, un detective de implicatura.</div>
+          </div>
+        </div>
+        <h2 style="margin:0.5rem 0 0.25rem">Juegos por nivel</h2>
+        <p class="subtitle" style="margin-bottom:0">Los juegos van por nivel. A1 y C1 ya tienen uno; el resto llega después.</p>
+        <div class="games-levels">${cards}</div>`;
+    }
+
+    function renderGamesForLevel(level) {
+      const list = GAMES[level] || [];
+      const items = list.length
+        ? list.map(g => `
+          <div class="game-item" onclick="openGame('${level}','${g.id}')">
+            <div class="gi-icon">${g.icon || '🎮'}</div>
+            <div class="gi-body">
+              <div class="gi-title">${g.title}</div>
+              <div class="gi-sub">${g.subtitle}</div>
+            </div>
+          </div>`).join('')
+        : `<div class="empty-state">Aún no hay juegos para ${level}. ¡Pronto!</div>`;
+      return `
+        <div style="margin-bottom:0.75rem">
+          <button class="ghost" onclick="gamesView.level=null;gamesView.gameId=null;renderJuegos()">← Todos los niveles</button>
+        </div>
+        <div class="brainy-row">
+          <img class="brainy-avatar pose-idea" src="brainylight.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
+          <div class="brainy-bubble">
+            <div class="brainy-name">Brainy · ${level}</div>
+            <div class="brainy-msg">Juegos del nivel <strong>${level}</strong>. Elige uno para empezar.</div>
+          </div>
+        </div>
+        <h2 style="margin-top:0.35rem">Nivel ${level}</h2>
+        <div class="games-list">${items}</div>`;
+    }
+
+    function openGamesLevel(lv) {
+      gamesView.level = lv;
+      gamesView.gameId = null;
+      renderJuegos();
+    }
+    function openGame(lv, id) {
+      gamesView.level = lv;
+      gamesView.gameId = id;
+      renderJuegos();
+    }
+
+    function renderWordSearchShell(game) {
+      return `
+        <div style="margin-bottom:0.75rem;display:flex;flex-wrap:wrap;gap:0.4rem">
+          <button class="ghost" onclick="gamesView.gameId=null;renderJuegos()">← Juegos ${gamesView.level}</button>
+        </div>
+        <div class="brainy-row" style="margin-bottom:0.45rem">
+          <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" style="width:56px;height:56px" onerror="this.src='brainylight.jpg'"/>
+          <div class="brainy-bubble" style="padding:0.55rem 0.75rem">
+            <div class="brainy-name">Brainy · Sopa de letras</div>
+            <div class="brainy-msg" style="font-size:0.82rem">Encuentra las <strong>10 palabras</strong>. Arrastra en línea recta (↔ ↕ ↖).</div>
+          </div>
+        </div>
+        <h2 style="margin:0.15rem 0 0.1rem;font-size:1.05rem">${game.title}</h2>
+        <p class="subtitle" style="margin-bottom:0.35rem;font-size:0.82rem">${game.subtitle}</p>
+        <div class="ws-wrap">
+          <div class="ws-toolbar">
+            <button class="ghost" type="button" onclick="resetWordSearch()">Nueva partida</button>
+            <span id="wsFoundLabel" style="font-weight:800;color:var(--accent)">0 / ${game.words.length}</span>
+          </div>
+          <div class="ws-grid" id="wsGrid"></div>
+          <div class="ws-words" id="wsWords"></div>
+          <div class="ws-status" id="wsStatus">Selecciona letras en línea recta para formar una palabra.</div>
+        </div>`;
+    }
+
+    function buildWordSearchGrid(size, words) {
+      const dirs = [
+        [0,1],[1,0],[0,-1],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]
+      ];
+      const grid = Array.from({length:size}, () => Array(size).fill(''));
+      const placements = [];
+      const sorted = words.slice().sort((a,b) => b.length - a.length);
+
+      function canPlace(word, r, c, dr, dc) {
+        for (let i = 0; i < word.length; i++) {
+          const rr = r + dr * i, cc = c + dc * i;
+          if (rr < 0 || rr >= size || cc < 0 || cc >= size) return false;
+          const ch = grid[rr][cc];
+          if (ch && ch !== word[i]) return false;
+        }
+        return true;
+      }
+      function place(word, r, c, dr, dc) {
+        const cells = [];
+        for (let i = 0; i < word.length; i++) {
+          const rr = r + dr * i, cc = c + dc * i;
+          grid[rr][cc] = word[i];
+          cells.push(rr + ',' + cc);
+        }
+        placements.push({ word, cells });
+      }
+
+      for (const word of sorted) {
+        let ok = false;
+        const tries = [];
+        for (let t = 0; t < 200; t++) {
+          const dr = dirs[Math.floor(Math.random() * dirs.length)];
+          const r = Math.floor(Math.random() * size);
+          const c = Math.floor(Math.random() * size);
+          tries.push([r,c,dr[0],dr[1]]);
+        }
+        // deterministic fallback scan
+        for (const [r,c,dr,dc] of tries) {
+          if (canPlace(word, r, c, dr, dc)) {
+            place(word, r, c, dr, dc);
+            ok = true;
+            break;
+          }
+        }
+        if (!ok) {
+          outer:
+          for (const [dr,dc] of dirs) {
+            for (let r = 0; r < size; r++) {
+              for (let c = 0; c < size; c++) {
+                if (canPlace(word, r, c, dr, dc)) {
+                  place(word, r, c, dr, dc);
+                  ok = true;
+                  break outer;
+                }
+              }
+            }
+          }
+        }
+        if (!ok) console.warn('Could not place', word);
+      }
+
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          if (!grid[r][c]) grid[r][c] = letters[Math.floor(Math.random() * 26)];
+        }
+      }
+      return { grid, placements };
+    }
+
+    function initWordSearch(game) {
+      const built = buildWordSearchGrid(game.size, game.words.map(w => w.toUpperCase()));
+      wsState = {
+        game,
+        grid: built.grid,
+        placements: built.placements,
+        found: new Set(),
+        selecting: false,
+        path: [],
+        foundCells: new Set()
+      };
+      paintWordSearch();
+    }
+
+    function resetWordSearch() {
+      if (!wsState) return;
+      initWordSearch(wsState.game);
+    }
+
+    function paintWordSearch() {
+      const g = document.getElementById('wsGrid');
+      const w = document.getElementById('wsWords');
+      if (!g || !wsState) return;
+      const size = wsState.game.size;
+      g.innerHTML = '';
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const key = r + ',' + c;
+          const cell = document.createElement('div');
+          cell.className = 'ws-cell';
+          if (wsState.foundCells.has(key)) cell.classList.add('found');
+          if (wsState.path.includes(key)) cell.classList.add('sel');
+          cell.textContent = wsState.grid[r][c];
+          cell.dataset.r = r;
+          cell.dataset.c = c;
+          cell.addEventListener('mousedown', e => { e.preventDefault(); wsStart(r,c); });
+          cell.addEventListener('mouseenter', () => { if (wsState.selecting) wsMove(r,c); });
+          cell.addEventListener('mouseup', () => wsEnd());
+          cell.addEventListener('touchstart', e => { e.preventDefault(); wsStart(r,c); }, {passive:false});
+          cell.addEventListener('touchmove', e => {
+            e.preventDefault();
+            const t = e.touches[0];
+            const el = document.elementFromPoint(t.clientX, t.clientY);
+            if (el && el.classList.contains('ws-cell')) wsMove(+el.dataset.r, +el.dataset.c);
+          }, {passive:false});
+          cell.addEventListener('touchend', e => { e.preventDefault(); wsEnd(); });
+          g.appendChild(cell);
+        }
+      }
+      document.addEventListener('mouseup', wsEnd);
+      w.innerHTML = wsState.game.words.map(word => {
+        const done = wsState.found.has(word.toUpperCase());
+        return `<span class="ws-word-chip${done?' done':''}">${word}</span>`;
+      }).join('');
+      const n = wsState.found.size;
+      const total = wsState.game.words.length;
+      document.getElementById('wsFoundLabel').textContent = n + ' / ' + total;
+      const st = document.getElementById('wsStatus');
+      if (n >= total) {
+        st.className = 'ws-status win';
+        st.innerHTML = '¡Completado! Encontraste las 10 palabras. 🎉';
+        // swap brainy to check if present
+        const av = document.querySelector('#juegosContent .brainy-avatar');
+        if (av) { av.src = 'brainycheck.jpg'; av.classList.add('pose-ok'); }
+      } else {
+        st.className = 'ws-status';
+        st.textContent = 'Selecciona letras en línea recta para formar una palabra.';
+      }
+    }
+
+    function wsStart(r, c) {
+      if (!wsState) return;
+      wsState.selecting = true;
+      wsState.path = [r + ',' + c];
+      paintWordSearch();
+    }
+    function wsMove(r, c) {
+      if (!wsState || !wsState.selecting) return;
+      const key = r + ',' + c;
+      const path = wsState.path;
+      if (!path.length) return;
+      if (path[path.length - 1] === key) return;
+      // rebuild path as straight line from start to current
+      const [sr, sc] = path[0].split(',').map(Number);
+      const dr = Math.sign(r - sr);
+      const dc = Math.sign(c - sc);
+      if (dr === 0 && dc === 0) return;
+      // must be aligned
+      if (dr !== 0 && dc !== 0 && Math.abs(r - sr) !== Math.abs(c - sc)) return;
+      if (dr === 0 && c === sc && r !== sr) { /* vertical ok */ }
+      else if (dc === 0 && r === sr && c !== sc) { /* horizontal ok */ }
+      else if (dr !== 0 && dc !== 0 && Math.abs(r - sr) === Math.abs(c - sc)) { /* diagonal ok */ }
+      else if (!(dr === 0 || dc === 0 || Math.abs(r-sr)===Math.abs(c-sc))) return;
+
+      const newPath = [path[0]];
+      let cr = sr, cc = sc;
+      const steps = Math.max(Math.abs(r - sr), Math.abs(c - sc));
+      const stepR = steps ? (r - sr) / steps : 0;
+      const stepC = steps ? (c - sc) / steps : 0;
+      if (stepR !== 0 && stepR !== 1 && stepR !== -1) return;
+      if (stepC !== 0 && stepC !== 1 && stepC !== -1) return;
+      for (let i = 1; i <= steps; i++) {
+        cr = sr + stepR * i;
+        cc = sc + stepC * i;
+        newPath.push(cr + ',' + cc);
+      }
+      wsState.path = newPath;
+      paintWordSearch();
+    }
+    function wsEnd() {
+      if (!wsState || !wsState.selecting) return;
+      wsState.selecting = false;
+      const letters = wsState.path.map(k => {
+        const [r,c] = k.split(',').map(Number);
+        return wsState.grid[r][c];
+      }).join('');
+      const rev = letters.split('').reverse().join('');
+      const match = wsState.game.words.map(w => w.toUpperCase()).find(w => w === letters || w === rev);
+      if (match && !wsState.found.has(match)) {
+        wsState.found.add(match);
+        wsState.path.forEach(k => wsState.foundCells.add(k));
+        toast('¡Encontraste: ' + match + '!');
+      }
+      wsState.path = [];
+      paintWordSearch();
+    }
+
+    let impState = null;
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function renderImpShell() {
+      return `
+        <div style="margin-bottom:0.5rem">
+          <button class="ghost" onclick="gamesView.gameId=null;renderJuegos()">← Juegos ${gamesView.level}</button>
+        </div>
+        <div class="brainy-row" style="margin-bottom:0.4rem">
+          <img id="impBrainy" class="brainy-avatar" src="brainy.jpg" alt="Brainy" style="width:56px;height:56px" onerror="this.src='brainylight.jpg'"/>
+          <div class="brainy-bubble" style="padding:0.5rem 0.7rem">
+            <div class="brainy-name">Brainy · Detective</div>
+            <div class="brainy-msg" id="impBrainyMsg" style="font-size:0.82rem">Tres casos. Arrastra cada tarjeta a <strong>Se deduce</strong>, <strong>No está</strong> o <strong>Trampa</strong>.</div>
+          </div>
+        </div>
+        <div class="imp-meta" id="impDots"></div>
+        <div id="impBoard"></div>`;
+    }
+
+    function initImplicature(game) {
+      impState = {
+        game,
+        caseIndex: 0,
+        placements: {},
+        picked: null,
+        closed: [],
+        feedback: null,
+        order: {}
+      };
+      paintImplicature();
+    }
+
+    function currentImpCase() {
+      return impState && impState.game.cases[impState.caseIndex];
+    }
+
+    function paintImplicature() {
+      if (!impState) return;
+      const kase = currentImpCase();
+      const total = impState.game.cases.length;
+      const dots = document.getElementById('impDots');
+      const board = document.getElementById('impBoard');
+      const msg = document.getElementById('impBrainyMsg');
+      const av = document.getElementById('impBrainy');
+      if (!board) return;
+
+      dots.innerHTML = impState.game.cases.map((_, i) => {
+        const cls = impState.closed.includes(i) ? 'done' : (i === impState.caseIndex ? 'on' : '');
+        return `<span class="imp-dot ${cls}">${i + 1}</span>`;
+      }).join('') + `<span style="font-size:0.75rem;font-weight:800;color:var(--muted)">Caso ${impState.caseIndex + 1} de ${total}</span>`;
+
+      if (impState.closed.length >= total) {
+        if (av) { av.src = 'brainycheck.jpg'; av.classList.add('pose-ok'); }
+        if (msg) msg.innerHTML = 'Archivo cerrado. Leíste entre líneas en los tres casos.';
+        board.innerHTML = `
+          <div class="ws-status win">Tres casos resueltos. El detective puede descansar.</div>
+          <div class="imp-actions">
+            <button class="primary" type="button" onclick="initImplicature(impState.game)">Jugar otra vez</button>
+          </div>`;
+        return;
+      }
+
+      if (av && !impState.feedback) {
+        av.src = 'brainy.jpg';
+        av.classList.remove('pose-ok', 'pose-idea');
+      }
+      if (msg && !impState.feedback) {
+        msg.innerHTML = 'Clasifica las tres tarjetas. Puedes arrastrarlas o tocar una y luego la columna.';
+      }
+
+      const zones = [
+        { id: 'implied', label: 'Se deduce' },
+        { id: 'absent', label: 'No está en el texto' },
+        { id: 'trap', label: 'Trampa' }
+      ];
+      if (!impState.order[impState.caseIndex]) {
+        impState.order[impState.caseIndex] = shuffle(kase.cards.map(c => c.id));
+      }
+      const order = impState.order[impState.caseIndex];
+      const byId = Object.fromEntries(kase.cards.map(c => [c.id, c]));
+
+      function cardHtml(c) {
+        const fb = impState.feedback && impState.placements[c.id];
+        let extra = '';
+        if (impState.feedback) extra = impState.placements[c.id] === c.zone ? ' ok' : (impState.placements[c.id] ? ' bad' : '');
+        const picked = impState.picked === c.id ? ' picked' : '';
+        return `<div class="imp-card${extra}${picked}" draggable="true" data-cid="${c.id}"
+          ondragstart="impDrag(event,'${c.id}')"
+          onclick="event.stopPropagation();impPick('${c.id}')">${c.text}</div>`;
+      }
+
+      const zoneCols = zones.map(z => {
+        const inside = order.map(id => byId[id]).filter(c => impState.placements[c.id] === z.id).map(cardHtml).join('');
+        return `<div class="imp-zone" data-zone="${z.id}"
+          ondragover="impOver(event)" ondragleave="this.classList.remove('over')"
+          ondrop="impDrop(event,'${z.id}')" onclick="impDropClick('${z.id}')">
+          <h4>${z.label}</h4>${inside}
+        </div>`;
+      }).join('');
+
+      const pool = order.map(id => byId[id]).filter(c => !impState.placements[c.id]);
+      const poolHtml = pool.map(cardHtml).join('') || '<p class="subtitle" style="margin:0;text-align:center">Todas las tarjetas están colocadas.</p>';
+
+      const canCheck = kase.cards.every(c => impState.placements[c.id]);
+      board.innerHTML = `
+        <div class="imp-file">
+          <div class="tag">${kase.tag}</div>
+          <p>“${kase.text}”</p>
+        </div>
+        <div class="imp-zones">${zoneCols}</div>
+        <div class="imp-cards" id="impPool">${poolHtml}</div>
+        <div class="imp-actions">
+          <button class="ghost" type="button" onclick="impResetCase()">Reordenar</button>
+          <button class="primary" type="button" ${canCheck ? '' : 'disabled'} onclick="impTryClose()">Cerrar caso</button>
+        </div>
+        ${impState.feedback && !impState.feedback.ok ? `<div class="ws-status">${kase.hint}</div>` : ''}
+      `;
+    }
+
+    function impDrag(ev, id) {
+      ev.dataTransfer.setData('text/plain', id);
+      impState.picked = id;
+    }
+    function impOver(ev) {
+      ev.preventDefault();
+      ev.currentTarget.classList.add('over');
+    }
+    function impDrop(ev, zone) {
+      ev.preventDefault();
+      ev.currentTarget.classList.remove('over');
+      const id = ev.dataTransfer.getData('text/plain') || impState.picked;
+      if (!id) return;
+      impPlace(id, zone);
+    }
+    function impPick(id) {
+      if (!impState) return;
+      impState.picked = (impState.picked === id) ? null : id;
+      impState.feedback = null;
+      paintImplicature();
+    }
+    function impDropClick(zone) {
+      if (!impState || !impState.picked) return;
+      impPlace(impState.picked, zone);
+    }
+    function impPlace(id, zone) {
+      Object.keys(impState.placements).forEach(k => {
+        if (impState.placements[k] === zone) delete impState.placements[k];
+      });
+      impState.placements[id] = zone;
+      impState.picked = null;
+      impState.feedback = null;
+      paintImplicature();
+    }
+    function impResetCase() {
+      if (!impState) return;
+      impState.placements = {};
+      impState.picked = null;
+      impState.feedback = null;
+      const av = document.getElementById('impBrainy');
+      if (av) { av.src = 'brainy.jpg'; av.classList.remove('pose-idea', 'pose-ok'); }
+      paintImplicature();
+    }
+    function impTryClose() {
+      const kase = currentImpCase();
+      if (!kase) return;
+      const ok = kase.cards.every(c => impState.placements[c.id] === c.zone);
+      impState.feedback = { ok };
+      if (ok) {
+        impState.closed.push(impState.caseIndex);
+        toast('Caso cerrado');
+        const av = document.getElementById('impBrainy');
+        const msg = document.getElementById('impBrainyMsg');
+        if (av) { av.src = 'brainycheck.jpg'; av.classList.add('pose-ok'); av.classList.remove('pose-idea'); }
+        if (msg) msg.textContent = 'Bien leído. Ese matiz estaba en el texto, no en lo que “parecía”.';
+        if (impState.caseIndex < impState.game.cases.length - 1) {
+          setTimeout(() => {
+            impState.caseIndex += 1;
+            impState.placements = {};
+            impState.picked = null;
+            impState.feedback = null;
+            paintImplicature();
+          }, 900);
+        } else {
+          paintImplicature();
+        }
+      } else {
+        const av = document.getElementById('impBrainy');
+        const msg = document.getElementById('impBrainyMsg');
+        if (av) { av.src = 'brainylight.jpg'; av.classList.add('pose-idea'); av.classList.remove('pose-ok'); }
+        if (msg) msg.textContent = 'Casi. Revisa las tarjetas en rojo; hay una trampa de registro.';
+        toast('Aún no cierra');
+        paintImplicature();
+      }
+    }
+
+
   </script>
 </body>
 </html>
