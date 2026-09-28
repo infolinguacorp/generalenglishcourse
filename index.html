@@ -230,31 +230,34 @@
 
     /* Brainy presenta objetivos */
     .brainy-row {
-      display: flex; align-items: flex-end; gap: 0.75rem;
-      margin-bottom: 1rem; flex-wrap: wrap;
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.15rem; flex-wrap: wrap;
     }
     .brainy-avatar {
-      width: 88px; height: 88px; object-fit: contain;
-      flex-shrink: 0; filter: drop-shadow(0 4px 10px rgba(15,23,42,0.12));
+      width: 168px; height: 168px; object-fit: contain;
+      flex-shrink: 0; filter: drop-shadow(0 10px 22px rgba(15,23,42,0.18));
       animation: brainyFloat 3.2s ease-in-out infinite;
       transform-origin: center bottom;
     }
     .brainy-avatar.pose-idea { animation: brainyPulse 2.4s ease-in-out infinite; }
     .brainy-avatar.pose-ok {
-      width: 140px; height: 140px;
+      width: 220px; height: 220px;
       animation: brainyPop 0.7s ease-out 1;
     }
     .exam-brainy {
       margin-top: 1.15rem;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      text-align: center;
     }
     .exam-brainy .brainy-bubble {
-      max-width: 420px;
+      max-width: 480px;
       text-align: left;
     }
     @media (max-width: 520px) {
-      .brainy-avatar.pose-ok { width: 110px; height: 110px; }
+      .brainy-avatar { width: 140px; height: 140px; }
+      .brainy-avatar.pose-ok { width: 180px; height: 180px; }
     }
 
     /* ===== Juegos / Sopa de letras ===== */
@@ -289,6 +292,10 @@
       background: var(--accent); color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.25rem; flex-shrink: 0;
+    }
+    .game-item .gi-brainy {
+      width: 148px; height: 148px; object-fit: contain; flex-shrink: 0;
+      filter: drop-shadow(0 8px 16px rgba(15,23,42,0.16));
     }
     .game-item .gi-body { flex: 1; min-width: 0; }
     .game-item .gi-title { font-weight: 800; font-size: 0.98rem; }
@@ -399,6 +406,51 @@
       .imp-zones { grid-template-columns: 1fr; }
     }
 
+    /* Hangman A1 */
+    .hm-stage {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0.75rem 1.1rem;
+    }
+    .hm-stage .brainy-avatar {
+      width: 150px; height: 150px;
+    }
+    .hm-stage .brainy-avatar.pose-ok {
+      width: 150px; height: 150px;
+    }
+    .hm-stage .brainy-bubble {
+      flex: 0 1 220px; min-width: 170px; margin: 0;
+    }
+    .hm-wrap { flex: 1 1 280px; min-width: 240px; max-width: none; margin: 0; }
+    .hm-top { display: flex; gap: 0.75rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .hm-svg { width: 110px; height: 126px; flex-shrink: 0; }
+    .hm-word {
+      display: flex; flex-wrap: wrap; gap: 0.28rem; justify-content: center;
+      margin: 0.35rem 0 0.3rem; font-weight: 900; letter-spacing: 0.06em;
+      font-size: 1.25rem;
+    }
+    .hm-slot {
+      min-width: 1.15rem; text-align: center; border-bottom: 3px solid var(--accent);
+      padding: 0 0.1rem 0.1rem; color: var(--text);
+    }
+    .hm-clue {
+      text-align: center; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 0.4rem;
+    }
+    .hm-keys {
+      display: flex; flex-wrap: wrap; gap: 0.28rem; justify-content: center;
+    }
+    .hm-key {
+      width: 2rem; height: 2rem; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg2); color: var(--text); font-weight: 800; font-size: 0.82rem;
+    }
+    .hm-key:disabled { opacity: 0.35; cursor: default; }
+    .hm-key.ok { background: color-mix(in srgb, #16a34a 22%, var(--bg2)); border-color: #86efac; }
+    .hm-key.bad { background: color-mix(in srgb, #ef4444 18%, var(--bg2)); border-color: #fca5a5; }
+    .hm-lives { text-align: center; font-size: 0.8rem; font-weight: 800; color: var(--muted); margin: 0.2rem 0; }
+    @media (max-width: 720px) {
+      .hm-stage .brainy-avatar { width: 120px; height: 120px; }
+    }
+
+
 
     @keyframes brainyFloat {
       0%, 100% { transform: translateY(0); }
@@ -446,7 +498,7 @@
       font-size: 0.92rem; font-weight: 700; color: var(--text); line-height: 1.4;
     }
     @media (max-width: 520px) {
-      .brainy-avatar { width: 72px; height: 72px; }
+      .brainy-avatar { width: 140px; height: 140px; }
       .brainy-bubble::before, .brainy-bubble::after { display: none; }
     }
 
@@ -741,6 +793,13 @@
     <div id="inicio" class="panel active">
       <div class="card">
         <h2>Bienvenido a LinguaCorp</h2>
+        <div class="brainy-row">
+          <img class="brainy-avatar" src="brainyhello.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
+          <div class="brainy-bubble">
+            <div class="brainy-name">Brainy</div>
+            <div class="brainy-msg">Hola. Soy Brainy. Te acompaño en cada lección: gramática, lectura, audio, escritura y juegos.</div>
+          </div>
+        </div>
         <p class="subtitle">
           Curso de inglés interactivo · 5 niveles (A1 → C1) · 3 módulos por nivel · 12 lecciones · la 12 es el examen final.
           Cada lección incluye gramática, reading, listening, writing, ejercicios y un examen para avanzar.
@@ -18965,7 +19024,6 @@ let view = { level: null, module: null, lesson: null };
       showPanel('inicio');
     }
 
-
     function renderNiveles() {
       const el = document.getElementById('nivelesContent');
       if (!view.level) {
@@ -19128,6 +19186,16 @@ let view = { level: null, module: null, lesson: null };
       return `<div class="empty-state">Contenido de ${name} · próximamente</div>`;
     }
 
+    function brainyIntro(src, name, msg) {
+      return `<div class="brainy-row" style="margin-bottom:0.75rem">
+        <img class="brainy-avatar" src="${src}" alt="Brainy" onerror="this.src='brainy.jpg'"/>
+        <div class="brainy-bubble" style="padding:0.55rem 0.8rem">
+          <div class="brainy-name">${name}</div>
+          <div class="brainy-msg" style="font-size:0.88rem">${msg}</div>
+        </div>
+      </div>`;
+    }
+
     function renderOverview(les) {
       const objs = les.objectives || [];
       const cards = objs.length
@@ -19143,7 +19211,7 @@ let view = { level: null, module: null, lesson: null };
       const title = les.title || 'esta lección';
       return `
         <div class="brainy-row">
-          <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" onerror="this.src='assets/brainy.jpg'; this.onerror=null;"/>
+          <img class="brainy-avatar" src="brainyhello.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
           <div class="brainy-bubble">
             <div class="brainy-name">Brainy</div>
             <div class="brainy-msg">${les.brainyMsg || ('¡Hola! Soy Brainy. En <strong>' + title + '</strong> vamos a lograr estas metas. ¡Tú puedes!')}</div>
@@ -19158,7 +19226,7 @@ let view = { level: null, module: null, lesson: null };
         </div>
         <div class="objectives-wrap">${cards}</div>
         <div class="brainy-row" style="margin-top:1.1rem;margin-bottom:0">
-          <img class="brainy-avatar pose-idea" src="brainylight.jpg" alt="Brainy idea" onerror="this.src='brainy.jpg'"/>
+          <img class="brainy-avatar pose-idea" src="brainytip.jpg" alt="Brainy idea" onerror="this.src='brainylight.jpg'"/>
           <div class="brainy-bubble">
             <div class="brainy-name">Brainy · consejo</div>
             <div class="brainy-msg"><strong>Ruta sugerida:</strong> Grammar → Reading → Listening → Writing → Practice → Exam. También puedes ir directo a Practice y Exam cuando te sientas preparado.</div>
@@ -19169,6 +19237,7 @@ let view = { level: null, module: null, lesson: null };
     function renderGrammar(les) {
       const g = les.grammar;
       return `
+        ${brainyIntro('brainyteaching.jpg', 'Brainy · Grammar', 'Mira las tablas y los ejemplos. Luego úsalo en las frases.')}
         <p style="font-size:0.95rem;font-weight:600;color:var(--muted);margin-bottom:0.75rem;">${g.intro}</p>
         <h3 class="section-title">Formas afirmativas</h3>
         <table class="grammar-table">
@@ -19199,6 +19268,7 @@ let view = { level: null, module: null, lesson: null };
     function renderReading(les) {
       const r = les.reading;
       let html = `
+        ${brainyIntro('brainyreading.jpg', 'Brainy · Reading', 'Lee el texto con calma. Después responde: no hace falta entender cada palabra.')}
         <h3 class="section-title">${r.title}</h3>
         <div class="reading-text">
           ${r.text.map(l => `<div><span class="speaker">${l.sp}:</span> ${l.line}</div>`).join('')}
@@ -19429,6 +19499,7 @@ let view = { level: null, module: null, lesson: null };
       const L = les.listening;
       const hasAudio = L.audioLines && L.audioLines.length;
       return `
+        ${brainyIntro('brainylistening.jpg', 'Brainy · Listening', 'Pon el audio y completa los huecos. Puedes repetir cada línea.')}
         <p style="color:var(--muted);font-weight:600;margin-bottom:0.65rem;">${L.note}</p>
         ${hasAudio ? `
         <div class="audio-bar">
@@ -19473,6 +19544,7 @@ let view = { level: null, module: null, lesson: null };
     function renderWriting(les) {
       const w = les.writing;
       return `
+        ${brainyIntro('branywriting.jpg', 'Brainy · Writing', 'Escribe con tus palabras. Usa la lista de abajo como guía, no como examen.')}
         <div class="writing-prompt">${w.prompt.replace(/\n/g, '<br>')}</div>
         <textarea class="writing-area" id="writingArea" placeholder="Write here..."></textarea>
         <h3 class="section-title">Checklist</h3>
@@ -19484,7 +19556,7 @@ let view = { level: null, module: null, lesson: null };
 
     function renderPractice(les) {
       const items = les.practice;
-      let html = `<div class="score-bar">Aciertos: <strong id="practiceScore">0</strong> / ${items.length}</div><div id="practiceQs">`;
+      let html = `${brainyIntro('brainydemanding.jpg', 'Brainy · Practice', 'Concentración. Elige la opción que encaje en la frase.')}<div class="score-bar">Aciertos: <strong id="practiceScore">0</strong> / ${items.length}</div><div id="practiceQs">`;
       items.forEach((q, i) => {
         html += `
           <div class="q-block" data-pi="${i}">
@@ -19583,13 +19655,19 @@ let view = { level: null, module: null, lesson: null };
           <div style="color:var(--muted);font-weight:600;">${correct} de ${ex.questions.length} correctas · Mínimo ${ex.passScore}%</div>
           ${pass
             ? `<div class="brainy-row exam-brainy">
-                <img class="brainy-avatar pose-ok" src="brainycheck.jpg" alt="Brainy ok" onerror="this.src='brainy.jpg'"/>
+                <img class="brainy-avatar pose-ok" src="${(view.lesson == 12) ? 'brainydiploma.jpg' : (pct === 100 ? 'brainycelebration.jpg' : 'brainycheck.jpg')}" alt="Brainy ok" onerror="this.src='brainycheck.jpg'"/>
                 <div class="brainy-bubble">
                   <div class="brainy-name">Brainy</div>
                   <div class="brainy-msg">Muy bien. Has aprobado esta lección. Puedes continuar a la siguiente.</div>
                 </div>
               </div>`
-            : '<p style="margin-top:0.75rem;font-weight:700;color:var(--danger);">Repasa Grammar y Practice, y vuelve a intentarlo.</p>'}
+            : `<div class="brainy-row exam-brainy">
+                <img class="brainy-avatar" src="brainysad1.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
+                <div class="brainy-bubble">
+                  <div class="brainy-name">Brainy</div>
+                  <div class="brainy-msg">Aún no. Repasa Grammar y Practice, y vuelve a intentarlo.</div>
+                </div>
+              </div>`}
         </div>`;
       document.getElementById('examSubmitBtn').disabled = true;
       toast(pass ? '¡Examen aprobado! 🎉' : 'Sigue practicando');
@@ -19606,8 +19684,29 @@ let view = { level: null, module: null, lesson: null };
           title: 'Sopa de letras · Vocabulario A1',
           subtitle: '12×12 · 10 palabras de principiante',
           icon: '🔤',
+          mascot: 'brainysopa.jpg',
           size: 12,
           words: ['HELLO','APPLE','HOUSE','WATER','SCHOOL','FRIEND','FAMILY','HAPPY','TEACHER','ENGLISH']
+        },
+        {
+          id: 'hm-a1-1',
+          type: 'hangman',
+          title: 'El ahorcado · Vocabulario A1',
+          subtitle: 'Adivina la palabra en inglés · 6 intentos',
+          icon: '🪢',
+          mascot: 'brainyhangman2.jpg',
+          words: [
+            { word: 'APPLE', clue: 'Es una fruta. Puede ser roja o verde.' },
+            { word: 'HOUSE', clue: 'El lugar donde vives.' },
+            { word: 'WATER', clue: 'La bebes todos los días.' },
+            { word: 'SCHOOL', clue: 'Los estudiantes van allí a aprender.' },
+            { word: 'FRIEND', clue: 'Una persona que te cae bien.' },
+            { word: 'HAPPY', clue: 'Un sentimiento cuando todo va bien.' },
+            { word: 'CHAIR', clue: 'Te sientas en ella.' },
+            { word: 'WINDOW', clue: 'Miras al exterior a través de ella.' },
+            { word: 'BREAD', clue: 'Un alimento. A menudo con mantequilla.' },
+            { word: 'GREEN', clue: 'Un color. El de la hierba.' }
+          ]
         }
       ],
       A2: [],
@@ -19660,6 +19759,7 @@ let view = { level: null, module: null, lesson: null };
     let wsState = null;
 
     function renderJuegos() {
+      hmUnbind();
       const el = document.getElementById('juegosContent');
       if (!el) return;
       if (gamesView.gameId && gamesView.level) {
@@ -19669,9 +19769,9 @@ let view = { level: null, module: null, lesson: null };
           initWordSearch(game);
           return;
         }
-        if (game && game.type === 'implicature') {
-          el.innerHTML = renderImpShell();
-          initImplicature(game);
+        if (game && game.type === 'hangman') {
+          el.innerHTML = renderHangmanShell();
+          initHangman(game);
           return;
         }
       }
@@ -19696,11 +19796,11 @@ let view = { level: null, module: null, lesson: null };
           <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" onerror="this.src='brainylight.jpg'"/>
           <div class="brainy-bubble">
             <div class="brainy-name">Brainy · Juegos</div>
-            <div class="brainy-msg">Elige un nivel. En <strong>A1</strong> hay sopa de letras; en <strong>C1</strong>, un detective de implicatura.</div>
+            <div class="brainy-msg">Elige un nivel. En <strong>A1</strong> hay sopa de letras y ahorcado; en <strong>C1</strong>, un detective de implicatura.</div>
           </div>
         </div>
         <h2 style="margin:0.5rem 0 0.25rem">Juegos por nivel</h2>
-        <p class="subtitle" style="margin-bottom:0">Los juegos van por nivel. A1 y C1 ya tienen uno; el resto llega después.</p>
+        <p class="subtitle" style="margin-bottom:0">Los juegos van por nivel. A1 tiene dos; C1 tiene uno. El resto llega después.</p>
         <div class="games-levels">${cards}</div>`;
     }
 
@@ -19709,10 +19809,12 @@ let view = { level: null, module: null, lesson: null };
       const items = list.length
         ? list.map(g => `
           <div class="game-item" onclick="openGame('${level}','${g.id}')">
-            <div class="gi-icon">${g.icon || '🎮'}</div>
+            ${g.mascot
+              ? `<img class="gi-brainy" src="${g.mascot}" alt="Brainy" onerror="this.src='brainy.jpg'"/>`
+              : `<div class="gi-icon">${g.icon || '🎮'}</div>`}
             <div class="gi-body">
               <div class="gi-title">${g.title}</div>
-              <div class="gi-sub">${g.subtitle}</div>
+              <div class="gi-sub">${g.sub || g.subtitle}</div>
             </div>
           </div>`).join('')
         : `<div class="empty-state">Aún no hay juegos para ${level}. ¡Pronto!</div>`;
@@ -19748,7 +19850,7 @@ let view = { level: null, module: null, lesson: null };
           <button class="ghost" onclick="gamesView.gameId=null;renderJuegos()">← Juegos ${gamesView.level}</button>
         </div>
         <div class="brainy-row" style="margin-bottom:0.45rem">
-          <img class="brainy-avatar" src="brainy.jpg" alt="Brainy" style="width:56px;height:56px" onerror="this.src='brainylight.jpg'"/>
+          <img class="brainy-avatar" src="brainysopa.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
           <div class="brainy-bubble" style="padding:0.55rem 0.75rem">
             <div class="brainy-name">Brainy · Sopa de letras</div>
             <div class="brainy-msg" style="font-size:0.82rem">Encuentra las <strong>10 palabras</strong>. Arrastra en línea recta (↔ ↕ ↖).</div>
@@ -19964,6 +20066,122 @@ let view = { level: null, module: null, lesson: null };
       paintWordSearch();
     }
 
+    let hmState = null;
+    const HM_MAX = 6;
+
+    function hmUnbind() {
+      document.removeEventListener('keydown', hmOnKey);
+    }
+
+    function renderHangmanShell() {
+      const title = (GAMES[gamesView.level]||[]).find(g=>g.id===gamesView.gameId)?.title || 'El ahorcado';
+      return `
+        <div style="margin-bottom:0.5rem">
+          <button class="ghost" onclick="gamesView.gameId=null;renderJuegos()">← Juegos ${gamesView.level}</button>
+        </div>
+        <h2 style="margin:0 0 0.55rem;font-size:1.05rem">${title}</h2>
+        <div class="hm-stage">
+          <img id="hmBrainy" class="brainy-avatar" src="brainyhangman2.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
+          <div class="brainy-bubble">
+            <div class="brainy-name">Brainy · Ahorcado</div>
+            <div class="brainy-msg" id="hmBrainyMsg">Elige letras. Tienes 6 errores. La pista está en español; la palabra, en inglés.</div>
+          </div>
+          <div class="hm-wrap" id="hmBoard"></div>
+        </div>`;
+    }
+
+    function initHangman(game) {
+      const prev = hmState && hmState.entry && hmState.entry.word;
+      const pool = game.words.filter(w => w.word !== prev);
+      const list = pool.length ? pool : game.words;
+      const entry = list[Math.floor(Math.random() * list.length)];
+      hmState = {
+        game,
+        entry,
+        guessed: new Set(),
+        wrong: 0,
+        over: false,
+        win: false
+      };
+      hmUnbind();
+      document.addEventListener('keydown', hmOnKey);
+      paintHangman();
+    }
+
+    function hmOnKey(e) {
+      if (!hmState || hmState.over) return;
+      const k = (e.key || '').toUpperCase();
+      if (k.length === 1 && k >= 'A' && k <= 'Z') hmGuess(k);
+    }
+
+    function hmSvg() {
+      const w = hmState.wrong;
+      const on = (n) => w >= n ? 'var(--text)' : 'transparent';
+      return `<svg class="hm-svg" viewBox="0 0 120 140" aria-hidden="true">
+        <line x1="20" y1="130" x2="90" y2="130" stroke="var(--muted)" stroke-width="4"/>
+        <line x1="35" y1="130" x2="35" y2="18" stroke="var(--muted)" stroke-width="4"/>
+        <line x1="35" y1="18" x2="78" y2="18" stroke="var(--muted)" stroke-width="4"/>
+        <line x1="78" y1="18" x2="78" y2="32" stroke="var(--muted)" stroke-width="3"/>
+        <circle cx="78" cy="44" r="12" fill="none" stroke="${on(1)}" stroke-width="3"/>
+        <line x1="78" y1="56" x2="78" y2="88" stroke="${on(2)}" stroke-width="3"/>
+        <line x1="78" y1="64" x2="62" y2="78" stroke="${on(3)}" stroke-width="3"/>
+        <line x1="78" y1="64" x2="94" y2="78" stroke="${on(4)}" stroke-width="3"/>
+        <line x1="78" y1="88" x2="64" y2="112" stroke="${on(5)}" stroke-width="3"/>
+        <line x1="78" y1="88" x2="92" y2="112" stroke="${on(6)}" stroke-width="3"/>
+      </svg>`;
+    }
+
+    function paintHangman() {
+      const board = document.getElementById('hmBoard');
+      if (!board || !hmState) return;
+      const word = hmState.entry.word;
+      const shown = word.split('').map(ch =>
+        `<span class="hm-slot">${hmState.guessed.has(ch) || hmState.over ? ch : ''}</span>`
+      ).join('');
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(L => {
+        const used = hmState.guessed.has(L);
+        let cls = 'hm-key';
+        if (used && word.includes(L)) cls += ' ok';
+        else if (used) cls += ' bad';
+        return `<button type="button" class="${cls}" ${used || hmState.over ? 'disabled' : ''} onclick="hmGuess('${L}')">${L}</button>`;
+      }).join('');
+      const left = HM_MAX - hmState.wrong;
+      board.innerHTML = `
+        <div class="hm-top">${hmSvg()}</div>
+        <div class="hm-lives">${hmState.over ? (hmState.win ? 'Palabra encontrada' : 'Sin más intentos') : left + ' error' + (left === 1 ? '' : 'es') + ' restante' + (left === 1 ? '' : 's')}</div>
+        <div class="hm-word">${shown}</div>
+        <div class="hm-clue">Pista: ${hmState.entry.clue}</div>
+        <div class="hm-keys">${letters}</div>
+        <div class="imp-actions">
+          <button class="ghost" type="button" onclick="initHangman(hmState.game)">Otra palabra</button>
+        </div>`;
+
+      const av = document.getElementById('hmBrainy');
+      const msg = document.getElementById('hmBrainyMsg');
+      if (hmState.win) {
+        if (av) { av.src = 'brainycheck.jpg'; av.classList.add('pose-ok'); av.classList.remove('pose-idea'); }
+        if (msg) msg.textContent = 'Muy bien: ' + word + '. ¿Otra ronda?';
+      } else if (hmState.over) {
+        if (av) { av.src = 'brainylight.jpg'; av.classList.add('pose-idea'); av.classList.remove('pose-ok'); }
+        if (msg) msg.textContent = 'La palabra era ' + word + '. Lee la pista otra vez y prueba con una nueva.';
+      }
+    }
+
+    function hmGuess(letter) {
+      if (!hmState || hmState.over) return;
+      letter = String(letter).toUpperCase();
+      if (hmState.guessed.has(letter)) return;
+      hmState.guessed.add(letter);
+      if (!hmState.entry.word.includes(letter)) {
+        hmState.wrong += 1;
+      }
+      const done = hmState.entry.word.split('').every(ch => hmState.guessed.has(ch));
+      if (done) { hmState.over = true; hmState.win = true; toast('¡Correcto!'); }
+      else if (hmState.wrong >= HM_MAX) { hmState.over = true; hmState.win = false; toast('Era ' + hmState.entry.word); }
+      paintHangman();
+    }
+
+
     let impState = null;
 
     function shuffle(arr) {
@@ -19981,7 +20199,7 @@ let view = { level: null, module: null, lesson: null };
           <button class="ghost" onclick="gamesView.gameId=null;renderJuegos()">← Juegos ${gamesView.level}</button>
         </div>
         <div class="brainy-row" style="margin-bottom:0.4rem">
-          <img id="impBrainy" class="brainy-avatar" src="brainy.jpg" alt="Brainy" style="width:56px;height:56px" onerror="this.src='brainylight.jpg'"/>
+          <img id="impBrainy" class="brainy-avatar" src="brainytip.jpg" alt="Brainy" onerror="this.src='brainy.jpg'"/>
           <div class="brainy-bubble" style="padding:0.5rem 0.7rem">
             <div class="brainy-name">Brainy · Detective</div>
             <div class="brainy-msg" id="impBrainyMsg" style="font-size:0.82rem">Tres casos. Arrastra cada tarjeta a <strong>Se deduce</strong>, <strong>No está</strong> o <strong>Trampa</strong>.</div>
